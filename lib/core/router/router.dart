@@ -15,13 +15,13 @@ class AppRouter extends RootStackRouter {
 }
 
 class AppRouterObserver extends AutoRouterObserver {
-  final logger = Logger(printer: PrettyPrinter(methodCount: 2));
+  final logger = Logger(printer: PrettyPrinter(methodCount: 0, noBoxingByDefault: true));
 
   void logRouteChange(classOfOrigin, {required Route route, Route? previousRoute}) {
     final routeName = route.settings.name ?? 'unknown';
     final previousRouteName = previousRoute?.settings.name ?? 'unknown';
     final routeChangeMessage = 'previousRoute $previousRouteName and current: $routeName';
-    logger.t('${classOfOrigin.runtimeType}: $routeChangeMessage}');
+    logger.t('${classOfOrigin.runtimeType}: $routeChangeMessage');
   }
 
   @override

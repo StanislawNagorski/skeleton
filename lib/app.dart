@@ -1,8 +1,9 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 import 'core/router/router.dart';
-import 'features/home_page/presentation/home_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key, required this.appRouter});
@@ -14,10 +15,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Flutter Demo',
+      title: 'Skeleton APP',
       routerConfig: appRouter.config(
         navigatorObservers: () => [AppRouterObserver()],
       ),
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        AppLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('pl', ''),
+        Locale('en', ''),
+      ],
       theme: ThemeData(
         // This is the theme of your application.
         //
