@@ -15,7 +15,7 @@ abstract class StartUpService {
   }
 
   static Future<void> _configureDatabases() async {
-
+    //TODO: init local database
   }
 
   static Future<void> _configureDependencies() async {
@@ -28,8 +28,9 @@ abstract class StartUpService {
     //   name: 'AppName',
     //   options: DefaultFirebaseOptions.currentPlatform,
     // );
-    _configureCrashlytics();
-    await _configureAppCheck();
+    //TODO: uncomment after adding firebase
+    // _configureCrashlytics();
+    // await _configureAppCheck();
   }
 
   static void _configureCrashlytics() {
