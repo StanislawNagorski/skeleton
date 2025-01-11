@@ -1,6 +1,7 @@
 # skeleton
 
 ### Troubleshooting
+- Generate boilerplate code:   - `flutter packages pub run build_runner build --delete-conflicting-outputs`
 - Some methods to deal with common problems:
     - `flutter doctor` may help you to locate problem
     - `flutter clean` it removes downloaded packages, plugins and builds.
@@ -50,8 +51,12 @@
   Docs: https://pub.dev/packages/injectable
 
 ### Database
-- **hive** && **hive_flutter** && **hive_generator**: Flutter multi-platform local database.   
-  Docs: https://pub.dev/packages/hive
+- **objectbox** && **objectbox_generator** **: Flutter multi-platform local NoSQL database.   
+  Docs: https://pub.dev/packages/objectbox
+  Docs: https://docs.objectbox.io/getting-started
+- **cloud_firestore**: Remote NoSQL database.
+  Docs: https://pub.dev/packages/cloud_firestore
+
 
 ### Navigator
 - **auto_route** && **auto_route_generator**: Pages navigator for Flutter, and boilerplate generator.   

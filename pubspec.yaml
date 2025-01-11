@@ -35,6 +35,8 @@ dependencies:
   #Database
   objectbox: ^4.0.3
   objectbox_flutter_libs: any
+  cloud_firestore: ^5.6.1
+
 
   #State management & navigator
   auto_route: ^9.3.0+1
@@ -46,7 +48,6 @@ dependencies:
   firebase_performance: ^0.10.1
   firebase_analytics: ^11.4.0
   firebase_app_check: ^0.3.2
-  firebase_remote_config: ^5.3.0
 
   #Features
 
@@ -58,10 +59,11 @@ dev_dependencies:
   auto_route_generator: ^9.0.0
   build_runner: ^2.4.14
   injectable_generator: ^2.6.2
+  objectbox_generator: any
 
   # Coding rules
   flutter_lints: ^5.0.0
-  objectbox_generator: any
+
 
 flutter:
   uses-material-design: true
