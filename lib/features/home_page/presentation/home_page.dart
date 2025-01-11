@@ -14,30 +14,31 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) => BlocProvider(
         create: (context) => getIt<HomeCubit>(),
         child: Builder(
-            builder: (context) => Scaffold(
-                  appBar: AppBar(
-                    backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-                    title: Text(context.localizations.homePage_title),
-                  ),
-                  body: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(context.localizations.homePage_centeredText),
-                        BlocBuilder<HomeCubit, HomeState>(
-                          builder: (context, state) => Text(
-                            '${state.counter}',
-                            style: Theme.of(context).textTheme.headlineMedium,
-                          ),
-                        ),
-                      ],
+          builder: (context) => Scaffold(
+            appBar: AppBar(
+              backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+              title: Text(context.localizations.homePage_title),
+            ),
+            body: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(context.localizations.homePage_centeredText),
+                  BlocBuilder<HomeCubit, HomeState>(
+                    builder: (context, state) => Text(
+                      '${state.counter}',
+                      style: Theme.of(context).textTheme.headlineMedium,
                     ),
                   ),
-                  floatingActionButton: FloatingActionButton(
-                    onPressed: context.read<HomeCubit>().increment,
-                    tooltip: context.localizations.homePage_incrementButton,
-                    child: const Icon(Icons.add),
-                  ), // This trailing comma makes auto-formatting nicer for build methods.
-                )),
+                ],
+              ),
+            ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: context.read<HomeCubit>().increment,
+              tooltip: context.localizations.homePage_incrementButton,
+              child: const Icon(Icons.add),
+            ), // This trailing comma makes auto-formatting nicer for build methods.
+          ),
+        ),
       );
 }
