@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-
 import 'core/presentation/app_themes.dart';
 import 'core/router/router.dart';
 
@@ -11,8 +10,6 @@ class MyApp extends StatelessWidget {
 
   final AppRouter appRouter;
 
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) => MaterialApp.router(
       title: 'Skeleton APP',

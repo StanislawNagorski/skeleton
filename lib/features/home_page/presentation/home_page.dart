@@ -16,7 +16,7 @@ class MyHomePage extends StatelessWidget {
         child: Builder(
           builder: (context) => Scaffold(
             appBar: AppBar(
-              backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+              backgroundColor: context.theme.colorScheme.inversePrimary,
               title: Text(context.localizations.homePage_title),
             ),
             body: Center(
@@ -27,7 +27,7 @@ class MyHomePage extends StatelessWidget {
                   BlocBuilder<HomeCubit, HomeState>(
                     builder: (context, state) => Text(
                       '${state.counter}',
-                      style: Theme.of(context).textTheme.headlineMedium,
+                      style: context.theme.textTheme.headlineMedium,
                     ),
                   ),
                 ],
