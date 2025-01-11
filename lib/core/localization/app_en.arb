@@ -2,5 +2,5 @@
   "@@locale": "en",
   "homePage_title": "Skeleton App",
   "homePage_centeredText": "You have pushed the button this many times:",
-  "homePage_incrementButton": "Increment",
+  "homePage_incrementButton": "Increment"
 }
