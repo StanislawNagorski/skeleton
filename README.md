@@ -35,6 +35,8 @@
   Docs: https://pub.dev/packages/device_info_plus
 - **uuid** for creating UUIDs   
   Docs: https://pub.dev/packages/uuid/
+- **auto_route** for managing app navigation   
+  Docs: https://pub.dev/packages/auto_route
 
 ### Widgets & UI Utils
 - **cupertino_icons**: Set of IOS default icons.   
