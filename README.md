@@ -1,4 +1,43 @@
-# skeleton
+# Skeleton - Flutter App Template
+
+Skeleton is a Flutter application template designed to speed up the development of new projects. Before starting work on a new app, you need to update the package name (`namespace`).
+
+## Instructions for Changing the Package Name
+
+### Android
+1. Open the file `android/app/build.gradle`.
+2. In the `android {}` section, update the `namespace` to:
+   ```gradle
+   android {
+       namespace = "com.your.new.package"
+   }
+3. **Rename the Java/Kotlin package folder structure:**
+  - Navigate to the folder `android/app/src/main/java/com/example/skeleton`.
+  - Rename `example` and `skeleton` folders to match your new package name.
+   **Example:**
+   For the package name `com.your.new.package`, the structure should be:
+4. **Update the `package` attribute in `AndroidManifest.xml`:**
+- Open `android/app/src/main/AndroidManifest.xml`.
+- Modify the `package` attribute in the `<manifest>` tag:
+  ```xml
+  <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="com.your.new.package">
+  ```
+
+### iOS
+1. **Update the Bundle Identifier in Xcode:**
+
+- In Xcode:
+  - Select the Runner project in the project navigator.
+  - Go to the General tab.
+  - Update the Bundle Identifier field (e.g., com.your.new.package).
+- Update the Info.plist file:
+  - Open `ios/Runner/Info.plist`.
+  - Update the `CFBundleIdentifier` key:
+    ```xml
+    <key>CFBundleIdentifier</key>
+    <string>com.your.new.package</string>
+    ```
 
 ### Troubleshooting
 - Generate boilerplate code:   - `flutter packages pub run build_runner build --delete-conflicting-outputs`
