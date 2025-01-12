@@ -39,6 +39,10 @@ Skeleton is a Flutter application template designed to speed up the development 
     <string>com.your.new.package</string>
     ```
 
+### Firebase
+1. **Update the Firebase configuration:**
+2. fallow: https://firebase.google.com/docs/flutter/setup?hl=pl&platform=ios
+
 ### Troubleshooting
 - Generate boilerplate code:   - `flutter packages pub run build_runner build --delete-conflicting-outputs`
 - Some methods to deal with common problems:
