@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 
 
 import 'core/injectable/injection.dart';
+import 'core/local_database/object_box.dart';
 
 
 abstract class StartUpService {
@@ -15,7 +16,7 @@ abstract class StartUpService {
   }
 
   static Future<void> _configureDatabases() async {
-    //TODO: init local database
+    await ObjectBox.initObjectBox();
   }
 
   static Future<void> _configureDependencies() async {
