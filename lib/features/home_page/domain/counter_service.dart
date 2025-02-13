@@ -7,9 +7,9 @@ import '../data/repository/counter_repository.dart';
 
 //Purpose of service is to connect with multiple repositories, it can also handle some business logic which is not related to UI
 abstract class CounterService {
-  Future<Either<Failure, CounterModel>> getCounter({required int id});
+  Future<Either<Failure, CounterModel>> getCounter();
   Future<Either<Failure, void>> setCounter({required CounterModel counter});
-  Stream<Either<Failure, CounterModel>> watchCounter({required int id});
+  Stream<Either<Failure, CounterModel>> watchCounter();
 }
 
 @Injectable(as: CounterService)
@@ -19,22 +19,12 @@ class CounterServiceImpl implements CounterService {
   final CounterRepository _repository;
 
   @override
-  Future<Either<Failure, CounterModel>> getCounter({required int id}) {
-    //TODO: create new counter if not found, so if fialure is LocalDataNotFoundFailure
-    // TODO: implement getCounter
-    throw UnimplementedError();
-  }
+  Future<Either<Failure, CounterModel>> getCounter() async => _repository.getCounter();
+
 
   @override
-  Future<Either<Failure, void>> setCounter({required CounterModel counter}) {
-    // TODO: implement setCounter
-    throw UnimplementedError();
-  }
+  Future<Either<Failure, void>> setCounter({required CounterModel counter}) => _repository.setCounter(counter: counter);
 
   @override
-  Stream<Either<Failure, CounterModel>> watchCounter({required int id}) {
-    // TODO: implement watchCounter
-    throw UnimplementedError();
-  }
-
+  Stream<Either<Failure, CounterModel>> watchCounter() => _repository.watchCounter();
 }

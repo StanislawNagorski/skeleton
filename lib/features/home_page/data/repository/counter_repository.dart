@@ -6,11 +6,11 @@ import 'package:skeleton/features/home_page/data/model/counter_model.dart';
 import '../../../../core/errors/failures.dart';
 import '../local_database/counter_local_database.dart';
 
-//Repository purpose is to handle errors while fetching data from the various data sources
+//Repository purpose is to handle errors while fetching data from the data sources
 abstract class CounterRepository {
-  Future<Either<Failure, CounterModel>> getCounter({required int id});
+  Future<Either<Failure, CounterModel>> getCounter();
   Future<Either<Failure, void>> setCounter({required CounterModel counter});
-  Stream<Either<Failure, CounterModel>> watchCounter({required int id});
+  Stream<Either<Failure, CounterModel>> watchCounter();
 }
 
 @Injectable(as: CounterRepository)
@@ -21,9 +21,9 @@ class CounterRepositoryImpl implements CounterRepository {
   final Logger _logger = Logger();
 
   @override
-  Future<Either<Failure, CounterModel>> getCounter({required int id}) async {
+  Future<Either<Failure, CounterModel>> getCounter() async {
     try {
-      final counter = await _localDataBase.getCounter(id);
+      final counter = await _localDataBase.getCounter();
       if (counter == null) {
         return Left(Failure.localDataNotFound('Counter not found'));
       }
@@ -46,8 +46,8 @@ class CounterRepositoryImpl implements CounterRepository {
   }
 
   @override
-  Stream<Either<Failure, CounterModel>> watchCounter({required int id}) =>
-      _localDataBase.watchCounter(id).map((counter) {
+  Stream<Either<Failure, CounterModel>> watchCounter() =>
+      _localDataBase.watchCounter().map((counter) {
         try {
           if (counter == null) {
             _logger.e('Counter not found locally');

@@ -1,6 +1,7 @@
 # Skeleton - Flutter App Template
 
 Skeleton is a Flutter application template designed to speed up the development of new projects. Before starting work on a new app, you need to update the package name (`namespace`).
+Or delete android and ios folders and run `flutter create .` to generate new ones.
 
 ## Instructions for Changing the Package Name
 
@@ -102,16 +103,13 @@ Skeleton is a Flutter application template designed to speed up the development 
 - **cloud_firestore**: Remote NoSQL database.
   Docs: https://pub.dev/packages/cloud_firestore
 
-
 ### Navigator
 - **auto_route** && **auto_route_generator**: Pages navigator for Flutter, and boilerplate generator.   
   Docs: https://pub.dev/packages/auto_route
 
-
 ### State management
 - **flutter_bloc**: State management tool. It connects pages with business logic kept in Cubit classes. Pages use methods in Cubit and Cubits emits proper app states to be handled by page builder.   
   Docs: https://pub.dev/packages/bloc
-
 
 ### Developers
 - **build_runner**: All boilerplate code generator depends on this package to generate files.   
@@ -120,6 +118,9 @@ Skeleton is a Flutter application template designed to speed up the development 
   Docs: https://pub.dev/packages/flutter_lints
 
 ## Changelog
+- **1.0.1** **13/02/2025**:
+  - LocalDataSource with ObjectBox implemented
+  - Base data flow data->domain->presentation added
 - **1.0.0** **10/01/2025**:
     - Repo creation and initial setup
 
