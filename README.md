@@ -58,6 +58,20 @@ Or delete android and ios folders and run `flutter create .` to generate new one
       `rm -rf ios/Pods/`   
       `pod repo update` and `pod install`
 
+## Architecture
+- **Clean Architecture**: The project is structured using the Clean Architecture pattern, which separates the app into three layers: data, domain, and presentation.  
+  - **Data**: The data layer is responsible for managing the app's data sources, such as local and remote databases. It also contains repositories that provide data to the domain layer.  
+    - **model** - classes representing data structures.
+    - **data source** - implementation of local or remote API data source. Use Interface to define methods. Avoid implementing logic in this layer.
+    - **repository** - provides data to the domain layer and handles errors matching them to Failures that may be used to provide feedback on presentation layer.
+  - **Domain**: The domain layer contains the business logic of the app.
+    - **services** - classes that provide business logic and may use various repositories.
+    - **entities** - classes representing business entities, it is parsed from and to models. It should contain only data which will be used or displayed.
+  - **Presentation**: The presentation layer is responsible for displaying the app's UI and handling user interactions.
+    - **pages** - contains all pages and widgets that are used to display UI.
+    - **cubits** - classes that manage the app's state and UI logic. They are used to communicate between the presentation and domain layers.
+    - **widgets** - contains all reusable widgets that are used in the app.
+
 ## Naming convention
 - **methods** should include verb and be clear about action they do.    
   example: getAllPromotions, validateCode.
