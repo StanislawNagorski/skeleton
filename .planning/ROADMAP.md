@@ -41,7 +41,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans:** 2 plans
 Plans:
 - [x] 01-01-PLAN.md — Core rebase: FVM bump, flutter create scaffold, swap native dirs, delete non-mobile platforms, update pubspec environment, regenerate lockfiles
-- [ ] 01-02-PLAN.md — Release signing scaffolding, README update, rebase manifest, final verification checkpoint
+- [x] 01-02-PLAN.md — Release signing scaffolding, README update, rebase manifest, final verification checkpoint
 
 ### Phase 2: Lints, Error Handling, Local Data Layer
 **Goal**: Strict lints enforced, sealed `Result<T>` + `Failure` hierarchy replaces `dartz`, Drift (with `SharedPreferencesAsync` + `flutter_secure_storage`) fully replaces ObjectBox, counter example ported end-to-end
