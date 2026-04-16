@@ -1,3 +1,13 @@
+// --- Release signing configuration (per D-07) ---
+// Priority: key.properties file > environment variables > no signing (release build fails)
+val keystorePropertiesFile = rootProject.file("key.properties")
+val keystoreProperties = java.util.Properties()
+val hasKeystoreFile = keystorePropertiesFile.exists()
+if (hasKeystoreFile) {
+    keystoreProperties.load(java.io.FileInputStream(keystorePropertiesFile))
+}
+val hasEnvVars = System.getenv("ANDROID_KEYSTORE_PATH") != null
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -30,11 +40,32 @@ android {
         versionName = flutter.versionName
     }
 
+    if (hasKeystoreFile || hasEnvVars) {
+        signingConfigs {
+            create("release") {
+                if (hasKeystoreFile) {
+                    storeFile = file(keystoreProperties["storeFile"] as String)
+                    storePassword = keystoreProperties["storePassword"] as String
+                    keyAlias = keystoreProperties["keyAlias"] as String
+                    keyPassword = keystoreProperties["keyPassword"] as String
+                } else {
+                    storeFile = file(System.getenv("ANDROID_KEYSTORE_PATH"))
+                    storePassword = System.getenv("ANDROID_KEYSTORE_PASSWORD")
+                    keyAlias = System.getenv("ANDROID_KEY_ALIAS")
+                    keyPassword = System.getenv("ANDROID_KEY_PASSWORD")
+                }
+            }
+        }
+    } else {
+        logger.warn("WARNING: No release signing configuration found.")
+        logger.warn("  -> Create android/key.properties from key.properties.template (local dev)")
+        logger.warn("  -> Or set ANDROID_KEYSTORE_PATH, ANDROID_KEYSTORE_PASSWORD, ANDROID_KEY_ALIAS, ANDROID_KEY_PASSWORD (CI)")
+        logger.warn("  -> Release builds will fail until signing is configured. See README.md > Release Signing.")
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = if (hasKeystoreFile || hasEnvVars) signingConfigs.getByName("release") else null
         }
     }
 }
