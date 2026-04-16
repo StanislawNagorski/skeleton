@@ -20,24 +20,27 @@ export 'package:objectbox/objectbox.dart'; // so that callers only have to impor
 
 final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
-      id: const obx_int.IdUid(1, 7688705574485244282),
-      name: 'CounterModel',
-      lastPropertyId: const obx_int.IdUid(2, 606085011129743152),
-      flags: 0,
-      properties: <obx_int.ModelProperty>[
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(1, 5896839429686255319),
-            name: 'id',
-            type: 6,
-            flags: 1),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(2, 606085011129743152),
-            name: 'value',
-            type: 6,
-            flags: 0)
-      ],
-      relations: <obx_int.ModelRelation>[],
-      backlinks: <obx_int.ModelBacklink>[])
+    id: const obx_int.IdUid(1, 7688705574485244282),
+    name: 'CounterModel',
+    lastPropertyId: const obx_int.IdUid(2, 606085011129743152),
+    flags: 0,
+    properties: <obx_int.ModelProperty>[
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(1, 5896839429686255319),
+        name: 'id',
+        type: 6,
+        flags: 1,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(2, 606085011129743152),
+        name: 'value',
+        type: 6,
+        flags: 0,
+      ),
+    ],
+    relations: <obx_int.ModelRelation>[],
+    backlinks: <obx_int.ModelBacklink>[],
+  ),
 ];
 
 /// Shortcut for [obx.Store.new] that passes [getObjectBoxModel] and for Flutter
@@ -51,69 +54,82 @@ final _entities = <obx_int.ModelEntity>[
 /// For Flutter apps, also calls `loadObjectBoxLibraryAndroidCompat()` from
 /// the ObjectBox Flutter library to fix loading the native ObjectBox library
 /// on Android 6 and older.
-Future<obx.Store> openStore(
-    {String? directory,
-    int? maxDBSizeInKB,
-    int? maxDataSizeInKB,
-    int? fileMode,
-    int? maxReaders,
-    bool queriesCaseSensitiveDefault = true,
-    String? macosApplicationGroup}) async {
+Future<obx.Store> openStore({
+  String? directory,
+  int? maxDBSizeInKB,
+  int? maxDataSizeInKB,
+  int? fileMode,
+  int? maxReaders,
+  bool queriesCaseSensitiveDefault = true,
+  String? macosApplicationGroup,
+}) async {
   await loadObjectBoxLibraryAndroidCompat();
-  return obx.Store(getObjectBoxModel(),
-      directory: directory ?? (await defaultStoreDirectory()).path,
-      maxDBSizeInKB: maxDBSizeInKB,
-      maxDataSizeInKB: maxDataSizeInKB,
-      fileMode: fileMode,
-      maxReaders: maxReaders,
-      queriesCaseSensitiveDefault: queriesCaseSensitiveDefault,
-      macosApplicationGroup: macosApplicationGroup);
+  return obx.Store(
+    getObjectBoxModel(),
+    directory: directory ?? (await defaultStoreDirectory()).path,
+    maxDBSizeInKB: maxDBSizeInKB,
+    maxDataSizeInKB: maxDataSizeInKB,
+    fileMode: fileMode,
+    maxReaders: maxReaders,
+    queriesCaseSensitiveDefault: queriesCaseSensitiveDefault,
+    macosApplicationGroup: macosApplicationGroup,
+  );
 }
 
 /// Returns the ObjectBox model definition for this project for use with
 /// [obx.Store.new].
 obx_int.ModelDefinition getObjectBoxModel() {
   final model = obx_int.ModelInfo(
-      entities: _entities,
-      lastEntityId: const obx_int.IdUid(1, 7688705574485244282),
-      lastIndexId: const obx_int.IdUid(0, 0),
-      lastRelationId: const obx_int.IdUid(0, 0),
-      lastSequenceId: const obx_int.IdUid(0, 0),
-      retiredEntityUids: const [],
-      retiredIndexUids: const [],
-      retiredPropertyUids: const [],
-      retiredRelationUids: const [],
-      modelVersion: 5,
-      modelVersionParserMinimum: 5,
-      version: 1);
+    entities: _entities,
+    lastEntityId: const obx_int.IdUid(1, 7688705574485244282),
+    lastIndexId: const obx_int.IdUid(0, 0),
+    lastRelationId: const obx_int.IdUid(0, 0),
+    lastSequenceId: const obx_int.IdUid(0, 0),
+    retiredEntityUids: const [],
+    retiredIndexUids: const [],
+    retiredPropertyUids: const [],
+    retiredRelationUids: const [],
+    modelVersion: 5,
+    modelVersionParserMinimum: 5,
+    version: 1,
+  );
 
   final bindings = <Type, obx_int.EntityDefinition>{
     CounterModel: obx_int.EntityDefinition<CounterModel>(
-        model: _entities[0],
-        toOneRelations: (CounterModel object) => [],
-        toManyRelations: (CounterModel object) => {},
-        getId: (CounterModel object) => object.id,
-        setId: (CounterModel object, int id) {
-          object.id = id;
-        },
-        objectToFB: (CounterModel object, fb.Builder fbb) {
-          fbb.startTable(3);
-          fbb.addInt64(0, object.id);
-          fbb.addInt64(1, object.value);
-          fbb.finish(fbb.endTable());
-          return object.id;
-        },
-        objectFromFB: (obx.Store store, ByteData fbData) {
-          final buffer = fb.BufferContext(fbData);
-          final rootOffset = buffer.derefObject(0);
-          final idParam =
-              const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
-          final valueParam =
-              const fb.Int64Reader().vTableGet(buffer, rootOffset, 6, 0);
-          final object = CounterModel(id: idParam, value: valueParam);
+      model: _entities[0],
+      toOneRelations: (CounterModel object) => [],
+      toManyRelations: (CounterModel object) => {},
+      getId: (CounterModel object) => object.id,
+      setId: (CounterModel object, int id) {
+        object.id = id;
+      },
+      objectToFB: (CounterModel object, fb.Builder fbb) {
+        fbb.startTable(3);
+        fbb.addInt64(0, object.id);
+        fbb.addInt64(1, object.value);
+        fbb.finish(fbb.endTable());
+        return object.id;
+      },
+      objectFromFB: (obx.Store store, ByteData fbData) {
+        final buffer = fb.BufferContext(fbData);
+        final rootOffset = buffer.derefObject(0);
+        final idParam = const fb.Int64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          4,
+          0,
+        );
+        final valueParam = const fb.Int64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          6,
+          0,
+        );
+        final object = CounterModel(id: idParam, value: valueParam);
 
-          return object;
-        })
+        return object;
+      },
+    ),
   };
 
   return obx_int.ModelDefinition(model, bindings);
@@ -122,10 +138,12 @@ obx_int.ModelDefinition getObjectBoxModel() {
 /// [CounterModel] entity fields to define ObjectBox queries.
 class CounterModel_ {
   /// See [CounterModel.id].
-  static final id =
-      obx.QueryIntegerProperty<CounterModel>(_entities[0].properties[0]);
+  static final id = obx.QueryIntegerProperty<CounterModel>(
+    _entities[0].properties[0],
+  );
 
   /// See [CounterModel.value].
-  static final value =
-      obx.QueryIntegerProperty<CounterModel>(_entities[0].properties[1]);
+  static final value = obx.QueryIntegerProperty<CounterModel>(
+    _entities[0].properties[1],
+  );
 }

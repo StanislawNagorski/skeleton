@@ -1,3 +1,4 @@
+// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -24,18 +25,18 @@ _i174.GetIt $initGetIt(
   String? environment,
   _i526.EnvironmentFilter? environmentFilter,
 }) {
-  final gh = _i526.GetItHelper(
-    getIt,
-    environment,
-    environmentFilter,
-  );
+  final gh = _i526.GetItHelper(getIt, environment, environmentFilter);
   gh.factory<_i448.CounterLocalDataBase>(
-      () => _i448.CounterLocalDataBaseImpl());
+    () => _i448.CounterLocalDataBaseImpl(),
+  );
   gh.factory<_i825.CounterRepository>(
-      () => _i825.CounterRepositoryImpl(gh<_i448.CounterLocalDataBase>()));
+    () => _i825.CounterRepositoryImpl(gh<_i448.CounterLocalDataBase>()),
+  );
   gh.factory<_i508.CounterService>(
-      () => _i508.CounterServiceImpl(gh<_i825.CounterRepository>()));
+    () => _i508.CounterServiceImpl(gh<_i825.CounterRepository>()),
+  );
   gh.factory<_i203.HomeCubit>(
-      () => _i203.HomeCubit(gh<_i508.CounterService>()));
+    () => _i203.HomeCubit(gh<_i508.CounterService>()),
+  );
   return getIt;
 }
