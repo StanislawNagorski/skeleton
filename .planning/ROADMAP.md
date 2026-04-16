@@ -38,7 +38,10 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. `android/`, `ios/` exist; `web/`, `macos/`, `linux/`, `windows/` directories and their plugin registrations are gone; `flutter devices` lists only mobile targets
   4. `android/app/build.gradle` declares a distinct release `signingConfig` (no longer reuses debug keystore) with a gitignored `key.properties` template documented
   5. `pubspec.lock` and `.flutter-plugins-dependencies` are regenerated against Flutter 3.41.5 with AGP 8.11.1 / Kotlin 2.2.20 / Gradle 8.14 / Java 17 / iOS Podfile floor 15 verified in the output
-**Plans**: TBD
+**Plans:** 2 plans
+Plans:
+- [ ] 01-01-PLAN.md — Core rebase: FVM bump, flutter create scaffold, swap native dirs, delete non-mobile platforms, update pubspec environment, regenerate lockfiles
+- [ ] 01-02-PLAN.md — Release signing scaffolding, README update, rebase manifest, final verification checkpoint
 
 ### Phase 2: Lints, Error Handling, Local Data Layer
 **Goal**: Strict lints enforced, sealed `Result<T>` + `Failure` hierarchy replaces `dartz`, Drift (with `SharedPreferencesAsync` + `flutter_secure_storage`) fully replaces ObjectBox, counter example ported end-to-end
@@ -132,7 +135,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Native Rebase | 0/TBD | Not started | - |
+| 1. Native Rebase | 0/2 | Planning complete | - |
 | 2. Lints, Error Handling, Local Data Layer | 0/TBD | Not started | - |
 | 3. Package Upgrades + Auth Contract | 0/TBD | Not started | - |
 | 4. Flavors (dev/prod) | 0/TBD | Not started | - |
