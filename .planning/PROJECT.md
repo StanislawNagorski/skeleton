@@ -26,7 +26,7 @@ Going from `git clone` to a working, Firebase-connected Flutter app on iOS and A
 
 <!-- In-scope for this milestone. Hypotheses until shipped. -->
 
-- [ ] Rebase Android/iOS native scaffolding on **Flutter 3.41.5 stable** via `flutter create` (AGP 8.11.1, Kotlin 2.2.20, Gradle 8.14, Java 17, iOS Podfile floor 15) while preserving `lib/`
+- [x] Rebase Android/iOS native scaffolding on **Flutter 3.41.5 stable** via `flutter create` (AGP 8.11.1, Kotlin 2.2.20, Gradle 8.14, Java 17, iOS Podfile floor 15) while preserving `lib/` — Validated in Phase 1: Native Rebase
 - [ ] Replace ObjectBox with **Drift 2.32.1** + `drift_flutter 0.3.0` + `sqlite3_flutter_libs`; port the counter example to Drift with reactive queries and the same repo/service/cubit flow
 - [ ] Add `shared_preferences` (use the new `SharedPreferencesAsync` API, not the legacy sync one) for user preferences and `flutter_secure_storage` for tokens
 - [ ] Replace `dartz` `Either<Failure, T>` with Dart 3 sealed `Result<T>` + sealed `Failure` hierarchy, exhaustive `switch` pattern matching
@@ -46,7 +46,7 @@ Going from `git clone` to a working, Firebase-connected Flutter app on iOS and A
 - [ ] Remove unused declared dependencies: `http`, `uuid`, `collection`
 - [ ] Switch from `flutter_lints` to `very_good_analysis` (current), configure analyzer with errors-not-warnings
 - [ ] Add an example test covering the counter feature (cubit + repository) using `bloc_test` and `mocktail`, with Drift `NativeDatabase.memory()` for in-memory repository tests — every future feature has a pattern to copy
-- [ ] Trim platforms to iOS + Android only (remove `web/`, `macos/`, `linux/`, `windows/` directories and plugin registrations)
+- [x] Trim platforms to iOS + Android only (remove `web/`, `macos/`, `linux/`, `windows/` directories and plugin registrations) — Validated in Phase 1: Native Rebase
 - [ ] Update README with the new bootstrap flow, per-flavor FlutterFire setup checklist, architecture conventions, the rebase procedure as a repeatable runbook for the next Flutter major, and an upgrade playbook
 
 ### Out of Scope
@@ -94,14 +94,14 @@ Going from `git clone` to a working, Firebase-connected Flutter app on iOS and A
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Rebase on fresh `flutter create` instead of surgical bump or clean-slate rewrite | Native scaffolding has drifted far enough (AGP, Kotlin, Gradle, iOS target) that patching in place is fragile, but `lib/` is still valuable and worth preserving verbatim | — Pending |
+| Rebase on fresh `flutter create` instead of surgical bump or clean-slate rewrite | Native scaffolding has drifted far enough (AGP, Kotlin, Gradle, iOS target) that patching in place is fragile, but `lib/` is still valuable and worth preserving verbatim | Validated — Phase 1 |
 | Drift over ObjectBox (and over Hive-descendants) | ObjectBox is niche and unfamiliar to the author; Hive is unmaintained; Drift has strong typing, reactive queries, and active maintenance in 2026 | — Pending |
 | Dart 3 sealed classes over `dartz` Either | `dartz` is effectively unmaintained; sealed classes + pattern matching give the same `Failure`/`Success` ergonomics natively, with better IDE and analyzer support | — Pending |
 | Keep Cubit + `get_it` + `injectable` | Proven in the existing skeleton, author is fluent in them, no compelling 2026 reason to switch to Riverpod; the bloc 9 bump captures the upgrade path | — Pending |
 | Firebase wired end-to-end rather than stubbed | Every target app uses Firebase Auth + cloud; stubbing forces the same wiring per app | — Pending |
 | Auth providers wired natively, no login UI | Login UX varies per app; native setup (Info.plist URL schemes, SHA keys, build.gradle entries) is the painful repeatable part worth pre-solving | — Pending |
 | `very_good_analysis` over `flutter_lints` | Stricter lints catch more real defects; skeleton sets the quality bar that every downstream app inherits | — Pending |
-| iOS + Android only | Author builds mobile apps — other platforms add maintenance surface without actual use | — Pending |
+| iOS + Android only | Author builds mobile apps — other platforms add maintenance surface without actual use | Validated — Phase 1 |
 | Dart bootstrap script for renaming | Manual renames across Android, iOS, and Dart are error-prone; a tested script replays deterministically per project | — Pending |
 | Onboarding without a package | `PageView` + dots indicator is ~100 lines; a package adds maintenance risk for no real gain | — Pending |
 | `tutorial_coach_mark` with a thin wrapper | Author has used this package successfully; a small `CoachMarkService` keeps feature code declarative and the API consistent across apps | — Pending |
