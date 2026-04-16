@@ -44,6 +44,42 @@ Or delete android and ios folders and run `flutter create .` to generate new one
 1. **Update the Firebase configuration:**
 2. fallow: https://firebase.google.com/docs/flutter/setup?hl=pl&platform=ios
 
+## Release Signing
+
+The skeleton uses a `key.properties` file for local release signing and environment variables for CI.
+
+### Local Setup
+
+1. Generate a keystore:
+   ```bash
+   keytool -genkey -v -keystore android/app/keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload
+   ```
+
+2. Copy the template and fill in your values:
+   ```bash
+   cp android/key.properties.template android/key.properties
+   ```
+
+3. Edit `android/key.properties` with your keystore path, passwords, and alias.
+
+4. Build a release APK:
+   ```bash
+   fvm flutter build apk --release
+   ```
+
+### CI Setup
+
+Set these environment variables instead of using `key.properties`:
+
+| Variable | Description |
+|----------|-------------|
+| `ANDROID_KEYSTORE_PATH` | Path to the `.jks` keystore file |
+| `ANDROID_KEYSTORE_PASSWORD` | Keystore password |
+| `ANDROID_KEY_ALIAS` | Key alias (e.g., `upload`) |
+| `ANDROID_KEY_PASSWORD` | Key password |
+
+> **Note:** `key.properties` and `*.jks` files are gitignored. Never commit signing secrets.
+
 ### Troubleshooting
 - Generate boilerplate code:   - `flutter packages pub run build_runner build --delete-conflicting-outputs`
 - Some methods to deal with common problems:
