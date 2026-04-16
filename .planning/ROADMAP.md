@@ -40,7 +40,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   5. `pubspec.lock` and `.flutter-plugins-dependencies` are regenerated against Flutter 3.41.5 with AGP 8.11.1 / Kotlin 2.2.20 / Gradle 8.14 / Java 17 / iOS Podfile floor 15 verified in the output
 **Plans:** 2 plans
 Plans:
-- [ ] 01-01-PLAN.md — Core rebase: FVM bump, flutter create scaffold, swap native dirs, delete non-mobile platforms, update pubspec environment, regenerate lockfiles
+- [x] 01-01-PLAN.md — Core rebase: FVM bump, flutter create scaffold, swap native dirs, delete non-mobile platforms, update pubspec environment, regenerate lockfiles
 - [ ] 01-02-PLAN.md — Release signing scaffolding, README update, rebase manifest, final verification checkpoint
 
 ### Phase 2: Lints, Error Handling, Local Data Layer
