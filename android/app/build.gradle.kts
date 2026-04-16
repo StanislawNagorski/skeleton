@@ -1,10 +1,13 @@
+import java.util.Properties
+import java.io.FileInputStream
+
 // --- Release signing configuration (per D-07) ---
 // Priority: key.properties file > environment variables > no signing (release build fails)
 val keystorePropertiesFile = rootProject.file("key.properties")
-val keystoreProperties = java.util.Properties()
+val keystoreProperties = Properties()
 val hasKeystoreFile = keystorePropertiesFile.exists()
 if (hasKeystoreFile) {
-    keystoreProperties.load(java.io.FileInputStream(keystorePropertiesFile))
+    keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 }
 val hasEnvVars = System.getenv("ANDROID_KEYSTORE_PATH") != null
 
@@ -25,8 +28,8 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
+    kotlin {
+        jvmToolchain(17)
     }
 
     defaultConfig {
@@ -44,10 +47,10 @@ android {
         signingConfigs {
             create("release") {
                 if (hasKeystoreFile) {
-                    storeFile = file(keystoreProperties["storeFile"] as String)
-                    storePassword = keystoreProperties["storePassword"] as String
-                    keyAlias = keystoreProperties["keyAlias"] as String
-                    keyPassword = keystoreProperties["keyPassword"] as String
+                    storeFile = file(keystoreProperties["storeFile"])
+                    storePassword = keystoreProperties["storePassword"] as String?
+                    keyAlias = keystoreProperties["keyAlias"] as String?
+                    keyPassword = keystoreProperties["keyPassword"] as String?
                 } else {
                     storeFile = file(System.getenv("ANDROID_KEYSTORE_PATH"))
                     storePassword = System.getenv("ANDROID_KEYSTORE_PASSWORD")
