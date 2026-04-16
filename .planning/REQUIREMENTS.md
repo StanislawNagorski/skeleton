@@ -136,64 +136,64 @@ Which phase covers which requirement. Populated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| INFRA-01 | TBD | Pending |
-| INFRA-02 | TBD | Pending |
-| INFRA-03 | TBD | Pending |
-| INFRA-04 | TBD | Pending |
-| DATA-01 | TBD | Pending |
-| DATA-02 | TBD | Pending |
-| DATA-03 | TBD | Pending |
-| DATA-04 | TBD | Pending |
-| DATA-05 | TBD | Pending |
-| CORE-01 | TBD | Pending |
-| CORE-02 | TBD | Pending |
-| CORE-03 | TBD | Pending |
-| CORE-04 | TBD | Pending |
-| CORE-05 | TBD | Pending |
-| CORE-06 | TBD | Pending |
-| FLAV-01 | TBD | Pending |
-| FLAV-02 | TBD | Pending |
-| FLAV-03 | TBD | Pending |
-| FLAV-04 | TBD | Pending |
-| FLAV-05 | TBD | Pending |
-| FLAV-06 | TBD | Pending |
-| FIRE-01 | TBD | Pending |
-| FIRE-02 | TBD | Pending |
-| FIRE-03 | TBD | Pending |
-| FIRE-04 | TBD | Pending |
-| FIRE-05 | TBD | Pending |
-| FIRE-06 | TBD | Pending |
-| FIRE-07 | TBD | Pending |
-| AUTH-01 | TBD | Pending |
-| AUTH-02 | TBD | Pending |
-| AUTH-03 | TBD | Pending |
-| AUTH-04 | TBD | Pending |
-| AUTH-05 | TBD | Pending |
-| AUTH-06 | TBD | Pending |
-| UX-01 | TBD | Pending |
-| UX-02 | TBD | Pending |
-| UX-03 | TBD | Pending |
-| UX-04 | TBD | Pending |
-| UX-05 | TBD | Pending |
-| UX-06 | TBD | Pending |
-| UX-07 | TBD | Pending |
-| UX-08 | TBD | Pending |
-| TOOL-01 | TBD | Pending |
-| TOOL-02 | TBD | Pending |
-| TOOL-03 | TBD | Pending |
-| TOOL-04 | TBD | Pending |
-| TOOL-05 | TBD | Pending |
-| TOOL-06 | TBD | Pending |
-| TOOL-07 | TBD | Pending |
-| DOCS-01 | TBD | Pending |
-| DOCS-02 | TBD | Pending |
-| DOCS-03 | TBD | Pending |
+| INFRA-01 | Phase 1 | Pending |
+| INFRA-02 | Phase 1 | Pending |
+| INFRA-03 | Phase 1 | Pending |
+| INFRA-04 | Phase 1 | Pending |
+| DATA-01 | Phase 2 | Pending |
+| DATA-02 | Phase 2 | Pending |
+| DATA-03 | Phase 2 | Pending |
+| DATA-04 | Phase 2 | Pending |
+| DATA-05 | Phase 2 | Pending |
+| CORE-01 | Phase 2 | Pending |
+| CORE-02 | Phase 2 | Pending |
+| CORE-03 | Phase 3 | Pending |
+| CORE-04 | Phase 3 | Pending |
+| CORE-05 | Phase 3 | Pending |
+| CORE-06 | Phase 2 | Pending |
+| FLAV-01 | Phase 4 | Pending |
+| FLAV-02 | Phase 4 | Pending |
+| FLAV-03 | Phase 4 | Pending |
+| FLAV-04 | Phase 4 | Pending |
+| FLAV-05 | Phase 4 | Pending |
+| FLAV-06 | Phase 4 | Pending |
+| FIRE-01 | Phase 5 | Pending |
+| FIRE-02 | Phase 5 | Pending |
+| FIRE-03 | Phase 5 | Pending |
+| FIRE-04 | Phase 5 | Pending |
+| FIRE-05 | Phase 5 | Pending |
+| FIRE-06 | Phase 5 | Pending |
+| FIRE-07 | Phase 5 | Pending |
+| AUTH-01 | Phase 5 | Pending |
+| AUTH-02 | Phase 5 | Pending |
+| AUTH-03 | Phase 5 | Pending |
+| AUTH-04 | Phase 5 | Pending |
+| AUTH-05 | Phase 5 | Pending |
+| AUTH-06 | Phase 5 | Pending |
+| UX-01 | Phase 6 | Pending |
+| UX-02 | Phase 6 | Pending |
+| UX-03 | Phase 6 | Pending |
+| UX-04 | Phase 6 | Pending |
+| UX-05 | Phase 6 | Pending |
+| UX-06 | Phase 6 | Pending |
+| UX-07 | Phase 6 | Pending |
+| UX-08 | Phase 6 | Pending |
+| TOOL-01 | Phase 7 | Pending |
+| TOOL-02 | Phase 7 | Pending |
+| TOOL-03 | Phase 2 | Pending |
+| TOOL-04 | Phase 7 | Pending |
+| TOOL-05 | Phase 7 | Pending |
+| TOOL-06 | Phase 7 | Pending |
+| TOOL-07 | Phase 7 | Pending |
+| DOCS-01 | Phase 8 | Pending |
+| DOCS-02 | Phase 8 | Pending |
+| DOCS-03 | Phase 8 | Pending |
 
 **Coverage:**
-- v1 requirements: 51 total
-- Mapped to phases: 0 (roadmap pending)
-- Unmapped: 51 ⚠️ (will be resolved by roadmapper)
+- v1 requirements: 52 total
+- Mapped to phases: 52 ✓
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-04-16*
-*Last updated: 2026-04-16 after initial definition*
+*Last updated: 2026-04-16 after roadmap creation — all 52 requirements mapped to 8 phases*
