@@ -2,7 +2,7 @@
 
 ## What This Is
 
-A reusable Flutter skeleton the author uses to bootstrap new mobile apps. This milestone refreshes the skeleton against 2026 Flutter tooling: native Android/iOS scaffolding is rebased on a fresh `flutter create`, key packages are replaced or upgraded (Drift over ObjectBox, Dart 3 sealed classes over `dartz`, `flutter_bloc` 9, `auto_route` 10), Firebase is wired end-to-end (not stubbed), and starter patterns for onboarding, in-app tutorials, and RIVE animations are added. The outcome is a template whose `git clone → bootstrap → flutter run` loop lands a production-ready, Firebase-connected iOS + Android app in minutes.
+A reusable Flutter skeleton the author uses to bootstrap new mobile apps. This milestone refreshes the skeleton against 2026 Flutter tooling: native Android/iOS scaffolding is rebased on Flutter 3.41.5's `flutter create`, key packages are replaced or upgraded (Drift over ObjectBox, Dart 3 sealed classes over `dartz`, `flutter_bloc` 9, `auto_route` 11, RIVE 0.14), Firebase is wired end-to-end on the FlutterFire BoM 4.12.0 matrix (Firebase config files gitignored, configured per-app via FlutterFire CLI after bootstrap), and starter patterns for onboarding, in-app tutorials, and RIVE splash + animations are added. The outcome is a template whose `git clone → bootstrap → flutterfire configure → flutter run` loop lands a production-ready, Firebase-connected iOS + Android app in under 30 minutes.
 
 ## Core Value
 
@@ -26,24 +26,28 @@ Going from `git clone` to a working, Firebase-connected Flutter app on iOS and A
 
 <!-- In-scope for this milestone. Hypotheses until shipped. -->
 
-- [ ] Rebase Android/iOS native scaffolding on the latest stable Flutter's `flutter create` output (AGP, Kotlin, Gradle, Podfile, deployment targets) while preserving `lib/`
-- [ ] Replace ObjectBox with Drift; port the counter example to Drift with reactive queries and the same repo/service/cubit flow
-- [ ] Add `shared_preferences` for user preferences and `flutter_secure_storage` for tokens
-- [ ] Replace `dartz` `Either<Failure, T>` with Dart 3 sealed classes + pattern matching (keep the `Failure` type hierarchy concept)
+- [ ] Rebase Android/iOS native scaffolding on **Flutter 3.41.5 stable** via `flutter create` (AGP 8.11.1, Kotlin 2.2.20, Gradle 8.14, Java 17, iOS Podfile floor 15) while preserving `lib/`
+- [ ] Replace ObjectBox with **Drift 2.32.1** + `drift_flutter 0.3.0` + `sqlite3_flutter_libs`; port the counter example to Drift with reactive queries and the same repo/service/cubit flow
+- [ ] Add `shared_preferences` (use the new `SharedPreferencesAsync` API, not the legacy sync one) for user preferences and `flutter_secure_storage` for tokens
+- [ ] Replace `dartz` `Either<Failure, T>` with Dart 3 sealed `Result<T>` + sealed `Failure` hierarchy, exhaustive `switch` pattern matching
 - [ ] Upgrade `flutter_bloc` 8 → 9
-- [ ] Upgrade `auto_route` 9 → 10
-- [ ] Full Firebase wiring (no stubs): Core, Auth, Firestore, Crashlytics (+ global error handler via `PlatformDispatcher.instance.onError`), Analytics, Performance, App Check
-- [ ] Firebase Auth providers configured natively (no UI screen): Email + Password, Google Sign-In, Apple Sign-In — including SHA keys, URL schemes, Info.plist entries
+- [ ] Upgrade `auto_route` 9 → **11.1.0** (skip v10 — it was a transitional major) with `auto_route_generator 10.5.0`; migrate guards from implemented-class to the new `guards` property on the router
+- [ ] Full Firebase wiring (no stubs) on **FlutterFire BoM 4.12.0** matrix: `firebase_core 4.7.0`, `firebase_auth 6.4.0`, `cloud_firestore 6.3.0`, `firebase_crashlytics 5.2.0` (+ global error handler via `PlatformDispatcher.instance.onError` + isolate error hook), `firebase_analytics 12.3.0`, `firebase_performance 0.11.3`, `firebase_app_check 0.4.3`
+- [ ] Firebase Auth providers configured natively (no UI screen): Email + Password, **Google Sign-In 7.x** (stream API + `serverClientId` on Android), **Apple Sign-In** (`sign_in_with_apple`) — including SHA-1 per flavor per keystore, URL schemes in Info.plist, Apple capability entitlement, reversed client IDs
+- [ ] Central `AuthService` abstract class exposing `Stream<AuthUser?>` + sign-in methods returning sealed `AuthResult`; used by `auto_route` `reevaluateListenable` pattern for auth-guarded routes
 - [ ] Onboarding feature: 3-slide `PageView` with dots indicator + skip/next buttons, `hasSeenOnboarding` flag in `shared_preferences`, `auto_route` guard redirecting first-run users to onboarding
-- [ ] `tutorial_coach_mark` integration with a `CoachMarkService` wrapper (`register(key, description)` + `showTour()`) and a live demo highlighting the counter screen's FAB
-- [ ] RIVE integration: animated RIVE splash (post-native splash) + example widget demonstrating `.riv` loading and state-machine interaction
-- [ ] Flavors: `dev` and `prod` with per-flavor bundle id, app name, launcher icon, and Firebase configuration files
-- [ ] Bootstrap script: `dart run tool/bootstrap.dart --name <AppName> --bundle <com.foo.app>` that renames Dart package, iOS bundle id, Android namespace + applicationId, Info.plist display names, and launcher icon per flavor
+- [ ] `tutorial_coach_mark` integration with a `CoachMarkService` wrapper (`register(key, description)` + `showTour(tourId)`) and a live demo highlighting the counter screen's FAB
+- [ ] RIVE **0.14** integration with its new API: `await RiveNative.init()` in `main()`, `RiveWidget` / `RiveWidgetBuilder` for the post-native-splash animated splash + an example widget demonstrating `.riv` loading and state-machine interaction
+- [ ] **Hand-rolled** flavors (`dev` and `prod`) — two entrypoints (`main_dev.dart`, `main_prod.dart`), Gradle `productFlavors` with `applicationIdSuffix ".dev"`, Xcode schemes + build configurations + `xcconfig` files, per-flavor launcher icons via `flutter_launcher_icons-<flavor>.yaml`, VS Code launch.json with both targets
+- [ ] Firebase configuration files (`firebase_options_*.dart`, `google-services.json`, `GoogleService-Info.plist`) **gitignored** in the skeleton — each new app runs `flutterfire configure --project=<name>-dev --out=lib/firebase_options_dev.dart` and `--project=<name>-prod` after bootstrap; skeleton is Firebase-sterile
+- [ ] Bootstrap script: `dart run tool/bootstrap.dart --name <AppName> --bundle <com.foo.app>` that renames Dart package, iOS bundle id (+ auto-derives `.dev` variant), Android namespace + applicationId, Info.plist display names, launcher icons per flavor, and documents next steps (create Firebase projects, run `flutterfire configure` ×2, register SHA-1 per flavor)
+- [ ] Switch ARB template from PL → EN (`template-arb-file: app_en.arb`), fix the existing PL/EN drift, configure `l10n.yaml` with `untranslated-messages-file` for CI visibility
+- [ ] Firebase App Check wired for **prod only** (`if (kReleaseMode) FirebaseAppCheck.activate(...)`); dev skips App Check entirely to avoid debug-token friction
 - [ ] Remove unused declared dependencies: `http`, `uuid`, `collection`
-- [ ] Switch from `flutter_lints` to `very_good_analysis`, configure analyzer with errors-not-warnings
-- [ ] Add an example test covering the counter feature (cubit + repository) so every future feature has a pattern to copy
-- [ ] Trim platforms to iOS + Android only (remove `web/`, `macos/`, `linux/`, `windows/` directories and plugin declarations)
-- [ ] Update README with the new bootstrap flow, per-flavor FlutterFire wiring, architecture conventions, and upgrade playbook for the next Flutter major
+- [ ] Switch from `flutter_lints` to `very_good_analysis` (current), configure analyzer with errors-not-warnings
+- [ ] Add an example test covering the counter feature (cubit + repository) using `bloc_test` and `mocktail`, with Drift `NativeDatabase.memory()` for in-memory repository tests — every future feature has a pattern to copy
+- [ ] Trim platforms to iOS + Android only (remove `web/`, `macos/`, `linux/`, `windows/` directories and plugin registrations)
+- [ ] Update README with the new bootstrap flow, per-flavor FlutterFire setup checklist, architecture conventions, the rebase procedure as a repeatable runbook for the next Flutter major, and an upgrade playbook
 
 ### Out of Scope
 
@@ -59,7 +63,10 @@ Going from `git clone` to a working, Firebase-connected Flutter app on iOS and A
 - Push notification UI and routing logic — per-app; skeleton only initializes Firebase Messaging if needed later
 - Full state-management migration to Riverpod — `flutter_bloc` stays, no need to swap
 - Replacing `get_it` + `injectable` with another DI — proven, staying
-- Replacing `auto_route` with `go_router` — `auto_route` stays, bumped to 10
+- Replacing `auto_route` with `go_router` — `auto_route` stays, bumped to 11
+- Shared demo Firebase project committed to the skeleton — skeleton stays Firebase-sterile; every new app creates its own `<name>-dev` and `<name>-prod` projects and runs `flutterfire configure` post-bootstrap
+- `flutter_flavorizr` or other flavor generators — flavors are hand-rolled so every file is explicit, auditable in `git diff`, and independent of generator upgrades
+- Firebase App Check in development builds — App Check only activates in release mode to avoid debug-token distribution overhead; dev builds call unprotected Firebase endpoints
 
 ## Context
 
@@ -72,10 +79,11 @@ Going from `git clone` to a working, Firebase-connected Flutter app on iOS and A
 - Native drift already observable: `.flutter-plugins-dependencies` was generated against Flutter `3.27.1` while `.fvmrc` pins `3.29.0`; AGP `8.1.0` and Kotlin `1.8.22` lag the current Flutter template defaults
 - Known native debt documented in `.planning/codebase/CONCERNS.md`: release builds reuse the debug keystore (TODO in `android/app/build.gradle`), `com.example.skeleton` placeholder must be renamed per app, iOS deployment target sits at 13.0, and `test/` is empty
 - Previous personal experience: author used Hive in earlier projects but it is effectively unmaintained now; has not used ObjectBox in practice — this motivated the Drift switch
+- Research findings are captured in `.planning/research/` (STACK, FEATURES, ARCHITECTURE, PITFALLS, SUMMARY). Stack version pins come from STACK.md; architecture decisions (two-entrypoint flavor design, `AuthService` contract, sealed `Result<T>` + sealed `Failure`, init sequence) come from ARCHITECTURE.md; PITFALLS.md lists the known gotchas the roadmap must route around
 
 ## Constraints
 
-- **Tech stack**: Flutter stable channel, Dart 3.x, iOS 15+, Android as per latest `flutter create` defaults — Firebase 11 already pushes iOS floor to 14/15
+- **Tech stack**: Flutter 3.41.5 stable / Dart 3.9, AGP 8.11.1 / Kotlin 2.2.20 / Gradle 8.14 / Java 17 on Android, iOS Podfile floor 15 (Firebase iOS SDK 12.x requires 15)
 - **Platforms**: iOS + Android only — other platforms explicitly descoped
 - **Languages**: code and documentation in English; user-facing UI localized PL + EN
 - **Performance**: skeleton must not regress cold-start relative to the current baseline once Firebase + RIVE + Drift are initialized
@@ -99,6 +107,14 @@ Going from `git clone` to a working, Firebase-connected Flutter app on iOS and A
 | `tutorial_coach_mark` with a thin wrapper | Author has used this package successfully; a small `CoachMarkService` keeps feature code declarative and the API consistent across apps | — Pending |
 | No CI / pre-commit hooks in the skeleton | Each project has different CI needs; skeleton stays minimal and downstream adds what it needs | — Pending |
 | Two flavors (`dev`, `prod`) — no `staging` | Current apps only need two environments; adding `staging` is cheap later, carrying it now is dead weight | — Pending |
+| Hand-rolled flavors (not `flutter_flavorizr`) | Every flavor file (Gradle product flavors, Xcode schemes + xcconfigs, two Dart entrypoints, per-flavor launcher-icon configs, VS Code launch.json) is explicit and visible in `git diff`; no dependency on an external generator whose output shape can change between releases | — Pending |
+| Firebase config gitignored in skeleton — per-app projects, not shared demo | A shared demo Firebase would not be used (skeleton is reference architecture, not a runnable demo app), would leak project IDs, and would force bootstrap to clean up placeholder data; each new app creates its own `<name>-dev` + `<name>-prod` projects and runs `flutterfire configure` after bootstrap | — Pending |
+| Dev + prod = two separate Firebase projects (not one project with two apps) | Separate projects give separate Firestore, Auth user pool, Analytics, Crashlytics, and security rules per environment; Spark tier covers dev at zero cost; one-project-two-apps pattern pollutes prod metrics with dev noise | — Pending |
+| App Check only in release mode (`kReleaseMode`) | Debug tokens need per-developer registration in Firebase Console and the iOS console-print path is currently broken in flutterfire; gating on `kReleaseMode` removes the friction while still protecting prod | — Pending |
+| ARB template switched PL → EN | PL-as-template is non-standard — tooling assumes EN; existing skeleton already shows PL/EN drift because of it; EN template + `untranslated-messages-file` CI check makes drift visible | — Pending |
+| `auto_route` bumped 9 → 11.1.0 (skipping 10) | v10 was a transitional major whose guard API changed again in v11 — active development lives on v11 | — Pending |
+| RIVE 0.14 (new `RiveNative.init()` / `RiveWidget` API) | 0.14 is a runtime rewrite built on `rive_native`; adopting it now avoids a second migration when the old `Rive` widget deprecates | — Pending |
+| Central `AuthService` abstract class as the auth boundary | One contract (`Stream<AuthUser?>` + sealed `AuthResult`) feeds `auto_route` guards and every downstream feature; freezing it early prevents cascading churn in onboarding, coach marks, and apps built on top | — Pending |
 
 ## Evolution
 
@@ -118,4 +134,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-04-16 after initialization*
+*Last updated: 2026-04-16 after initialization + research + roadmap-input decisions*
