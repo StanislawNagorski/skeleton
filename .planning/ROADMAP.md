@@ -70,7 +70,7 @@ Plans:
   5. `flutter analyze` + `flutter test` both pass against the new package majors
 **Plans:** 2 plans
 Plans:
-- [ ] 03-01-PLAN.md — flutter_bloc 9 bump, AuthService contract (abstract + sealed AuthResult + AuthUser entity + FakeAuthService + AuthError)
+- [x] 03-01-PLAN.md — flutter_bloc 9 bump, AuthService contract (abstract + sealed AuthResult + AuthUser entity + FakeAuthService + AuthError)
 - [ ] 03-02-PLAN.md — auto_route 11 guard wiring (AuthGuard, LoginRoute placeholder, reevaluateListenable, router/app/main updates)
 
 ### Phase 4: Flavors (dev/prod)
