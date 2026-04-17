@@ -87,7 +87,7 @@ Plans:
 - [x] 04-01-PLAN.md — BoM 4.12.0 pubspec bumps, stub firebase_options.dart, DI environment wiring
 - [x] 04-02-PLAN.md — StartUpService restructure (Firebase init + Crashlytics + App Check), FirebaseModule for Analytics/Performance/Firestore
 - [x] 04-03-PLAN.md — FirebaseAuthService implementation (Email, Google, Apple providers + signOut + passwordReset)
-- [ ] 04-04-PLAN.md — README Firebase setup documentation (SHA-1, Apple capability, serverClientId, dev mode)
+- [x] 04-04-PLAN.md — README Firebase setup documentation (SHA-1, Apple capability, serverClientId, dev mode)
 **UI hint**: yes
 
 ### Phase 5: UX Patterns (Onboarding + RIVE Splash + Coach Marks)
