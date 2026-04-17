@@ -9,6 +9,9 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:cloud_firestore/cloud_firestore.dart' as _i974;
+import 'package:firebase_analytics/firebase_analytics.dart' as _i398;
+import 'package:firebase_performance/firebase_performance.dart' as _i346;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
@@ -22,12 +25,14 @@ import '../auth/auth_service.dart' as _i88;
 import '../auth/fake_auth_service.dart' as _i387;
 import '../database/app_database.dart' as _i982;
 import '../database/database_module.dart' as _i215;
+import '../firebase/firebase_module.dart' as _i1055;
 import '../preferences/preferences_service.dart' as _i929;
 import '../preferences/preferences_service_impl.dart' as _i480;
 import '../secure_storage/secure_storage_service.dart' as _i611;
 import '../secure_storage/secure_storage_service_impl.dart' as _i220;
 
 const String _dev = 'dev';
+const String _prod = 'prod';
 
 // initializes the registration of main-scope dependencies inside of GetIt
 _i174.GetIt $initGetIt(
@@ -37,6 +42,7 @@ _i174.GetIt $initGetIt(
 }) {
   final gh = _i526.GetItHelper(getIt, environment, environmentFilter);
   final databaseModule = _$DatabaseModule();
+  final firebaseModule = _$FirebaseModule();
   gh.lazySingleton<_i982.AppDatabase>(() => databaseModule.appDatabase);
   gh.lazySingleton<_i611.SecureStorageService>(
     () => _i220.SecureStorageServiceImpl(),
@@ -47,6 +53,18 @@ _i174.GetIt $initGetIt(
   gh.lazySingleton<_i88.AuthService>(
     () => _i387.FakeAuthService(),
     registerFor: {_dev},
+  );
+  gh.lazySingleton<_i398.FirebaseAnalytics>(
+    () => firebaseModule.analytics,
+    registerFor: {_prod},
+  );
+  gh.lazySingleton<_i346.FirebasePerformance>(
+    () => firebaseModule.performance,
+    registerFor: {_prod},
+  );
+  gh.lazySingleton<_i974.FirebaseFirestore>(
+    () => firebaseModule.firestore,
+    registerFor: {_prod},
   );
   gh.lazySingleton<_i448.CounterLocalDataBase>(
     () => _i448.CounterLocalDataBaseImpl(gh<_i982.AppDatabase>()),
@@ -64,3 +82,5 @@ _i174.GetIt $initGetIt(
 }
 
 class _$DatabaseModule extends _i215.DatabaseModule {}
+
+class _$FirebaseModule extends _i1055.FirebaseModule {}
