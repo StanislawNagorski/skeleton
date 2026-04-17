@@ -1,28 +1,49 @@
+import 'package:drift/drift.dart';
 import 'package:injectable/injectable.dart';
-import 'package:skeleton/features/home_page/data/model/counter_model.dart';
 
-// TODO(plan-02): Replace with Drift DAO. ObjectBox removed in Phase 2.
+import '../../../../core/database/app_database.dart';
 
 /// Data source for counter persistence.
+///
+/// Queries Drift [AppDatabase] directly. Returns Drift-generated
+/// [CounterEntry] types -- mapping to domain [CounterModel] happens
+/// in the repository layer.
 abstract class CounterLocalDataBase {
-  Future<CounterModel?> getCounter();
-  Future<void> setCounter(CounterModel counter);
-  Stream<CounterModel?> watchCounter();
+  /// Returns the first counter entry, or `null` if none exists.
+  Future<CounterEntry?> getCounter();
+
+  /// Upserts a counter entry with the given [value].
+  Future<void> setCounter({required int value});
+
+  /// Watches the first counter entry reactively.
+  Stream<CounterEntry?> watchCounter();
 }
 
-@Injectable(as: CounterLocalDataBase)
+/// Drift-backed implementation of [CounterLocalDataBase].
+@LazySingleton(as: CounterLocalDataBase)
 class CounterLocalDataBaseImpl implements CounterLocalDataBase {
-  CounterModel? _inMemoryCounter;
+  /// Creates a [CounterLocalDataBaseImpl] with the injected
+  /// [AppDatabase].
+  CounterLocalDataBaseImpl(this._db);
+
+  final AppDatabase _db;
 
   @override
-  Future<CounterModel?> getCounter() async => _inMemoryCounter;
-
-  @override
-  Future<void> setCounter(CounterModel counter) async {
-    _inMemoryCounter = counter;
+  Future<CounterEntry?> getCounter() async {
+    return (_db.select(_db.counterEntries)..limit(1))
+        .getSingleOrNull();
   }
 
   @override
-  Stream<CounterModel?> watchCounter() =>
-      Stream<CounterModel?>.value(_inMemoryCounter);
+  Future<void> setCounter({required int value}) async {
+    await _db.into(_db.counterEntries).insertOnConflictUpdate(
+          CounterEntriesCompanion.insert(value: Value(value)),
+        );
+  }
+
+  @override
+  Stream<CounterEntry?> watchCounter() {
+    return (_db.select(_db.counterEntries)..limit(1))
+        .watchSingleOrNull();
+  }
 }

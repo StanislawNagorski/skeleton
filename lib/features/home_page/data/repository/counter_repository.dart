@@ -1,69 +1,82 @@
-import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
-import 'package:skeleton/core/errors/failures.dart';
-import 'package:skeleton/features/home_page/data/local_database/counter_local_database.dart';
-import 'package:skeleton/features/home_page/data/model/counter_model.dart';
 
-/// Repository handles errors while fetching data from data sources.
+import '../../../../core/errors/failures.dart';
+import '../../../../core/errors/result.dart';
+import '../local_database/counter_local_database.dart';
+import '../model/counter_model.dart';
+
+/// Handles errors from counter data sources and returns typed
+/// [Result]s.
 abstract class CounterRepository {
-  Future<Either<AppFailure, CounterModel>> getCounter();
-  Future<Either<AppFailure, void>> setCounter({
-    required CounterModel counter,
-  });
-  Stream<Either<AppFailure, CounterModel>> watchCounter();
+  /// Reads the current counter value.
+  Future<Result<CounterModel>> getCounter();
+
+  /// Persists the counter [value].
+  Future<Result<void>> setCounter({required CounterModel counter});
+
+  /// Watches counter changes as a reactive stream of [Result]s.
+  Stream<Result<CounterModel>> watchCounter();
 }
 
-@Injectable(as: CounterRepository)
+/// Implementation backed by [CounterLocalDataBase].
+@LazySingleton(as: CounterRepository)
 class CounterRepositoryImpl implements CounterRepository {
+  /// Creates a [CounterRepositoryImpl] with the given data source.
   CounterRepositoryImpl(this._localDataBase);
 
   final CounterLocalDataBase _localDataBase;
   final Logger _logger = Logger();
 
   @override
-  Future<Either<AppFailure, CounterModel>> getCounter() async {
+  Future<Result<CounterModel>> getCounter() async {
     try {
-      final counter = await _localDataBase.getCounter();
-      if (counter == null) {
-        return const Left(
+      final entry = await _localDataBase.getCounter();
+      if (entry == null) {
+        return const Failure(
           LocalDataNotFound('Counter not found'),
         );
       }
-      return Right(counter);
-    } on Exception catch (e) {
+      return Success(
+        CounterModel(id: entry.id, value: entry.value),
+      );
+    } catch (e) {
       _logger.e('Local data source exception: $e');
-      return Left(LocalDataSource(e.toString()));
+      return Failure(LocalDataSource(e.toString()));
     }
   }
 
   @override
-  Future<Either<AppFailure, void>> setCounter({
+  Future<Result<void>> setCounter({
     required CounterModel counter,
   }) async {
     try {
-      await _localDataBase.setCounter(counter);
-      return const Right(null);
-    } on Exception catch (e) {
+      await _localDataBase.setCounter(value: counter.value);
+      return const Success(null);
+    } catch (e) {
       _logger.e('Local data source exception: $e');
-      return Left(LocalDataSource(e.toString()));
+      return Failure(LocalDataSource(e.toString()));
     }
   }
 
   @override
-  Stream<Either<AppFailure, CounterModel>> watchCounter() =>
-      _localDataBase.watchCounter().map((counter) {
-        try {
-          if (counter == null) {
-            _logger.e('Counter not found locally');
-            return const Left(
-              LocalDataNotFound('Counter not found'),
-            );
-          }
-          return Right(counter);
-        } on Exception catch (e) {
-          _logger.e('Local data source exception: $e');
-          return Left(LocalDataSource(e.toString()));
+  Stream<Result<CounterModel>> watchCounter() {
+    return _localDataBase.watchCounter().map((entry) {
+      try {
+        if (entry == null) {
+          return const Failure<CounterModel>(
+            LocalDataNotFound('Counter not found'),
+          );
         }
-      });
+        return Success(
+          CounterModel(id: entry.id, value: entry.value),
+        );
+      } catch (e) {
+        _logger.e('Local data source exception: $e');
+        return Failure<CounterModel>(
+          LocalDataSource(e.toString()),
+        );
+      }
+    });
+  }
 }
