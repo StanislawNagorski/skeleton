@@ -55,7 +55,7 @@ Plans:
   5. `SharedPreferencesAsync` + `flutter_secure_storage` are registered in DI and `http` / `uuid` / `collection` are gone from `pubspec.yaml`
 **Plans:** 2 plans
 Plans:
-- [ ] 02-01-PLAN.md — Lints + sealed Result/AppFailure abstractions + pubspec dependency overhaul
+- [x] 02-01-PLAN.md — Lints + sealed Result/AppFailure abstractions + pubspec dependency overhaul
 - [ ] 02-02-PLAN.md — ObjectBox removal, Drift integration, dartz->Result migration, counter port, preferences + secure storage wrappers
 
 ### Phase 3: Package Upgrades + Auth Contract
