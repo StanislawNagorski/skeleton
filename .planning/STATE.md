@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Phase 5 UI-SPEC approved
-last_updated: "2026-04-17T17:10:58.262Z"
+stopped_at: Phase 5 planned (4 plans, 2 waves)
+last_updated: "2026-04-17T19:00:00.000Z"
 last_activity: 2026-04-17
 progress:
   total_phases: 7
   completed_phases: 4
-  total_plans: 10
+  total_plans: 14
   completed_plans: 10
-  percent: 100
+  percent: 71
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-16)
 
 **Core value:** `git clone → bootstrap → flutterfire configure → flutter run` lands a production-ready, Firebase-connected iOS + Android app in under 30 minutes.
-**Current focus:** Phase 04 — firebase-wiring-auth-providers
+**Current focus:** Phase 05 — ux-patterns-onboarding-rive-splash-coach-marks
 
 ## Current Position
 
 Phase: 5
-Plan: Not started
-Status: Executing Phase 04
+Plan: Ready to execute (4 plans, 2 waves)
+Status: Phase 5 planned
 Last activity: 2026-04-17
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [███████░░░] 71%
 
 ## Performance Metrics
 
@@ -86,5 +86,5 @@ Items acknowledged and carried forward from previous milestone close:
 ## Session Continuity
 
 Last session: 2026-04-17
-Stopped at: Phase 5 UI-SPEC approved
-Resume file: .planning/phases/05-ux-patterns-onboarding-rive-splash-coach-marks/05-UI-SPEC.md
+Stopped at: Phase 5 planned (4 plans, 2 waves, verification passed)
+Resume file: .planning/phases/05-ux-patterns-onboarding-rive-splash-coach-marks/05-01-PLAN.md
