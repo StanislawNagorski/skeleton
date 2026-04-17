@@ -82,7 +82,12 @@ Plans:
   3. `AuthService.signInWithEmail`, `.registerWithEmail`, `.signInWithGoogle`, `.signInWithApple`, `.signOut`, and `.sendPasswordReset` each complete a real auth flow against Firebase; `authStateChanges` emits `AuthUser` on sign-in and `null` on sign-out
   4. App Check activates only in release builds (`kReleaseMode`): `AndroidProvider.playIntegrity` on Android, `AppleProvider.appAttest` on iOS; dev builds skip activation entirely with no debug-token friction
   5. `FirebaseAnalytics.instance` and `FirebasePerformance.instance` are registered in DI, `cloud_firestore` has offline persistence enabled, and both Android + iOS builds launch without pod/gradle errors
-**Plans**: TBD
+**Plans:** 4 plans
+Plans:
+- [ ] 04-01-PLAN.md — BoM 4.12.0 pubspec bumps, stub firebase_options.dart, DI environment wiring
+- [ ] 04-02-PLAN.md — StartUpService restructure (Firebase init + Crashlytics + App Check), FirebaseModule for Analytics/Performance/Firestore
+- [ ] 04-03-PLAN.md — FirebaseAuthService implementation (Email, Google, Apple providers + signOut + passwordReset)
+- [ ] 04-04-PLAN.md — README Firebase setup documentation (SHA-1, Apple capability, serverClientId, dev mode)
 **UI hint**: yes
 
 ### Phase 5: UX Patterns (Onboarding + RIVE Splash + Coach Marks)
@@ -131,7 +136,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 1. Native Rebase | 2/2 | Complete | 2026-04-16 |
 | 2. Lints, Error Handling, Local Data Layer | 0/2 | Planning complete | - |
 | 3. Package Upgrades + Auth Contract | 0/2 | Planning complete | - |
-| 4. Firebase Wiring + Auth Providers | 0/TBD | Not started | - |
+| 4. Firebase Wiring + Auth Providers | 0/4 | Planning complete | - |
 | 5. UX Patterns (Onboarding + RIVE Splash + Coach Marks) | 0/TBD | Not started | - |
 | 6. Bootstrap + i18n Cleanup + Tests | 0/TBD | Not started | - |
 | 7. Documentation | 0/TBD | Not started | - |
