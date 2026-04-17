@@ -68,7 +68,10 @@ Plans:
   3. `lib/core/auth/auth_service.dart` defines the abstract `AuthService` with `Stream<AuthUser?> authStateChanges`, `AuthUser? currentUser`, the six sign-in / sign-out methods, and sealed `AuthResult` (`AuthSuccess` / `AuthFailure` / `AuthCancelled`)
   4. `AuthUser` is a pure Dart entity that imports zero `firebase_auth` symbols
   5. `flutter analyze` + `flutter test` both pass against the new package majors
-**Plans**: TBD
+**Plans:** 2 plans
+Plans:
+- [ ] 03-01-PLAN.md — flutter_bloc 9 bump, AuthService contract (abstract + sealed AuthResult + AuthUser entity + FakeAuthService + AuthError)
+- [ ] 03-02-PLAN.md — auto_route 11 guard wiring (AuthGuard, LoginRoute placeholder, reevaluateListenable, router/app/main updates)
 
 ### Phase 4: Flavors (dev/prod)
 **Goal**: Hand-rolled `dev` and `prod` flavors across Android, iOS, Dart entrypoints, and launcher icons — with Firebase config gitignored so the skeleton stays Firebase-sterile
@@ -140,7 +143,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8
 |-------|----------------|--------|-----------|
 | 1. Native Rebase | 2/2 | Complete | 2026-04-16 |
 | 2. Lints, Error Handling, Local Data Layer | 0/2 | Planning complete | - |
-| 3. Package Upgrades + Auth Contract | 0/TBD | Not started | - |
+| 3. Package Upgrades + Auth Contract | 0/2 | Planning complete | - |
 | 4. Flavors (dev/prod) | 0/TBD | Not started | - |
 | 5. Firebase Wiring + Auth Providers | 0/TBD | Not started | - |
 | 6. UX Patterns (Onboarding + RIVE Splash + Coach Marks) | 0/TBD | Not started | - |
