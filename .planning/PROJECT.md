@@ -30,11 +30,11 @@ Going from `git clone` to a working, Firebase-connected Flutter app on iOS and A
 - [x] Replace ObjectBox with **Drift 2.32.1** + `drift_flutter 0.3.0` + `sqlite3_flutter_libs`; port the counter example to Drift with reactive queries and the same repo/service/cubit flow — Validated in Phase 2: Lints, Error Handling, Local Data Layer
 - [x] Add `shared_preferences` (use the new `SharedPreferencesAsync` API, not the legacy sync one) for user preferences and `flutter_secure_storage` for tokens — Validated in Phase 2: Lints, Error Handling, Local Data Layer
 - [x] Replace `dartz` `Either<Failure, T>` with Dart 3 sealed `Result<T>` + sealed `Failure` hierarchy, exhaustive `switch` pattern matching — Validated in Phase 2: Lints, Error Handling, Local Data Layer
-- [ ] Upgrade `flutter_bloc` 8 → 9
-- [ ] Upgrade `auto_route` 9 → **11.1.0** (skip v10 — it was a transitional major) with `auto_route_generator 10.5.0`; migrate guards from implemented-class to the new `guards` property on the router
+- [x] Upgrade `flutter_bloc` 8 → 9 — Validated in Phase 3: Package Upgrades + Auth Contract
+- [x] Upgrade `auto_route` 9 → **11.1.0** (skip v10 — it was a transitional major) with `auto_route_generator 10.5.0`; migrate guards from implemented-class to the new `guards` property on the router — Validated in Phase 3: Package Upgrades + Auth Contract
 - [ ] Full Firebase wiring (no stubs) on **FlutterFire BoM 4.12.0** matrix: `firebase_core 4.7.0`, `firebase_auth 6.4.0`, `cloud_firestore 6.3.0`, `firebase_crashlytics 5.2.0` (+ global error handler via `PlatformDispatcher.instance.onError` + isolate error hook), `firebase_analytics 12.3.0`, `firebase_performance 0.11.3`, `firebase_app_check 0.4.3`
 - [ ] Firebase Auth providers configured natively (no UI screen): Email + Password, **Google Sign-In 7.x** (stream API + `serverClientId` on Android), **Apple Sign-In** (`sign_in_with_apple`) — including SHA-1 per flavor per keystore, URL schemes in Info.plist, Apple capability entitlement, reversed client IDs
-- [ ] Central `AuthService` abstract class exposing `Stream<AuthUser?>` + sign-in methods returning sealed `AuthResult`; used by `auto_route` `reevaluateListenable` pattern for auth-guarded routes
+- [x] Central `AuthService` abstract class exposing `Stream<AuthUser?>` + sign-in methods returning sealed `AuthResult`; used by `auto_route` `reevaluateListenable` pattern for auth-guarded routes — Validated in Phase 3: Package Upgrades + Auth Contract
 - [ ] Onboarding feature: 3-slide `PageView` with dots indicator + skip/next buttons, `hasSeenOnboarding` flag in `shared_preferences`, `auto_route` guard redirecting first-run users to onboarding
 - [ ] `tutorial_coach_mark` integration with a `CoachMarkService` wrapper (`register(key, description)` + `showTour(tourId)`) and a live demo highlighting the counter screen's FAB
 - [ ] RIVE **0.14** integration with its new API: `await RiveNative.init()` in `main()`, `RiveWidget` / `RiveWidgetBuilder` for the post-native-splash animated splash + an example widget demonstrating `.riv` loading and state-machine interaction
@@ -97,7 +97,7 @@ Going from `git clone` to a working, Firebase-connected Flutter app on iOS and A
 | Rebase on fresh `flutter create` instead of surgical bump or clean-slate rewrite | Native scaffolding has drifted far enough (AGP, Kotlin, Gradle, iOS target) that patching in place is fragile, but `lib/` is still valuable and worth preserving verbatim | Validated — Phase 1 |
 | Drift over ObjectBox (and over Hive-descendants) | ObjectBox is niche and unfamiliar to the author; Hive is unmaintained; Drift has strong typing, reactive queries, and active maintenance in 2026 | — Pending |
 | Dart 3 sealed classes over `dartz` Either | `dartz` is effectively unmaintained; sealed classes + pattern matching give the same `Failure`/`Success` ergonomics natively, with better IDE and analyzer support | — Pending |
-| Keep Cubit + `get_it` + `injectable` | Proven in the existing skeleton, author is fluent in them, no compelling 2026 reason to switch to Riverpod; the bloc 9 bump captures the upgrade path | — Pending |
+| Keep Cubit + `get_it` + `injectable` | Proven in the existing skeleton, author is fluent in them, no compelling 2026 reason to switch to Riverpod; the bloc 9 bump captures the upgrade path | Validated — Phase 3 |
 | Firebase wired end-to-end rather than stubbed | Every target app uses Firebase Auth + cloud; stubbing forces the same wiring per app | — Pending |
 | Auth providers wired natively, no login UI | Login UX varies per app; native setup (Info.plist URL schemes, SHA keys, build.gradle entries) is the painful repeatable part worth pre-solving | — Pending |
 | `very_good_analysis` over `flutter_lints` | Stricter lints catch more real defects; skeleton sets the quality bar that every downstream app inherits | — Pending |
@@ -112,9 +112,9 @@ Going from `git clone` to a working, Firebase-connected Flutter app on iOS and A
 | Dev + prod = two separate Firebase projects (not one project with two apps) | Separate projects give separate Firestore, Auth user pool, Analytics, Crashlytics, and security rules per environment; Spark tier covers dev at zero cost; one-project-two-apps pattern pollutes prod metrics with dev noise | — Pending |
 | App Check only in release mode (`kReleaseMode`) | Debug tokens need per-developer registration in Firebase Console and the iOS console-print path is currently broken in flutterfire; gating on `kReleaseMode` removes the friction while still protecting prod | — Pending |
 | ARB template switched PL → EN | PL-as-template is non-standard — tooling assumes EN; existing skeleton already shows PL/EN drift because of it; EN template + `untranslated-messages-file` CI check makes drift visible | — Pending |
-| `auto_route` bumped 9 → 11.1.0 (skipping 10) | v10 was a transitional major whose guard API changed again in v11 — active development lives on v11 | — Pending |
+| `auto_route` bumped 9 → 11.1.0 (skipping 10) | v10 was a transitional major whose guard API changed again in v11 — active development lives on v11 | Validated — Phase 3 |
 | RIVE 0.14 (new `RiveNative.init()` / `RiveWidget` API) | 0.14 is a runtime rewrite built on `rive_native`; adopting it now avoids a second migration when the old `Rive` widget deprecates | — Pending |
-| Central `AuthService` abstract class as the auth boundary | One contract (`Stream<AuthUser?>` + sealed `AuthResult`) feeds `auto_route` guards and every downstream feature; freezing it early prevents cascading churn in onboarding, coach marks, and apps built on top | — Pending |
+| Central `AuthService` abstract class as the auth boundary | One contract (`Stream<AuthUser?>` + sealed `AuthResult`) feeds `auto_route` guards and every downstream feature; freezing it early prevents cascading churn in onboarding, coach marks, and apps built on top | Validated — Phase 3 |
 
 ## Evolution
 
