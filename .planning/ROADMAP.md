@@ -84,7 +84,7 @@ Plans:
   5. `FirebaseAnalytics.instance` and `FirebasePerformance.instance` are registered in DI, `cloud_firestore` has offline persistence enabled, and both Android + iOS builds launch without pod/gradle errors
 **Plans:** 4 plans
 Plans:
-- [ ] 04-01-PLAN.md — BoM 4.12.0 pubspec bumps, stub firebase_options.dart, DI environment wiring
+- [x] 04-01-PLAN.md — BoM 4.12.0 pubspec bumps, stub firebase_options.dart, DI environment wiring
 - [ ] 04-02-PLAN.md — StartUpService restructure (Firebase init + Crashlytics + App Check), FirebaseModule for Analytics/Performance/Firestore
 - [ ] 04-03-PLAN.md — FirebaseAuthService implementation (Email, Google, Apple providers + signOut + passwordReset)
 - [ ] 04-04-PLAN.md — README Firebase setup documentation (SHA-1, Apple capability, serverClientId, dev mode)
