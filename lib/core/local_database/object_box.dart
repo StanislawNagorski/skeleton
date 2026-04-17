@@ -1,44 +1,22 @@
+// TODO(plan-02): Replace with Drift database. ObjectBox removed in Phase 2.
+// This stub preserves the interface until Plan 02 completes migration.
+
 import 'package:path_provider/path_provider.dart' as p;
 
-import 'objectbox.g.dart';
-export 'objectbox.g.dart';
-
-
+/// Legacy ObjectBox wrapper -- stubbed pending Drift migration.
 abstract class ObjectBox {
-
-  static Store? _store;
+  static bool _initialized = false;
 
   static Future<void> initObjectBox() async {
-    if (_store != null) return; // already initialized
-
-    final docsDir = await p.getApplicationDocumentsDirectory();
-    _store = await openStore(directory: docsDir.path);
+    // Stub: fetch docs dir to validate path_provider works.
+    await p.getApplicationDocumentsDirectory();
+    _initialized = true;
   }
 
-  static Box<T> getBox<T>() {
-    return store.box<T>();
-  }
-
-  //get store if you want use transactions operations like:
-  // ObjectBoxBuilder.store.runInTransaction(TxMode.write, () {
-  // final counterBox = ObjectBoxBuilder.getBox<CounterModel>();
-  // counterBox.put(CounterModel(value: 10));
-  // counterBox.put(CounterModel(value: 20));
-  // });
-  //https://docs.objectbox.io/transactions
-  static Store get store {
-    if (_store == null) {
-      throw Exception("ObjectBox not initialized. Call initObjectBox() first.");
-    }
-    return _store!;
-  }
+  /// Returns whether the store has been initialized.
+  static bool get isInitialized => _initialized;
 
   static void close() {
-    _store?.close();
-    _store = null;
+    _initialized = false;
   }
-
-
-
-
 }

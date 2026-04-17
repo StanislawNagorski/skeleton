@@ -2,10 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeleton/core/extensions/context_extension.dart';
-
-import '../../../core/injectable/injection.dart';
-import '../../../core/presentation/app_dimensions.dart';
-import 'cubit/home_cubit.dart';
+import 'package:skeleton/core/injectable/injection.dart';
+import 'package:skeleton/core/presentation/app_dimensions.dart';
+import 'package:skeleton/features/home_page/presentation/cubit/home_cubit.dart';
 
 @RoutePage()
 class MyHomePage extends StatelessWidget {
@@ -13,6 +12,7 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BlocProvider(
+        // ignore: discarded_futures -- init is fire-and-forget by design
         create: (context) => getIt<HomeCubit>()..init(),
         child: Builder(
           builder: (context) => BlocListener<HomeCubit, HomeState>(
@@ -20,17 +20,14 @@ class MyHomePage extends StatelessWidget {
               switch (state.status) {
                 case HomePageStatus.loading:
                   _showLoadingSnackBar(context);
-                  break;
                 case HomePageStatus.success:
+                case HomePageStatus.empty:
                   break;
                 case HomePageStatus.error:
                   _showErrorSnackBar(context);
-                  break;
-                case HomePageStatus.empty:
-                  break;
               }
             },
-            child: _Page(),
+            child: const _Page(),
           ),
         ),
       );
@@ -47,7 +44,7 @@ class MyHomePage extends StatelessWidget {
   void _showLoadingSnackBar(BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Row(
+        content: const Row(
           children: [
             CircularProgressIndicator(),
           ],
@@ -64,19 +61,25 @@ class _Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          backgroundColor: context.theme.colorScheme.inversePrimary,
+          backgroundColor:
+              context.theme.colorScheme.inversePrimary,
           title: Text(context.localizations.homePage_title),
         ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(context.localizations.homePage_centeredText),
+              Text(
+                context.localizations.homePage_centeredText,
+              ),
               BlocBuilder<HomeCubit, HomeState>(
-                buildWhen: (previous, current) => previous.counter.value != current.counter.value,
+                buildWhen: (previous, current) =>
+                    previous.counter.value !=
+                    current.counter.value,
                 builder: (context, state) => Text(
                   '${state.counter.value}',
-                  style: context.theme.textTheme.headlineMedium,
+                  style:
+                      context.theme.textTheme.headlineMedium,
                 ),
               ),
             ],
@@ -86,14 +89,18 @@ class _Page extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             FloatingActionButton(
-              onPressed: context.read<HomeCubit>().increment,
-              tooltip: context.localizations.homePage_incrementButton,
+              onPressed:
+                  context.read<HomeCubit>().increment,
+              tooltip: context
+                  .localizations.homePage_incrementButton,
               child: const Icon(Icons.add),
             ),
             const SizedBox(width: AppDimensions.spacingBase),
             FloatingActionButton(
-              onPressed: context.read<HomeCubit>().decrement,
-              tooltip: context.localizations.homePage_decrementButton,
+              onPressed:
+                  context.read<HomeCubit>().decrement,
+              tooltip: context
+                  .localizations.homePage_decrementButton,
               child: const Icon(Icons.remove),
             ),
           ],

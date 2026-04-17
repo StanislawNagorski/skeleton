@@ -20,4 +20,5 @@ analyzer:
 
 linter:
   rules:
+    document_ignores: false
     public_member_api_docs: false

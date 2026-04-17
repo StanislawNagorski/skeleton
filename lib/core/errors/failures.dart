@@ -1,16 +1,19 @@
-class Failure {
-  const Failure(this.message);
+/// Sealed failure hierarchy for typed error classification.
+///
+/// Phase 2 ships [LocalDataNotFound] + [LocalDataSource].
+/// Phase 3 adds auth failures, Phase 5 adds network/Firebase failures.
+sealed class AppFailure {
+  const AppFailure(this.message);
 
-  factory Failure.localDataNotFound(String? message) => LocalDataNotFoundFailure(message);
-  factory Failure.localDataSource(String? message) => LocalDataSourceFailure(message);
-
-  final String? message;
+  final String message;
 }
 
-class LocalDataNotFoundFailure extends Failure {
-  const LocalDataNotFoundFailure(super.message);
+/// Data was not found in local storage.
+final class LocalDataNotFound extends AppFailure {
+  const LocalDataNotFound(super.message);
 }
 
-class LocalDataSourceFailure extends Failure {
-  const LocalDataSourceFailure(super.message);
+/// Local data source operation failed.
+final class LocalDataSource extends AppFailure {
+  const LocalDataSource(super.message);
 }

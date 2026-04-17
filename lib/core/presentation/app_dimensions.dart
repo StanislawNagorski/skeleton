@@ -1,4 +1,3 @@
-
 abstract class AppDimensions {
   static const double radiusSmall = 6;
   static const double radiusMedium = 12;

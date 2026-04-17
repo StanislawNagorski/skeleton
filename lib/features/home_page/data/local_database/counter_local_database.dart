@@ -1,9 +1,9 @@
 import 'package:injectable/injectable.dart';
 import 'package:skeleton/features/home_page/data/model/counter_model.dart';
 
-import '../../../../core/local_database/object_box.dart';
+// TODO(plan-02): Replace with Drift DAO. ObjectBox removed in Phase 2.
 
-//Purpose of data source is to fetch data, there should be no business logic here
+/// Data source for counter persistence.
 abstract class CounterLocalDataBase {
   Future<CounterModel?> getCounter();
   Future<void> setCounter(CounterModel counter);
@@ -12,18 +12,17 @@ abstract class CounterLocalDataBase {
 
 @Injectable(as: CounterLocalDataBase)
 class CounterLocalDataBaseImpl implements CounterLocalDataBase {
-
-  final _counterBox = ObjectBox.getBox<CounterModel>();
-
-  @override
-  Future<CounterModel?> getCounter() async => _counterBox.getAll().first;
+  CounterModel? _inMemoryCounter;
 
   @override
-  Future<void> setCounter(CounterModel counter) async => _counterBox.put(counter);
+  Future<CounterModel?> getCounter() async => _inMemoryCounter;
 
   @override
-  Stream<CounterModel?> watchCounter() => _counterBox
-        .query()
-        .watch(triggerImmediately: true)
-        .asyncMap((query) async => query.findFirst());
+  Future<void> setCounter(CounterModel counter) async {
+    _inMemoryCounter = counter;
+  }
+
+  @override
+  Stream<CounterModel?> watchCounter() =>
+      Stream<CounterModel?>.value(_inMemoryCounter);
 }

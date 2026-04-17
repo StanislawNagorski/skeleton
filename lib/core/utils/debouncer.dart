@@ -1,5 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'dart:async';
+
+import 'package:flutter/foundation.dart';
 
 class Debouncer {
   Debouncer({this.milliseconds = defaultDebounceMilliSeconds});
@@ -20,5 +21,3 @@ class Debouncer {
     _timer = null;
   }
 }
-
-

@@ -12,7 +12,7 @@ class HomeCubit extends Cubit<HomeState> {
   HomeCubit(this._counterService) : super(HomeState.initial());
 
   final CounterService _counterService;
-  StreamSubscription? _counterStream;
+  StreamSubscription<dynamic>? _counterStream;
 
   Future<void> init() async {
     final counter = await _getCounter();
@@ -41,16 +41,23 @@ class HomeCubit extends Cubit<HomeState> {
   void increment() {
     final data = state.counter;
     final updatedData = data.copyWith(value: data.value + 1);
-    _counterService.setCounter(counter: updatedData);
+    unawaited(_counterService.setCounter(counter: updatedData));
   }
 
   void decrement() {
     final data = state.counter;
     final updatedData = data.copyWith(value: data.value - 1);
-    _counterService.setCounter(counter: updatedData);
+    unawaited(_counterService.setCounter(counter: updatedData));
   }
 
-  Future<CounterModel?> _getCounter() async => await _counterService.getCounter().then(
+  Future<CounterModel?> _getCounter() async =>
+      _counterService.getCounter().then(
         (result) => result.fold((failure) => null, (data) => data),
       );
+
+  @override
+  Future<void> close() async {
+    await _counterStream?.cancel();
+    return super.close();
+  }
 }
