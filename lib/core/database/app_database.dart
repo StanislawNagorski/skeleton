@@ -1,17 +1,16 @@
 import 'package:drift/drift.dart';
 import 'package:drift_flutter/drift_flutter.dart';
-import 'package:injectable/injectable.dart';
+import 'package:flutter/foundation.dart';
 
-import 'tables/counter_entries.dart';
+import 'package:skeleton/core/database/tables/counter_entries.dart';
 
 part 'app_database.g.dart';
 
-/// Central Drift database registered as a lazy singleton in the DI
-/// graph.
+/// Central Drift database.
 ///
-/// Tables are registered here. Feature-level data sources receive this
-/// instance via constructor injection.
-@lazySingleton
+/// Registered as a lazy singleton via `DatabaseModule`.
+/// Tables are registered here. Feature-level data sources receive
+/// this instance via constructor injection.
 @DriftDatabase(tables: [CounterEntries])
 class AppDatabase extends _$AppDatabase {
   /// Production constructor -- uses platform-appropriate SQLite file.

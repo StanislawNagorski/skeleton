@@ -1,8 +1,7 @@
 import 'package:injectable/injectable.dart';
-
-import '../../../core/errors/result.dart';
-import '../data/model/counter_model.dart';
-import '../data/repository/counter_repository.dart';
+import 'package:skeleton/core/errors/result.dart';
+import 'package:skeleton/features/home_page/data/model/counter_model.dart';
+import 'package:skeleton/features/home_page/data/repository/counter_repository.dart';
 
 /// Connects with counter repositories and handles non-UI business
 /// logic.
@@ -20,8 +19,7 @@ abstract class CounterService {
 /// Implementation that delegates to [CounterRepository].
 @LazySingleton(as: CounterService)
 class CounterServiceImpl implements CounterService {
-  /// Creates a [CounterServiceImpl] backed by the given
-  /// [repository].
+  /// Creates a [CounterServiceImpl] backed by the given repository.
   CounterServiceImpl(this._repository);
 
   final CounterRepository _repository;

@@ -2,10 +2,9 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-
-import '../../../../core/errors/result.dart';
-import '../../data/model/counter_model.dart';
-import '../../domain/counter_service.dart';
+import 'package:skeleton/core/errors/result.dart';
+import 'package:skeleton/features/home_page/data/model/counter_model.dart';
+import 'package:skeleton/features/home_page/domain/counter_service.dart';
 
 part 'home_state.dart';
 
@@ -71,8 +70,8 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   @override
-  Future<void> close() {
-    _counterStream?.cancel();
+  Future<void> close() async {
+    await _counterStream?.cancel();
     return super.close();
   }
 }

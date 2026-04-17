@@ -1,12 +1,12 @@
 import 'package:drift/drift.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../core/database/app_database.dart';
+import 'package:skeleton/core/database/app_database.dart';
 
 /// Data source for counter persistence.
 ///
 /// Queries Drift [AppDatabase] directly. Returns Drift-generated
-/// [CounterEntry] types -- mapping to domain [CounterModel] happens
+/// `CounterEntry` types -- mapping to domain `CounterModel` happens
 /// in the repository layer.
 abstract class CounterLocalDataBase {
   /// Returns the first counter entry, or `null` if none exists.

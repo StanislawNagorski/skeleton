@@ -1,10 +1,9 @@
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
-
-import '../../../../core/errors/failures.dart';
-import '../../../../core/errors/result.dart';
-import '../local_database/counter_local_database.dart';
-import '../model/counter_model.dart';
+import 'package:skeleton/core/errors/failures.dart';
+import 'package:skeleton/core/errors/result.dart';
+import 'package:skeleton/features/home_page/data/local_database/counter_local_database.dart';
+import 'package:skeleton/features/home_page/data/model/counter_model.dart';
 
 /// Handles errors from counter data sources and returns typed
 /// [Result]s.
@@ -12,7 +11,7 @@ abstract class CounterRepository {
   /// Reads the current counter value.
   Future<Result<CounterModel>> getCounter();
 
-  /// Persists the counter [value].
+  /// Persists the counter value.
   Future<Result<void>> setCounter({required CounterModel counter});
 
   /// Watches counter changes as a reactive stream of [Result]s.
@@ -40,7 +39,7 @@ class CounterRepositoryImpl implements CounterRepository {
       return Success(
         CounterModel(id: entry.id, value: entry.value),
       );
-    } catch (e) {
+    } on Exception catch (e) {
       _logger.e('Local data source exception: $e');
       return Failure(LocalDataSource(e.toString()));
     }
@@ -53,7 +52,7 @@ class CounterRepositoryImpl implements CounterRepository {
     try {
       await _localDataBase.setCounter(value: counter.value);
       return const Success(null);
-    } catch (e) {
+    } on Exception catch (e) {
       _logger.e('Local data source exception: $e');
       return Failure(LocalDataSource(e.toString()));
     }
@@ -71,7 +70,7 @@ class CounterRepositoryImpl implements CounterRepository {
         return Success(
           CounterModel(id: entry.id, value: entry.value),
         );
-      } catch (e) {
+      } on Exception catch (e) {
         _logger.e('Local data source exception: $e');
         return Failure<CounterModel>(
           LocalDataSource(e.toString()),

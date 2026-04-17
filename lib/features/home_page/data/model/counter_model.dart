@@ -3,7 +3,7 @@
 /// Plain Dart class -- persistence mapping happens in the data source
 /// layer.
 class CounterModel {
-  const CounterModel({this.id = 0, required this.value});
+  const CounterModel({required this.value, this.id = 0});
 
   final int id;
   final int value;
