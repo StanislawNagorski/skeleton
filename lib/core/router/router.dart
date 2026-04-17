@@ -1,16 +1,30 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
+
+import 'package:skeleton/core/auth/auth_service.dart';
+import 'package:skeleton/core/router/guards/auth_guard.dart';
 import 'package:skeleton/features/home_page/presentation/home_page.dart';
+import 'package:skeleton/features/login/presentation/login_page.dart';
 
 part 'router.gr.dart';
 
 @AutoRouterConfig()
 class AppRouter extends RootStackRouter {
+  AppRouter(this._authService);
+
+  final AuthService _authService;
+
   @override
-  final List<AutoRoute> routes = [
-    AutoRoute(page: MyHomeRoute.page, path: '/'),
+  late final List<AutoRouteGuard> guards = [
+    AuthGuard(_authService),
   ];
+
+  @override
+  List<AutoRoute> get routes => [
+        AutoRoute(page: MyHomeRoute.page, path: '/'),
+        AutoRoute(page: LoginRoute.page, path: '/login'),
+      ];
 }
 
 class AppRouterObserver extends AutoRouterObserver {

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 /// Placeholder login page -- replaced per app.
 ///
 /// The skeleton does not ship login UI (out of scope). This page exists
-/// solely as the [AuthGuard] redirect target so routing is testable.
+/// solely as the `AuthGuard` redirect target so routing is testable.
 @RoutePage()
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
