@@ -56,7 +56,7 @@ Plans:
 **Plans:** 2 plans
 Plans:
 - [x] 02-01-PLAN.md — Lints + sealed Result/AppFailure abstractions + pubspec dependency overhaul
-- [ ] 02-02-PLAN.md — ObjectBox removal, Drift integration, dartz->Result migration, counter port, preferences + secure storage wrappers
+- [x] 02-02-PLAN.md — ObjectBox removal, Drift integration, dartz->Result migration, counter port, preferences + secure storage wrappers
 
 ### Phase 3: Package Upgrades + Auth Contract
 **Goal**: `flutter_bloc` 9 and `auto_route` 11 compile cleanly, and the abstract `AuthService` contract (+ sealed `AuthResult`) is locked so every downstream consumer can build against it
