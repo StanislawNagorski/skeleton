@@ -7,7 +7,7 @@ stopped_at: Phase 3 context gathered
 last_updated: "2026-04-17T11:18:44.803Z"
 last_activity: 2026-04-17
 progress:
-  total_phases: 8
+  total_phases: 7
   completed_phases: 3
   total_plans: 6
   completed_plans: 6
@@ -21,13 +21,13 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-16)
 
 **Core value:** `git clone → bootstrap → flutterfire configure → flutter run` lands a production-ready, Firebase-connected iOS + Android app in under 30 minutes.
-**Current focus:** Phase 03 — package-upgrades-auth-contract
+**Current focus:** Phase 04 — firebase-wiring-auth-providers
 
 ## Current Position
 
 Phase: 4
 Plan: Not started
-Status: Executing Phase 03
+Status: Ready for Phase 04 (Firebase Wiring + Auth Providers)
 Last activity: 2026-04-17
 
 Progress: [░░░░░░░░░░] 0%
@@ -63,7 +63,7 @@ Progress: [░░░░░░░░░░] 0%
 Decisions are logged in PROJECT.md Key Decisions table.
 Recent decisions affecting current work:
 
-- Project init: Rebase on fresh `flutter create` (not surgical bump); Drift over ObjectBox; Dart 3 sealed classes over `dartz`; hand-rolled flavors (not `flutter_flavorizr`); Firebase config gitignored per-app (not shared demo); `dev` + `prod` only (no staging); App Check release-only.
+- Project init: Rebase on fresh `flutter create` (not surgical bump); Drift over ObjectBox; Dart 3 sealed classes over `dartz`; Firebase config gitignored per-app (not shared demo); App Check release-only; flavors dropped from skeleton (added per-app when needed).
 - Roadmap: Phase 1 (Native Rebase) must ship alone — changes every `build.gradle` / `Podfile` / `Info.plist` and unblocks everything else. Lints + sealed `Result` + Drift collapsed into Phase 2 because they touch disjoint files and can proceed in parallel once the rebase lands. `AuthService` contract lock sits in Phase 3 (with package upgrades) so every downstream feature in Phases 5–6 builds against a frozen boundary.
 
 ### Pending Todos
@@ -72,7 +72,7 @@ None yet.
 
 ### Blockers/Concerns
 
-None yet — research flagged RIVE/native-splash handoff timing (Phase 6) and iOS Xcode scheme wiring (Phase 4) as HIGH-risk; `flutter create` 3.41 exact SDK defaults must be verified during Phase 1.
+None yet — research flagged RIVE/native-splash handoff timing (Phase 5) as HIGH-risk; `flutter create` 3.41 exact SDK defaults must be verified during Phase 1.
 
 ## Deferred Items
 

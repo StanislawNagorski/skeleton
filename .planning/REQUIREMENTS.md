@@ -31,15 +31,6 @@ Requirements for the 2026 refresh milestone. Each maps to a phase in ROADMAP.md.
 - [ ] **CORE-05**: Central `AuthService` abstract class in `lib/core/auth/` exposes `Stream<AuthUser?>` + sign-in methods returning sealed `AuthResult`; `AuthServiceImpl` registered via `@Injectable(as: AuthService)`
 - [ ] **CORE-06**: Unused dependencies removed from pubspec: `http`, `uuid`, `collection`
 
-### Flavors (dev/prod)
-
-- [ ] **FLAV-01**: Two Dart entrypoints — `lib/main_dev.dart` and `lib/main_prod.dart` — each initializing the correct `firebase_options_*.dart` before `runApp`
-- [ ] **FLAV-02**: Android `productFlavors { dev, prod }` with `applicationIdSuffix ".dev"` on `dev`, `resValue "string", "app_name"` per flavor, and per-flavor `google-services.json` located under `android/app/src/<flavor>/`
-- [ ] **FLAV-03**: iOS Xcode schemes `dev` and `prod`, build configurations `Debug-dev` / `Release-dev` / `Debug-prod` / `Release-prod`, `xcconfig` files per flavor with `PRODUCT_BUNDLE_IDENTIFIER` (prod + `.dev` variant), and a Run Script build phase copying the correct `GoogleService-Info.plist` into the `.app` bundle
-- [ ] **FLAV-04**: Per-flavor launcher icons via `flutter_launcher_icons-dev.yaml` + `flutter_launcher_icons-prod.yaml`; dev icon has a visible variant (overlay, tint, or badge) so dev/prod are instantly distinguishable on the device
-- [ ] **FLAV-05**: `.vscode/launch.json` contains ready-to-use configurations for both flavors (`Flutter (dev)`, `Flutter (prod)`) with correct `--flavor` and `-t` args
-- [ ] **FLAV-06**: Firebase config files gitignored in the skeleton — `firebase_options_*.dart`, `android/app/src/*/google-services.json`, `ios/config/*/GoogleService-Info.plist` — with a `.gitignore` comment pointing to README bootstrap steps
-
 ### Firebase Integration
 
 - [ ] **FIRE-01**: FlutterFire BoM 4.12.0 matrix pinned in pubspec: `firebase_core 4.7.0`, `firebase_auth 6.4.0`, `cloud_firestore 6.3.0`, `firebase_crashlytics 5.2.0`, `firebase_analytics 12.3.0`, `firebase_performance 0.11.3`, `firebase_app_check 0.4.3`
@@ -126,6 +117,7 @@ Explicitly excluded. Documented to prevent scope creep.
 | Replacing `auto_route` with `go_router` | `auto_route` stays, bumped to 11 |
 | Shared demo Firebase project committed in skeleton | Skeleton is Firebase-sterile; each new app configures its own projects post-bootstrap |
 | `flutter_flavorizr` or other flavor generator | Flavors hand-rolled so every file is explicit in `git diff` |
+| Dev/prod flavors in skeleton | Dropped from v1 — next apps won't need flavors at start; added per-app when needed |
 | Firebase App Check in dev builds | Debug-token distribution friction; App Check only in `kReleaseMode` |
 | Continuing PL as ARB template | Non-standard; switched to EN template |
 | ObjectBox (retained as alternative) | Replaced by Drift; no dual-database support in skeleton |
@@ -151,49 +143,43 @@ Which phase covers which requirement. Populated during roadmap creation.
 | CORE-04 | Phase 3 | Pending |
 | CORE-05 | Phase 3 | Pending |
 | CORE-06 | Phase 2 | Pending |
-| FLAV-01 | Phase 4 | Pending |
-| FLAV-02 | Phase 4 | Pending |
-| FLAV-03 | Phase 4 | Pending |
-| FLAV-04 | Phase 4 | Pending |
-| FLAV-05 | Phase 4 | Pending |
-| FLAV-06 | Phase 4 | Pending |
-| FIRE-01 | Phase 5 | Pending |
-| FIRE-02 | Phase 5 | Pending |
-| FIRE-03 | Phase 5 | Pending |
-| FIRE-04 | Phase 5 | Pending |
-| FIRE-05 | Phase 5 | Pending |
-| FIRE-06 | Phase 5 | Pending |
-| FIRE-07 | Phase 5 | Pending |
-| AUTH-01 | Phase 5 | Pending |
-| AUTH-02 | Phase 5 | Pending |
-| AUTH-03 | Phase 5 | Pending |
-| AUTH-04 | Phase 5 | Pending |
-| AUTH-05 | Phase 5 | Pending |
-| AUTH-06 | Phase 5 | Pending |
-| UX-01 | Phase 6 | Pending |
-| UX-02 | Phase 6 | Pending |
-| UX-03 | Phase 6 | Pending |
-| UX-04 | Phase 6 | Pending |
-| UX-05 | Phase 6 | Pending |
-| UX-06 | Phase 6 | Pending |
-| UX-07 | Phase 6 | Pending |
-| UX-08 | Phase 6 | Pending |
-| TOOL-01 | Phase 7 | Pending |
-| TOOL-02 | Phase 7 | Pending |
+| FIRE-01 | Phase 4 | Pending |
+| FIRE-02 | Phase 4 | Pending |
+| FIRE-03 | Phase 4 | Pending |
+| FIRE-04 | Phase 4 | Pending |
+| FIRE-05 | Phase 4 | Pending |
+| FIRE-06 | Phase 4 | Pending |
+| FIRE-07 | Phase 4 | Pending |
+| AUTH-01 | Phase 4 | Pending |
+| AUTH-02 | Phase 4 | Pending |
+| AUTH-03 | Phase 4 | Pending |
+| AUTH-04 | Phase 4 | Pending |
+| AUTH-05 | Phase 4 | Pending |
+| AUTH-06 | Phase 4 | Pending |
+| UX-01 | Phase 5 | Pending |
+| UX-02 | Phase 5 | Pending |
+| UX-03 | Phase 5 | Pending |
+| UX-04 | Phase 5 | Pending |
+| UX-05 | Phase 5 | Pending |
+| UX-06 | Phase 5 | Pending |
+| UX-07 | Phase 5 | Pending |
+| UX-08 | Phase 5 | Pending |
+| TOOL-01 | Phase 6 | Pending |
+| TOOL-02 | Phase 6 | Pending |
 | TOOL-03 | Phase 2 | Pending |
-| TOOL-04 | Phase 7 | Pending |
-| TOOL-05 | Phase 7 | Pending |
-| TOOL-06 | Phase 7 | Pending |
-| TOOL-07 | Phase 7 | Pending |
-| DOCS-01 | Phase 8 | Pending |
-| DOCS-02 | Phase 8 | Pending |
-| DOCS-03 | Phase 8 | Pending |
+| TOOL-04 | Phase 6 | Pending |
+| TOOL-05 | Phase 6 | Pending |
+| TOOL-06 | Phase 6 | Pending |
+| TOOL-07 | Phase 6 | Pending |
+| DOCS-01 | Phase 7 | Pending |
+| DOCS-02 | Phase 7 | Pending |
+| DOCS-03 | Phase 7 | Pending |
 
 **Coverage:**
-- v1 requirements: 52 total
-- Mapped to phases: 52 ✓
+- v1 requirements: 46 total
+- Mapped to phases: 46 ✓
 - Unmapped: 0
 
 ---
 *Requirements defined: 2026-04-16*
-*Last updated: 2026-04-16 after roadmap creation — all 52 requirements mapped to 8 phases*
+*Last updated: 2026-04-17 — flavors (FLAV-*) removed, phases renumbered 4-7, 46 requirements mapped to 7 phases*

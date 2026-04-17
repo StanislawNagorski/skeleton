@@ -7,7 +7,7 @@
 
 ## Overview
 
-Rebase the Skeleton onto Flutter 3.41.5's native scaffolding, then progressively re-apply every production-grade pattern downstream apps inherit: strict lints + sealed `Result`/`Failure`, Drift-backed local persistence, the three structural package upgrades (`flutter_bloc` 9, `auto_route` 11, and the `AuthService` contract), hand-rolled `dev`/`prod` flavors, full Firebase + Auth provider wiring (Email, Google, Apple, App Check release-only), a RIVE splash + onboarding + coach-mark trio, then the bootstrap script + i18n cleanup + reference tests, and finally a rewritten README + repeatable-rebase runbook. After this milestone ships, `git clone → bootstrap → flutterfire configure ×2 → flutter run` lands a Firebase-connected, Clean-Architected iOS + Android app in under 30 minutes.
+Rebase the Skeleton onto Flutter 3.41.5's native scaffolding, then progressively re-apply every production-grade pattern downstream apps inherit: strict lints + sealed `Result`/`Failure`, Drift-backed local persistence, the three structural package upgrades (`flutter_bloc` 9, `auto_route` 11, and the `AuthService` contract), full Firebase + Auth provider wiring (Email, Google, Apple, App Check release-only), a RIVE splash + onboarding + coach-mark trio, then the bootstrap script + i18n cleanup + reference tests, and finally a rewritten README + repeatable-rebase runbook. After this milestone ships, `git clone → bootstrap → flutterfire configure → flutter run` lands a Firebase-connected, Clean-Architected iOS + Android app in under 30 minutes.
 
 ## Phases
 
@@ -20,11 +20,10 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 1: Native Rebase** — Regenerate `android/` + `ios/` from Flutter 3.41.5 `flutter create`, trim to mobile-only, preserve `lib/`, unblock everything else
 - [ ] **Phase 2: Lints, Error Handling, Local Data Layer** — Adopt `very_good_analysis`, replace `dartz` with sealed `Result`/`Failure`, swap ObjectBox → Drift, port the counter example
 - [ ] **Phase 3: Package Upgrades + Auth Contract** — Bump `flutter_bloc` 8→9 and `auto_route` 9→11, lock the `AuthService` abstract contract
-- [ ] **Phase 4: Flavors (dev/prod)** — Hand-rolled Android `productFlavors` + iOS schemes + two Dart entrypoints + per-flavor launcher icons + gitignored Firebase config
-- [ ] **Phase 5: Firebase Wiring + Auth Providers** — Full FlutterFire BoM 4.12.0 stack, native Email/Google/Apple sign-in, App Check release-only, Crashlytics error hooks
-- [ ] **Phase 6: UX Patterns (Onboarding + RIVE Splash + Coach Marks)** — `RiveNative.init()`, RIVE 0.14 animated splash, 3-slide onboarding + guard, `CoachMarkService` + FAB demo
-- [ ] **Phase 7: Bootstrap + i18n Cleanup + Tests** — `tool/bootstrap.dart` rename script, PL→EN ARB template switch, counter cubit + repository reference tests
-- [ ] **Phase 8: Documentation** — README rewrite, rebase runbook, upgrade playbook
+- [ ] **Phase 4: Firebase Wiring + Auth Providers** — Full FlutterFire BoM 4.12.0 stack, native Email/Google/Apple sign-in, App Check release-only, Crashlytics error hooks
+- [ ] **Phase 5: UX Patterns (Onboarding + RIVE Splash + Coach Marks)** — `RiveNative.init()`, RIVE 0.14 animated splash, 3-slide onboarding + guard, `CoachMarkService` + FAB demo
+- [ ] **Phase 6: Bootstrap + i18n Cleanup + Tests** — `tool/bootstrap.dart` rename script, PL→EN ARB template switch, counter cubit + repository reference tests
+- [ ] **Phase 7: Documentation** — README rewrite, rebase runbook, upgrade playbook
 
 ## Phase Details
 
@@ -73,24 +72,12 @@ Plans:
 - [x] 03-01-PLAN.md — flutter_bloc 9 bump, AuthService contract (abstract + sealed AuthResult + AuthUser entity + FakeAuthService + AuthError)
 - [x] 03-02-PLAN.md — auto_route 11 guard wiring (AuthGuard, LoginRoute placeholder, reevaluateListenable, router/app/main updates)
 
-### Phase 4: Flavors (dev/prod)
-**Goal**: Hand-rolled `dev` and `prod` flavors across Android, iOS, Dart entrypoints, and launcher icons — with Firebase config gitignored so the skeleton stays Firebase-sterile
+### Phase 4: Firebase Wiring + Auth Providers
+**Goal**: End-to-end FlutterFire BoM 4.12.0 wiring (Core, Auth, Firestore, Crashlytics, Analytics, Performance, App Check) with native Email/Google/Apple providers functioning against a single Firebase project
 **Depends on**: Phase 3
-**Requirements**: FLAV-01, FLAV-02, FLAV-03, FLAV-04, FLAV-05, FLAV-06
-**Success Criteria** (what must be TRUE):
-  1. `fvm flutter build apk --flavor dev -t lib/main_dev.dart` and `--flavor prod -t lib/main_prod.dart` both complete without errors
-  2. `fvm flutter build ios --flavor dev --no-codesign` and `--flavor prod --no-codesign` both complete from Xcode schemes `dev` and `prod` wired to `Debug-dev`/`Release-dev`/`Debug-prod`/`Release-prod` configurations
-  3. Dev and prod builds install side-by-side on the same device with visibly distinct launcher icons (dev has a DEV band/overlay) and distinct display names
-  4. `.vscode/launch.json` exposes `Flutter (dev)` and `Flutter (prod)` entries that each launch the correct entrypoint + flavor
-  5. `.gitignore` excludes `firebase_options_*.dart`, `android/app/src/*/google-services.json`, `ios/config/*/GoogleService-Info.plist`, with a comment pointing to README bootstrap steps; no Firebase config files are tracked by git
-**Plans**: TBD
-
-### Phase 5: Firebase Wiring + Auth Providers
-**Goal**: End-to-end FlutterFire BoM 4.12.0 wiring (Core, Auth, Firestore, Crashlytics, Analytics, Performance, App Check) with native Email/Google/Apple providers functioning against real Firebase projects per flavor
-**Depends on**: Phase 4
 **Requirements**: FIRE-01, FIRE-02, FIRE-03, FIRE-04, FIRE-05, FIRE-06, FIRE-07, AUTH-01, AUTH-02, AUTH-03, AUTH-04, AUTH-05, AUTH-06
 **Success Criteria** (what must be TRUE):
-  1. After running `flutterfire configure` once per flavor against throwaway `skeleton-dev` / `skeleton-prod` projects, both entrypoints start up with `Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)` completing cleanly ahead of DI registration
+  1. After running `flutterfire configure` against a throwaway `skeleton` project, the app starts up with `Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)` completing cleanly ahead of DI registration
   2. A forced Dart error in release mode surfaces in the Crashlytics console within minutes, confirming `FlutterError.onError`, `PlatformDispatcher.instance.onError`, and the isolate error listener are all installed
   3. `AuthService.signInWithEmail`, `.registerWithEmail`, `.signInWithGoogle`, `.signInWithApple`, `.signOut`, and `.sendPasswordReset` each complete a real auth flow against Firebase; `authStateChanges` emits `AuthUser` on sign-in and `null` on sign-out
   4. App Check activates only in release builds (`kReleaseMode`): `AndroidProvider.playIntegrity` on Android, `AppleProvider.appAttest` on iOS; dev builds skip activation entirely with no debug-token friction
@@ -98,9 +85,9 @@ Plans:
 **Plans**: TBD
 **UI hint**: yes
 
-### Phase 6: UX Patterns (Onboarding + RIVE Splash + Coach Marks)
+### Phase 5: UX Patterns (Onboarding + RIVE Splash + Coach Marks)
 **Goal**: RIVE 0.14 initialized and driving an animated splash that hands off to the app, a 3-slide onboarding feature gated by an `auto_route` guard, and a `CoachMarkService` wrapper with a live FAB demo on the counter page
-**Depends on**: Phase 5
+**Depends on**: Phase 4
 **Requirements**: UX-01, UX-02, UX-03, UX-04, UX-05, UX-06, UX-07, UX-08
 **Success Criteria** (what must be TRUE):
   1. On first launch, the user sees a native splash → RIVE animated splash → 3-slide `PageView` onboarding with dots + skip/next buttons, then lands on the home screen; subsequent launches skip onboarding and go straight home
@@ -111,25 +98,25 @@ Plans:
 **Plans**: TBD
 **UI hint**: yes
 
-### Phase 7: Bootstrap + i18n Cleanup + Tests
+### Phase 6: Bootstrap + i18n Cleanup + Tests
 **Goal**: One-pass `dart run tool/bootstrap.dart` rename script, PL→EN ARB template switch with drift reconciled, and reference tests for the counter feature that establish the copy-paste pattern for downstream work
-**Depends on**: Phase 6
+**Depends on**: Phase 5
 **Requirements**: TOOL-01, TOOL-02, TOOL-04, TOOL-05, TOOL-06, TOOL-07
 **Success Criteria** (what must be TRUE):
-  1. Running `dart run tool/bootstrap.dart --name MyApp --bundle com.example.myapp` against a fresh clone renames Dart package, iOS + Android bundle ids (plus `.dev` variant), Info.plist display names per scheme, Android `strings.xml` per flavor, pubspec name + description, and README title in a single pass; a post-bootstrap `fvm flutter build apk --flavor dev` succeeds on the renamed copy
-  2. The bootstrap script prints a post-run checklist covering Firebase project creation (`<name>-dev` + `<name>-prod`), per-flavor `flutterfire configure` invocations, and SHA-1 registration steps
+  1. Running `dart run tool/bootstrap.dart --name MyApp --bundle com.example.myapp` against a fresh clone renames Dart package, iOS + Android bundle ids, Info.plist display name, Android namespace + applicationId, pubspec name + description, and README title in a single pass; a post-bootstrap `fvm flutter build apk` succeeds on the renamed copy
+  2. The bootstrap script prints a post-run checklist covering Firebase project creation, `flutterfire configure` invocation, and SHA-1 registration steps
   3. `l10n.yaml` uses `template-arb-file: app_en.arb`, the PL/EN drift is reconciled (no missing keys in either file), and `untranslated-messages-file` is configured and gitignored
   4. `test/features/home_page/` contains a `HomeCubit` test using `bloc_test` + `mocktail` and a Drift repository test using `NativeDatabase.memory()`; `fvm flutter test` exits 0
-  5. `test/tool/bootstrap_test.dart` runs the rename script against a fixture copy and asserts `flutter analyze` passes and a dev APK builds on the renamed output
+  5. `test/tool/bootstrap_test.dart` runs the rename script against a fixture copy and asserts `flutter analyze` passes and an APK builds on the renamed output
 **Plans**: TBD
 
-### Phase 8: Documentation
-**Goal**: README rewritten around the new bootstrap + per-flavor FlutterFire flow, rebase procedure captured as a repeatable runbook, and an upgrade playbook for the next FlutterFire BoM / Flutter major
-**Depends on**: Phase 7
+### Phase 7: Documentation
+**Goal**: README rewritten around the bootstrap + FlutterFire flow, rebase procedure captured as a repeatable runbook, and an upgrade playbook for the next FlutterFire BoM / Flutter major
+**Depends on**: Phase 6
 **Requirements**: DOCS-01, DOCS-02, DOCS-03
 **Success Criteria** (what must be TRUE):
-  1. A new developer can follow `README.md` end-to-end from `git clone` to a running Firebase-connected dev build in under 30 minutes on a clean machine
-  2. README documents the bootstrap flow, per-flavor FlutterFire setup, SHA-1 registration (debug + release × dev + prod = four fingerprints), Apple capability + Services ID steps, the `AuthService` contract, and the Firebase-sterile stance
+  1. A new developer can follow `README.md` end-to-end from `git clone` to a running Firebase-connected build in under 30 minutes on a clean machine
+  2. README documents the bootstrap flow, FlutterFire setup, SHA-1 registration, Apple capability + Services ID steps, the `AuthService` contract, and the Firebase-sterile stance
   3. A rebase runbook (in `docs/` or `.planning/`) captures every step of the native rebase procedure in enough detail for the next Flutter major to be replayed without rewriting
   4. An upgrade playbook covers bumping the FlutterFire BoM, verifying App Check still activates in release, migrating `auto_route` guards if the API shifts again, and verifying Drift migrations still run
 **Plans**: TBD
@@ -137,18 +124,17 @@ Plans:
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8
+Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Native Rebase | 2/2 | Complete | 2026-04-16 |
 | 2. Lints, Error Handling, Local Data Layer | 0/2 | Planning complete | - |
 | 3. Package Upgrades + Auth Contract | 0/2 | Planning complete | - |
-| 4. Flavors (dev/prod) | 0/TBD | Not started | - |
-| 5. Firebase Wiring + Auth Providers | 0/TBD | Not started | - |
-| 6. UX Patterns (Onboarding + RIVE Splash + Coach Marks) | 0/TBD | Not started | - |
-| 7. Bootstrap + i18n Cleanup + Tests | 0/TBD | Not started | - |
-| 8. Documentation | 0/TBD | Not started | - |
+| 4. Firebase Wiring + Auth Providers | 0/TBD | Not started | - |
+| 5. UX Patterns (Onboarding + RIVE Splash + Coach Marks) | 0/TBD | Not started | - |
+| 6. Bootstrap + i18n Cleanup + Tests | 0/TBD | Not started | - |
+| 7. Documentation | 0/TBD | Not started | - |
 
 ---
 
