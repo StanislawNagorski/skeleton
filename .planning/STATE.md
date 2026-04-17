@@ -3,7 +3,7 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Phase 5 context gathered
+stopped_at: Phase 5 UI-SPEC approved
 last_updated: "2026-04-17T17:10:58.262Z"
 last_activity: 2026-04-17
 progress:
@@ -85,6 +85,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-04-17T17:10:58.260Z
-Stopped at: Phase 5 context gathered
-Resume file: .planning/phases/05-ux-patterns-onboarding-rive-splash-coach-marks/05-CONTEXT.md
+Last session: 2026-04-17
+Stopped at: Phase 5 UI-SPEC approved
+Resume file: .planning/phases/05-ux-patterns-onboarding-rive-splash-coach-marks/05-UI-SPEC.md
