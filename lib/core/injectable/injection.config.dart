@@ -18,6 +18,8 @@ import '../../features/home_page/data/repository/counter_repository.dart'
     as _i825;
 import '../../features/home_page/domain/counter_service.dart' as _i508;
 import '../../features/home_page/presentation/cubit/home_cubit.dart' as _i203;
+import '../auth/auth_service.dart' as _i88;
+import '../auth/fake_auth_service.dart' as _i387;
 import '../database/app_database.dart' as _i982;
 import '../database/database_module.dart' as _i215;
 import '../preferences/preferences_service.dart' as _i929;
@@ -40,6 +42,7 @@ _i174.GetIt $initGetIt(
   gh.lazySingleton<_i929.PreferencesService>(
     () => _i480.PreferencesServiceImpl(),
   );
+  gh.lazySingleton<_i88.AuthService>(() => _i387.FakeAuthService());
   gh.lazySingleton<_i448.CounterLocalDataBase>(
     () => _i448.CounterLocalDataBaseImpl(gh<_i982.AppDatabase>()),
   );
