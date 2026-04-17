@@ -53,7 +53,10 @@ Plans:
   3. ObjectBox is entirely removed (no `objectbox*` dependencies, no `objectbox.g.dart` / `objectbox-model.json`, no `Pods/ObjectBox`); `AppDatabase` (Drift) is registered as a `@lazySingleton` in the DI graph
   4. The counter page loads, increments, and decrements via a Drift-backed reactive stream with the same `repository → service → cubit → UI` flow as the ObjectBox version
   5. `SharedPreferencesAsync` + `flutter_secure_storage` are registered in DI and `http` / `uuid` / `collection` are gone from `pubspec.yaml`
-**Plans**: TBD
+**Plans:** 2 plans
+Plans:
+- [ ] 02-01-PLAN.md — Lints + sealed Result/AppFailure abstractions + pubspec dependency overhaul
+- [ ] 02-02-PLAN.md — ObjectBox removal, Drift integration, dartz->Result migration, counter port, preferences + secure storage wrappers
 
 ### Phase 3: Package Upgrades + Auth Contract
 **Goal**: `flutter_bloc` 9 and `auto_route` 11 compile cleanly, and the abstract `AuthService` contract (+ sealed `AuthResult`) is locked so every downstream consumer can build against it
@@ -135,8 +138,8 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Native Rebase | 0/2 | Planning complete | - |
-| 2. Lints, Error Handling, Local Data Layer | 0/TBD | Not started | - |
+| 1. Native Rebase | 2/2 | Complete | 2026-04-16 |
+| 2. Lints, Error Handling, Local Data Layer | 0/2 | Planning complete | - |
 | 3. Package Upgrades + Auth Contract | 0/TBD | Not started | - |
 | 4. Flavors (dev/prod) | 0/TBD | Not started | - |
 | 5. Firebase Wiring + Auth Providers | 0/TBD | Not started | - |
