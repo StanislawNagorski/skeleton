@@ -27,9 +27,9 @@ Going from `git clone` to a working, Firebase-connected Flutter app on iOS and A
 <!-- In-scope for this milestone. Hypotheses until shipped. -->
 
 - [x] Rebase Android/iOS native scaffolding on **Flutter 3.41.5 stable** via `flutter create` (AGP 8.11.1, Kotlin 2.2.20, Gradle 8.14, Java 17, iOS Podfile floor 15) while preserving `lib/` — Validated in Phase 1: Native Rebase
-- [ ] Replace ObjectBox with **Drift 2.32.1** + `drift_flutter 0.3.0` + `sqlite3_flutter_libs`; port the counter example to Drift with reactive queries and the same repo/service/cubit flow
-- [ ] Add `shared_preferences` (use the new `SharedPreferencesAsync` API, not the legacy sync one) for user preferences and `flutter_secure_storage` for tokens
-- [ ] Replace `dartz` `Either<Failure, T>` with Dart 3 sealed `Result<T>` + sealed `Failure` hierarchy, exhaustive `switch` pattern matching
+- [x] Replace ObjectBox with **Drift 2.32.1** + `drift_flutter 0.3.0` + `sqlite3_flutter_libs`; port the counter example to Drift with reactive queries and the same repo/service/cubit flow — Validated in Phase 2: Lints, Error Handling, Local Data Layer
+- [x] Add `shared_preferences` (use the new `SharedPreferencesAsync` API, not the legacy sync one) for user preferences and `flutter_secure_storage` for tokens — Validated in Phase 2: Lints, Error Handling, Local Data Layer
+- [x] Replace `dartz` `Either<Failure, T>` with Dart 3 sealed `Result<T>` + sealed `Failure` hierarchy, exhaustive `switch` pattern matching — Validated in Phase 2: Lints, Error Handling, Local Data Layer
 - [ ] Upgrade `flutter_bloc` 8 → 9
 - [ ] Upgrade `auto_route` 9 → **11.1.0** (skip v10 — it was a transitional major) with `auto_route_generator 10.5.0`; migrate guards from implemented-class to the new `guards` property on the router
 - [ ] Full Firebase wiring (no stubs) on **FlutterFire BoM 4.12.0** matrix: `firebase_core 4.7.0`, `firebase_auth 6.4.0`, `cloud_firestore 6.3.0`, `firebase_crashlytics 5.2.0` (+ global error handler via `PlatformDispatcher.instance.onError` + isolate error hook), `firebase_analytics 12.3.0`, `firebase_performance 0.11.3`, `firebase_app_check 0.4.3`
@@ -43,8 +43,8 @@ Going from `git clone` to a working, Firebase-connected Flutter app on iOS and A
 - [ ] Bootstrap script: `dart run tool/bootstrap.dart --name <AppName> --bundle <com.foo.app>` that renames Dart package, iOS bundle id (+ auto-derives `.dev` variant), Android namespace + applicationId, Info.plist display names, launcher icons per flavor, and documents next steps (create Firebase projects, run `flutterfire configure` ×2, register SHA-1 per flavor)
 - [ ] Switch ARB template from PL → EN (`template-arb-file: app_en.arb`), fix the existing PL/EN drift, configure `l10n.yaml` with `untranslated-messages-file` for CI visibility
 - [ ] Firebase App Check wired for **prod only** (`if (kReleaseMode) FirebaseAppCheck.activate(...)`); dev skips App Check entirely to avoid debug-token friction
-- [ ] Remove unused declared dependencies: `http`, `uuid`, `collection`
-- [ ] Switch from `flutter_lints` to `very_good_analysis` (current), configure analyzer with errors-not-warnings
+- [x] Remove unused declared dependencies: `http`, `uuid`, `collection` — Validated in Phase 2: Lints, Error Handling, Local Data Layer
+- [x] Switch from `flutter_lints` to `very_good_analysis` (current), configure analyzer with errors-not-warnings — Validated in Phase 2: Lints, Error Handling, Local Data Layer
 - [ ] Add an example test covering the counter feature (cubit + repository) using `bloc_test` and `mocktail`, with Drift `NativeDatabase.memory()` for in-memory repository tests — every future feature has a pattern to copy
 - [x] Trim platforms to iOS + Android only (remove `web/`, `macos/`, `linux/`, `windows/` directories and plugin registrations) — Validated in Phase 1: Native Rebase
 - [ ] Update README with the new bootstrap flow, per-flavor FlutterFire setup checklist, architecture conventions, the rebase procedure as a repeatable runbook for the next Flutter major, and an upgrade playbook
