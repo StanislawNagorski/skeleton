@@ -37,7 +37,10 @@ class CounterLocalDataBaseImpl implements CounterLocalDataBase {
   @override
   Future<void> setCounter({required int value}) async {
     await _db.into(_db.counterEntries).insertOnConflictUpdate(
-          CounterEntriesCompanion.insert(value: Value(value)),
+          CounterEntriesCompanion(
+            id: const Value(1),
+            value: Value(value),
+          ),
         );
   }
 
