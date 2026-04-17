@@ -23,6 +23,7 @@ import '../../features/home_page/domain/counter_service.dart' as _i508;
 import '../../features/home_page/presentation/cubit/home_cubit.dart' as _i203;
 import '../auth/auth_service.dart' as _i88;
 import '../auth/fake_auth_service.dart' as _i387;
+import '../auth/firebase_auth_service.dart' as _i491;
 import '../database/app_database.dart' as _i982;
 import '../database/database_module.dart' as _i215;
 import '../firebase/firebase_module.dart' as _i1055;
@@ -68,6 +69,11 @@ _i174.GetIt $initGetIt(
   );
   gh.lazySingleton<_i448.CounterLocalDataBase>(
     () => _i448.CounterLocalDataBaseImpl(gh<_i982.AppDatabase>()),
+  );
+  gh.lazySingleton<_i88.AuthService>(
+    () => _i491.FirebaseAuthService(),
+    registerFor: {_prod},
+    dispose: (i) => i.dispose(),
   );
   gh.lazySingleton<_i825.CounterRepository>(
     () => _i825.CounterRepositoryImpl(gh<_i448.CounterLocalDataBase>()),
