@@ -71,7 +71,7 @@ Plans:
 **Plans:** 2 plans
 Plans:
 - [x] 03-01-PLAN.md — flutter_bloc 9 bump, AuthService contract (abstract + sealed AuthResult + AuthUser entity + FakeAuthService + AuthError)
-- [ ] 03-02-PLAN.md — auto_route 11 guard wiring (AuthGuard, LoginRoute placeholder, reevaluateListenable, router/app/main updates)
+- [x] 03-02-PLAN.md — auto_route 11 guard wiring (AuthGuard, LoginRoute placeholder, reevaluateListenable, router/app/main updates)
 
 ### Phase 4: Flavors (dev/prod)
 **Goal**: Hand-rolled `dev` and `prod` flavors across Android, iOS, Dart entrypoints, and launcher icons — with Firebase config gitignored so the skeleton stays Firebase-sterile
