@@ -10,7 +10,6 @@ dependencies:
   auto_route: ^11.1.0
   cloud_firestore: ^5.6.1
   cupertino_icons: ^1.0.8
-  dartz: 0.10.1
   drift: ^2.32.1
   drift_flutter: ^0.3.0
   firebase_analytics: ^11.4.0
@@ -29,7 +28,6 @@ dependencies:
   injectable: ^2.5.0
   intl: ^0.20.2
   logger: ^2.5.0
-  path_provider: ^2.1.5
   shared_preferences: ^2.5.5
 
 dev_dependencies:

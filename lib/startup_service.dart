@@ -6,17 +6,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:skeleton/core/injectable/injection.dart';
-import 'package:skeleton/core/local_database/object_box.dart';
 
 abstract class StartUpService {
   static Future<void> initServices() async {
     await _configureFirebase();
     await _configureDependencies();
-    await _configureDatabases();
-  }
-
-  static Future<void> _configureDatabases() async {
-    await ObjectBox.initObjectBox();
   }
 
   static Future<void> _configureDependencies() async {
