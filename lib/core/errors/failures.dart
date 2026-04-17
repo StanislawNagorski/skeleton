@@ -17,3 +17,8 @@ final class LocalDataNotFound extends AppFailure {
 final class LocalDataSource extends AppFailure {
   const LocalDataSource(super.message);
 }
+
+/// Authentication operation failed.
+final class AuthError extends AppFailure {
+  const AuthError(super.message);
+}
