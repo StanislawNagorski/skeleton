@@ -27,6 +27,8 @@ import '../preferences/preferences_service_impl.dart' as _i480;
 import '../secure_storage/secure_storage_service.dart' as _i611;
 import '../secure_storage/secure_storage_service_impl.dart' as _i220;
 
+const String _dev = 'dev';
+
 // initializes the registration of main-scope dependencies inside of GetIt
 _i174.GetIt $initGetIt(
   _i174.GetIt getIt, {
@@ -42,7 +44,10 @@ _i174.GetIt $initGetIt(
   gh.lazySingleton<_i929.PreferencesService>(
     () => _i480.PreferencesServiceImpl(),
   );
-  gh.lazySingleton<_i88.AuthService>(() => _i387.FakeAuthService());
+  gh.lazySingleton<_i88.AuthService>(
+    () => _i387.FakeAuthService(),
+    registerFor: {_dev},
+  );
   gh.lazySingleton<_i448.CounterLocalDataBase>(
     () => _i448.CounterLocalDataBaseImpl(gh<_i982.AppDatabase>()),
   );

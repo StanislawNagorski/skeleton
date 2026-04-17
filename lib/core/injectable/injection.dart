@@ -17,4 +17,8 @@ final GetIt getIt = GetIt.instance;
   asExtension: false,
 )
 /// Invoke at app start.
-Future<void> configureDependenciesApp() async => $initGetIt(getIt);
+///
+/// [environment] controls which service implementations are registered.
+/// Pass `'prod'` when Firebase is available, `'dev'` (default) otherwise.
+Future<void> configureDependenciesApp({String environment = 'dev'}) async =>
+    $initGetIt(getIt, environment: environment);

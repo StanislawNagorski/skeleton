@@ -10,8 +10,8 @@ import 'package:skeleton/core/auth/auth_user.dart';
 ///
 /// Signs in any email/password combination, returns a deterministic
 /// [AuthUser] with `uid` derived from the email.  Kept permanently as a
-/// test double — Phase 5 adds `@Environment` switching.
-@LazySingleton(as: AuthService)
+/// test double and as the fallback when no Firebase config is present.
+@LazySingleton(as: AuthService, env: [Environment.dev])
 class FakeAuthService implements AuthService {
   final StreamController<AuthUser?> _controller =
       StreamController<AuthUser?>.broadcast();
