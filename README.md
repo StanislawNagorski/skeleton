@@ -167,6 +167,112 @@ Set these environment variables instead of using `key.properties`:
 - **flutter_lints**: Package to provide all good Flutter and Dart coding practices. Default rules can be changed in `analysis_options.yaml`   
   Docs: https://pub.dev/packages/flutter_lints
 
+## Firebase Setup
+
+The skeleton works out of the box without Firebase (`clone -> flutter run`).
+When you are ready to connect your Firebase project, follow the steps below.
+
+### Prerequisites
+
+- A Firebase project created in [Firebase Console](https://console.firebase.google.com/)
+- FlutterFire CLI installed:
+  ```bash
+  dart pub global activate flutterfire_cli
+  ```
+
+### 1. Generate Firebase Options
+
+```bash
+flutterfire configure --project=YOUR_PROJECT_ID
+```
+
+This replaces the stub `lib/firebase_options.dart` with real configuration.
+After this step, `flutter run` initializes Firebase and registers
+`FirebaseAuthService` instead of `FakeAuthService`.
+
+### 2. Google Sign-In Setup
+
+#### Android
+
+1. Register SHA-1 fingerprints in **Firebase Console > Project Settings > Your Apps > Android app > Add Fingerprint**.
+2. Get your debug SHA-1:
+   ```bash
+   ./gradlew signingReport
+   ```
+   Look for the `SHA1` line under the `debugAndroidTest` variant.
+3. Get your release SHA-1:
+   ```bash
+   keytool -list -v -keystore <your-release-keystore> -alias <alias>
+   ```
+4. The `serverClientId` (Web OAuth client ID) is auto-detected from `google-services.json` at runtime -- no manual configuration needed after `flutterfire configure`.
+   If you need to find it manually: **Google Cloud Console > APIs & Services > Credentials > Web client (auto created by Firebase)**.
+
+#### iOS
+
+Add the reversed client ID URL scheme to `ios/Runner/Info.plist`:
+
+```xml
+<key>CFBundleURLTypes</key>
+<array>
+  <dict>
+    <key>CFBundleURLSchemes</key>
+    <array>
+      <string>com.googleusercontent.apps.YOUR_REVERSED_CLIENT_ID</string>
+    </array>
+  </dict>
+</array>
+```
+
+Find the `REVERSED_CLIENT_ID` value in the generated `ios/Runner/GoogleService-Info.plist`.
+
+### 3. Apple Sign-In Setup
+
+Apple Sign-In is iOS only (per D-06). The Xcode entitlement is not pre-enabled --
+you must add it after renaming the bundle ID.
+
+1. Open the project in Xcode.
+2. Select **Runner** target > **Signing & Capabilities**.
+3. Click **+ Capability** > **Sign in with Apple**.
+4. In **Apple Developer Portal > Certificates, Identifiers & Profiles > Identifiers**:
+   - Select your App ID and enable **Sign in with Apple**.
+   - If you need web or Android redirect flow: create a **Services ID**, configure
+     domains and return URLs.
+
+> **Note:** Apple returns the user's email and name only on the first sign-in.
+> Store them on your backend immediately -- subsequent sign-ins omit this data.
+
+### 4. App Check (Release Builds Only)
+
+App Check is activated automatically in release builds (`kReleaseMode`):
+
+| Platform | Provider |
+|----------|----------|
+| Android  | Play Integrity (requires Play Console enrollment) |
+| iOS      | App Attest (requires iOS 14+; skeleton floor is iOS 15) |
+
+No debug-token configuration needed -- dev builds skip App Check entirely.
+
+### 5. Crashlytics
+
+Crashlytics is wired automatically when Firebase is initialized:
+
+- `FlutterError.onError` catches Flutter framework errors
+- `PlatformDispatcher.instance.onError` catches async Dart errors
+- `Isolate.current.addErrorListener` catches spawned isolate errors
+
+Collection is disabled in debug builds -- only release crashes are reported.
+
+### Dev Mode (No Firebase)
+
+If `firebase_options.dart` is the stub (no `flutterfire configure` run), the app:
+
+- Falls back to the `'dev'` DI environment
+- Registers `FakeAuthService` (in-memory, any email/password works)
+- Does not register Firebase Analytics, Performance, or Firestore
+- Does not activate Crashlytics or App Check
+
+This preserves the `clone -> flutter run` DX promise.
+
 ## Changelog
 - **1.0.1** **13/02/2025**:
   - LocalDataSource with ObjectBox implemented
