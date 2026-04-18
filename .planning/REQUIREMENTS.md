@@ -74,8 +74,8 @@ Requirements for the 2026 refresh milestone. Each maps to a phase in ROADMAP.md.
 ### Documentation
 
 - [x] **DOCS-01**: README rewritten to document: bootstrap flow end-to-end, per-flavor FlutterFire setup checklist, SHA-1 registration, architecture conventions (Clean Architecture + Cubit + sealed Result), AuthService contract, and the Firebase-sterile stance of the skeleton
-- [ ] **DOCS-02**: Native rebase procedure documented as a repeatable runbook in `.planning/` or `docs/` — step-by-step so the next Flutter major can replay it: temp-dir `flutter create`, filesystem swap of native dirs, pubspec merge, delta review, regeneration commands
-- [ ] **DOCS-03**: Upgrade playbook documents how to bump the FlutterFire BoM, validate App Check still activates in release, migrate `auto_route` guards if the API shifts again, and verify the Drift schema still runs migrations
+- [x] **DOCS-02**: Native rebase procedure documented as a repeatable runbook in `.planning/` or `docs/` — step-by-step so the next Flutter major can replay it: temp-dir `flutter create`, filesystem swap of native dirs, pubspec merge, delta review, regeneration commands
+- [x] **DOCS-03**: Upgrade playbook documents how to bump the FlutterFire BoM, validate App Check still activates in release, migrate `auto_route` guards if the API shifts again, and verify the Drift schema still runs migrations
 
 ## v2 Requirements
 
@@ -172,8 +172,8 @@ Which phase covers which requirement. Populated during roadmap creation.
 | TOOL-06 | Phase 6 | Pending |
 | TOOL-07 | Phase 6 | Complete |
 | DOCS-01 | Phase 7 | Complete |
-| DOCS-02 | Phase 7 | Pending |
-| DOCS-03 | Phase 7 | Pending |
+| DOCS-02 | Phase 7 | Complete |
+| DOCS-03 | Phase 7 | Complete |
 
 **Coverage:**
 - v1 requirements: 46 total

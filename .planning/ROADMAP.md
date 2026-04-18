@@ -136,7 +136,7 @@ Plans:
 **Plans:** 2 plans
 Plans:
 - [x] 07-01-PLAN.md — README full rewrite (bootstrap flow, architecture, Firebase integration, AuthService contract, UX patterns)
-- [ ] 07-02-PLAN.md — Rebase runbook (docs/rebase-runbook.md) + upgrade playbook (docs/upgrade-playbook.md)
+- [x] 07-02-PLAN.md — Rebase runbook (docs/rebase-runbook.md) + upgrade playbook (docs/upgrade-playbook.md)
 
 ## Progress
 
