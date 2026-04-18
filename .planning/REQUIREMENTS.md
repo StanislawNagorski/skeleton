@@ -69,7 +69,7 @@ Requirements for the 2026 refresh milestone. Each maps to a phase in ROADMAP.md.
 - [ ] **TOOL-04**: ARB template switched PL → EN — `l10n.yaml` `template-arb-file: app_en.arb`; existing PL/EN drift reconciled (no missing keys in either file)
 - [ ] **TOOL-05**: `l10n.yaml` configured with `untranslated-messages-file: untranslated_messages.txt` so missing translations are visible in build output and gitignored
 - [ ] **TOOL-06**: Example test at `test/features/home_page/` covering the counter feature — cubit test using `bloc_test`, repository test using Drift `NativeDatabase.memory()`, data-source fakes via `mocktail`; establishes the copy-paste pattern for all future features
-- [ ] **TOOL-07**: Bootstrap script itself has end-to-end tests (run on a fixture rename copy + `flutter analyze` + `flutter build apk --flavor dev` verified)
+- [x] **TOOL-07**: Bootstrap script itself has end-to-end tests (run on a fixture rename copy + `flutter analyze` + `flutter build apk --flavor dev` verified)
 
 ### Documentation
 
@@ -170,7 +170,7 @@ Which phase covers which requirement. Populated during roadmap creation.
 | TOOL-04 | Phase 6 | Pending |
 | TOOL-05 | Phase 6 | Pending |
 | TOOL-06 | Phase 6 | Pending |
-| TOOL-07 | Phase 6 | Pending |
+| TOOL-07 | Phase 6 | Complete |
 | DOCS-01 | Phase 7 | Pending |
 | DOCS-02 | Phase 7 | Pending |
 | DOCS-03 | Phase 7 | Pending |
