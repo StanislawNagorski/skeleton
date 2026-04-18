@@ -78,4 +78,51 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get riveDemo_description =>
       'This toggle sends a boolean input to the RIVE state machine.';
+
+  @override
+  String riveDemo_animationLoadError(Object error) {
+    return 'Failed to load animation: $error';
+  }
+
+  @override
+  String get onboarding_skipSemanticLabel => 'Skip onboarding';
+
+  @override
+  String get login_placeholderText => 'Login screen — built per app';
+
+  @override
+  String get app_title => 'Skeleton App';
+
+  @override
+  String get auth_userNotFound => 'No account found with this email.';
+
+  @override
+  String get auth_wrongPassword => 'Incorrect password.';
+
+  @override
+  String get auth_invalidEmail => 'Invalid email address.';
+
+  @override
+  String get auth_userDisabled => 'This account has been disabled.';
+
+  @override
+  String get auth_emailAlreadyInUse =>
+      'An account already exists with this email.';
+
+  @override
+  String get auth_weakPassword => 'Password is too weak.';
+
+  @override
+  String get auth_tooManyRequests => 'Too many attempts. Try again later.';
+
+  @override
+  String get auth_operationNotAllowed => 'This sign-in method is not enabled.';
+
+  @override
+  String get auth_invalidCredential => 'Invalid credentials.';
+
+  @override
+  String auth_genericError(String code) {
+    return 'Authentication error: $code';
+  }
 }

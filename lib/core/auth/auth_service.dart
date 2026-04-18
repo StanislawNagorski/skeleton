@@ -37,4 +37,9 @@ abstract class AuthService {
 
   /// Sends a password-reset email.
   Future<AuthResult> sendPasswordReset({required String email});
+
+  /// Releases resources (stream subscriptions, controllers).
+  ///
+  /// Called by `get_it` when disposing singletons.
+  Future<void> dispose();
 }

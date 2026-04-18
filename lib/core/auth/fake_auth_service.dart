@@ -90,6 +90,7 @@ class FakeAuthService implements AuthService {
   /// Releases the internal [StreamController].
   ///
   /// Called by `get_it.disposeDependencies()` during test teardown.
+  @override
   Future<void> dispose() async {
     await _controller.close();
   }

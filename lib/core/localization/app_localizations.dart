@@ -100,135 +100,219 @@ abstract class AppLocalizations {
 
   /// No description provided for @homePage_title.
   ///
-  /// In pl, this message translates to:
-  /// **'Szkieletor Aplikacja'**
+  /// In en, this message translates to:
+  /// **'Skeleton App'**
   String get homePage_title;
 
   /// No description provided for @homePage_centeredText.
   ///
-  /// In pl, this message translates to:
-  /// **'Nacisnąłeś przycisk tyle razy:'**
+  /// In en, this message translates to:
+  /// **'You have pushed the button this many times:'**
   String get homePage_centeredText;
 
   /// No description provided for @homePage_incrementButton.
   ///
-  /// In pl, this message translates to:
-  /// **'Zwiększ'**
+  /// In en, this message translates to:
+  /// **'Increment'**
   String get homePage_incrementButton;
 
   /// No description provided for @homePage_decrementButton.
   ///
-  /// In pl, this message translates to:
-  /// **'Zmniejsz'**
+  /// In en, this message translates to:
+  /// **'Decrement'**
   String get homePage_decrementButton;
 
   /// No description provided for @homePage_error.
   ///
-  /// In pl, this message translates to:
-  /// **'Wystąpił błąd'**
+  /// In en, this message translates to:
+  /// **'An error occurred'**
   String get homePage_error;
 
   /// No description provided for @homePage_riveDemoButton.
   ///
-  /// In pl, this message translates to:
-  /// **'Demo RIVE'**
+  /// In en, this message translates to:
+  /// **'RIVE Demo'**
   String get homePage_riveDemoButton;
 
   /// No description provided for @onboarding_slide1Title.
   ///
-  /// In pl, this message translates to:
-  /// **'Witaj'**
+  /// In en, this message translates to:
+  /// **'Welcome'**
   String get onboarding_slide1Title;
 
   /// No description provided for @onboarding_slide1Subtitle.
   ///
-  /// In pl, this message translates to:
-  /// **'Twoja nowa aplikacja jest gotowa. Zobaczmy co potrafi.'**
+  /// In en, this message translates to:
+  /// **'Your new app is ready to go. Let\'s take a quick tour.'**
   String get onboarding_slide1Subtitle;
 
   /// No description provided for @onboarding_slide2Title.
   ///
-  /// In pl, this message translates to:
-  /// **'Odkryj funkcje'**
+  /// In en, this message translates to:
+  /// **'Discover Features'**
   String get onboarding_slide2Title;
 
   /// No description provided for @onboarding_slide2Subtitle.
   ///
-  /// In pl, this message translates to:
-  /// **'Wszystko czego potrzebujesz, zbudowane z czystą architekturą.'**
+  /// In en, this message translates to:
+  /// **'Everything you need, built with clean architecture.'**
   String get onboarding_slide2Subtitle;
 
   /// No description provided for @onboarding_slide3Title.
   ///
-  /// In pl, this message translates to:
-  /// **'Zaczynamy'**
+  /// In en, this message translates to:
+  /// **'Get Started'**
   String get onboarding_slide3Title;
 
   /// No description provided for @onboarding_slide3Subtitle.
   ///
-  /// In pl, this message translates to:
-  /// **'Wszystko gotowe. Zanurz się i dostosuj do siebie.'**
+  /// In en, this message translates to:
+  /// **'You\'re all set. Dive in and make it yours.'**
   String get onboarding_slide3Subtitle;
 
   /// No description provided for @onboarding_skipButton.
   ///
-  /// In pl, this message translates to:
-  /// **'Pomiń'**
+  /// In en, this message translates to:
+  /// **'Skip'**
   String get onboarding_skipButton;
 
   /// No description provided for @onboarding_nextButton.
   ///
-  /// In pl, this message translates to:
-  /// **'Dalej'**
+  /// In en, this message translates to:
+  /// **'Next'**
   String get onboarding_nextButton;
 
   /// No description provided for @onboarding_getStartedButton.
   ///
-  /// In pl, this message translates to:
-  /// **'Zaczynamy'**
+  /// In en, this message translates to:
+  /// **'Get Started'**
   String get onboarding_getStartedButton;
 
   /// No description provided for @coachMark_counterTitle.
   ///
-  /// In pl, this message translates to:
-  /// **'To jest Twój licznik'**
+  /// In en, this message translates to:
+  /// **'This is your counter'**
   String get coachMark_counterTitle;
 
   /// No description provided for @coachMark_counterBody.
   ///
-  /// In pl, this message translates to:
-  /// **'Naciśnij przycisk poniżej, aby go zwiększyć.'**
+  /// In en, this message translates to:
+  /// **'Tap the button below to increment it.'**
   String get coachMark_counterBody;
 
   /// No description provided for @coachMark_fabTitle.
   ///
-  /// In pl, this message translates to:
-  /// **'Zwiększ'**
+  /// In en, this message translates to:
+  /// **'Increment'**
   String get coachMark_fabTitle;
 
   /// No description provided for @coachMark_fabBody.
   ///
-  /// In pl, this message translates to:
-  /// **'Naciśnij ten przycisk, aby zwiększyć licznik.'**
+  /// In en, this message translates to:
+  /// **'Tap this button to increase the counter.'**
   String get coachMark_fabBody;
 
   /// No description provided for @riveDemo_title.
   ///
-  /// In pl, this message translates to:
-  /// **'Demo RIVE'**
+  /// In en, this message translates to:
+  /// **'RIVE Demo'**
   String get riveDemo_title;
 
   /// No description provided for @riveDemo_toggleLabel.
   ///
-  /// In pl, this message translates to:
-  /// **'Przełącz stan animacji'**
+  /// In en, this message translates to:
+  /// **'Toggle animation state'**
   String get riveDemo_toggleLabel;
 
   /// No description provided for @riveDemo_description.
   ///
-  /// In pl, this message translates to:
-  /// **'Ten przełącznik wysyła wartość logiczną do maszyny stanów RIVE.'**
+  /// In en, this message translates to:
+  /// **'This toggle sends a boolean input to the RIVE state machine.'**
   String get riveDemo_description;
+
+  /// No description provided for @riveDemo_animationLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load animation: {error}'**
+  String riveDemo_animationLoadError(Object error);
+
+  /// No description provided for @onboarding_skipSemanticLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip onboarding'**
+  String get onboarding_skipSemanticLabel;
+
+  /// No description provided for @login_placeholderText.
+  ///
+  /// In en, this message translates to:
+  /// **'Login screen — built per app'**
+  String get login_placeholderText;
+
+  /// No description provided for @app_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Skeleton App'**
+  String get app_title;
+
+  /// No description provided for @auth_userNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No account found with this email.'**
+  String get auth_userNotFound;
+
+  /// No description provided for @auth_wrongPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Incorrect password.'**
+  String get auth_wrongPassword;
+
+  /// No description provided for @auth_invalidEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid email address.'**
+  String get auth_invalidEmail;
+
+  /// No description provided for @auth_userDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'This account has been disabled.'**
+  String get auth_userDisabled;
+
+  /// No description provided for @auth_emailAlreadyInUse.
+  ///
+  /// In en, this message translates to:
+  /// **'An account already exists with this email.'**
+  String get auth_emailAlreadyInUse;
+
+  /// No description provided for @auth_weakPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Password is too weak.'**
+  String get auth_weakPassword;
+
+  /// No description provided for @auth_tooManyRequests.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many attempts. Try again later.'**
+  String get auth_tooManyRequests;
+
+  /// No description provided for @auth_operationNotAllowed.
+  ///
+  /// In en, this message translates to:
+  /// **'This sign-in method is not enabled.'**
+  String get auth_operationNotAllowed;
+
+  /// No description provided for @auth_invalidCredential.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid credentials.'**
+  String get auth_invalidCredential;
+
+  /// No description provided for @auth_genericError.
+  ///
+  /// In en, this message translates to:
+  /// **'Authentication error: {code}'**
+  String auth_genericError(String code);
 }
 
 class _AppLocalizationsDelegate

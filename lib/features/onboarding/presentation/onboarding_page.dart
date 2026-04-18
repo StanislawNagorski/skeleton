@@ -64,7 +64,7 @@ class _PageState extends State<_Page> {
                   padding:
                       const EdgeInsets.all(AppDimensions.spacingMedium),
                   child: Semantics(
-                    label: 'Skip onboarding',
+                    label: context.localizations.onboarding_skipSemanticLabel,
                     child: TextButton(
                       onPressed: cubit.skipOnboarding,
                       child: Text(

@@ -1,0 +1,10 @@
+POLSKI - PL
+
+App Name - 30 znaków
+Nazwa Aplikacji
+
+Short description - 80 znaków
+Krótkie info o Aplikacji
+
+Full description - 4000 znaków
+

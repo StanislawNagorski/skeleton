@@ -32,7 +32,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) => MaterialApp.router(
-        title: 'Skeleton APP',
+        onGenerateTitle: (context) =>
+            AppLocalizations.of(context)!.app_title,
         routerConfig: widget.appRouter.config(
           reevaluateListenable: Listenable.merge([
             ReevaluateListenable.stream(

@@ -241,6 +241,7 @@ class FirebaseAuthService implements AuthService {
   }
 
   /// Releases resources. Called by get_it during app teardown.
+  @override
   @disposeMethod
   Future<void> dispose() async {
     await _subscription.cancel();

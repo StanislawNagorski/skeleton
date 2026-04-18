@@ -79,4 +79,54 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get riveDemo_description =>
       'Ten przełącznik wysyła wartość logiczną do maszyny stanów RIVE.';
+
+  @override
+  String riveDemo_animationLoadError(Object error) {
+    return 'Nie udało się załadować animacji: $error';
+  }
+
+  @override
+  String get onboarding_skipSemanticLabel => 'Pomiń wprowadzenie';
+
+  @override
+  String get login_placeholderText =>
+      'Ekran logowania — budowany per aplikacja';
+
+  @override
+  String get app_title => 'Szkieletor Aplikacja';
+
+  @override
+  String get auth_userNotFound => 'Nie znaleziono konta z tym adresem email.';
+
+  @override
+  String get auth_wrongPassword => 'Nieprawidłowe hasło.';
+
+  @override
+  String get auth_invalidEmail => 'Nieprawidłowy adres email.';
+
+  @override
+  String get auth_userDisabled => 'To konto zostało wyłączone.';
+
+  @override
+  String get auth_emailAlreadyInUse =>
+      'Konto z tym adresem email już istnieje.';
+
+  @override
+  String get auth_weakPassword => 'Hasło jest zbyt słabe.';
+
+  @override
+  String get auth_tooManyRequests =>
+      'Zbyt wiele prób. Spróbuj ponownie później.';
+
+  @override
+  String get auth_operationNotAllowed =>
+      'Ta metoda logowania nie jest włączona.';
+
+  @override
+  String get auth_invalidCredential => 'Nieprawidłowe dane uwierzytelniające.';
+
+  @override
+  String auth_genericError(String code) {
+    return 'Błąd uwierzytelniania: $code';
+  }
 }

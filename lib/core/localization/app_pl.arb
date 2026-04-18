@@ -21,5 +21,19 @@
   "coachMark_fabBody": "Naciśnij ten przycisk, aby zwiększyć licznik.",
   "riveDemo_title": "Demo RIVE",
   "riveDemo_toggleLabel": "Przełącz stan animacji",
-  "riveDemo_description": "Ten przełącznik wysyła wartość logiczną do maszyny stanów RIVE."
+  "riveDemo_description": "Ten przełącznik wysyła wartość logiczną do maszyny stanów RIVE.",
+  "riveDemo_animationLoadError": "Nie udało się załadować animacji: {error}",
+  "onboarding_skipSemanticLabel": "Pomiń wprowadzenie",
+  "login_placeholderText": "Ekran logowania — budowany per aplikacja",
+  "app_title": "Szkieletor Aplikacja",
+  "auth_userNotFound": "Nie znaleziono konta z tym adresem email.",
+  "auth_wrongPassword": "Nieprawidłowe hasło.",
+  "auth_invalidEmail": "Nieprawidłowy adres email.",
+  "auth_userDisabled": "To konto zostało wyłączone.",
+  "auth_emailAlreadyInUse": "Konto z tym adresem email już istnieje.",
+  "auth_weakPassword": "Hasło jest zbyt słabe.",
+  "auth_tooManyRequests": "Zbyt wiele prób. Spróbuj ponownie później.",
+  "auth_operationNotAllowed": "Ta metoda logowania nie jest włączona.",
+  "auth_invalidCredential": "Nieprawidłowe dane uwierzytelniające.",
+  "auth_genericError": "Błąd uwierzytelniania: {code}"
 }

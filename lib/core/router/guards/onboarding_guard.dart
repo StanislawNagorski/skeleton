@@ -24,7 +24,8 @@ class OnboardingGuard extends AutoRouteGuard {
 
   @override
   void onNavigation(NavigationResolver resolver, StackRouter router) {
-    if (_hasSeenOnboarding) {
+    if (_hasSeenOnboarding ||
+        resolver.route.name == OnboardingRoute.name) {
       resolver.next();
     } else {
       resolver.redirectUntil(const OnboardingRoute());

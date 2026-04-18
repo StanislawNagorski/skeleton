@@ -13,6 +13,8 @@ import 'package:skeleton/features/home_page/presentation/cubit/home_cubit.dart';
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
 
+  static const tourId = 'home';
+
   @override
   Widget build(BuildContext context) => BlocProvider(
         // ignore: discarded_futures -- init is fire-and-forget by design
@@ -70,41 +72,49 @@ class _PageState extends State<_Page> {
   final GlobalKey _fabKey = GlobalKey();
 
   late final CoachMarkService _coachMarkService;
+  bool _coachMarksRegistered = false;
 
   @override
   void initState() {
     super.initState();
     _coachMarkService = getIt<CoachMarkService>();
+  }
 
-    // Register coach mark targets (D-14: counter display + FAB).
-    _coachMarkService
-      ..register(
-        'home',
-        _counterKey,
-        // Hardcoded strings -- context is not available in initState.
-        // Downstream apps can localize via didChangeDependencies.
-        'Tap the button below to increment it.',
-        title: 'This is your counter',
-      )
-      ..register(
-        'home',
-        _fabKey,
-        'Tap this button to increase the counter.',
-        title: 'Increment',
-      );
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_coachMarksRegistered) {
+      _coachMarksRegistered = true;
 
-    // Auto-fire tour on first visit (D-13).
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) {
-        // ignore: discarded_futures
-        _coachMarkService.showTour('home', context);
-      }
-    });
+      // Register coach mark targets (D-14: counter display + FAB).
+      final l = context.localizations;
+      _coachMarkService
+        ..register(
+          MyHomePage.tourId,
+          _counterKey,
+          l.coachMark_counterBody,
+          title: l.coachMark_counterTitle,
+        )
+        ..register(
+          MyHomePage.tourId,
+          _fabKey,
+          l.coachMark_fabBody,
+          title: l.coachMark_fabTitle,
+        );
+
+      // Auto-fire tour on first visit (D-13).
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) {
+          // ignore: discarded_futures
+          _coachMarkService.showTour(MyHomePage.tourId, context);
+        }
+      });
+    }
   }
 
   @override
   void dispose() {
-    _coachMarkService.unregister('home');
+    _coachMarkService.unregister(MyHomePage.tourId);
     super.dispose();
   }
 

@@ -28,7 +28,18 @@ abstract class StartUpService {
     var environment = 'dev';
 
     // UX-06: Initialize RIVE native C++ runtime before any RIVE widget loads.
-    await RiveNative.init();
+    try {
+      await RiveNative.init().timeout(
+        const Duration(seconds: 5),
+        onTimeout: () {
+          _logger.w('RIVE native init timed out after 5s — skipping.');
+          return false;
+        },
+      );
+    } on Object catch (e) {
+      _logger.w('RIVE native init failed: $e. '
+          'RIVE animations will not be available.');
+    }
 
     try {
       await Firebase.initializeApp(
