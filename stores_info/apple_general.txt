@@ -1,0 +1,22 @@
+POLSKI - PL
+
+Name - 30 znaków
+Nazwa Aplikacji
+
+Subtitle - A summary of your app that will appear under your app’s name on your App Store product page. This can’t be longer than 30 characters.
+Swietna aplikacja do Twoich celow
+
+Promotional Text - Promotional text lets you inform your App Store visitors of any current app features without requiring an updated submission. This text will appear above your description on the App Store for customers with devices running iOS 11 or later, and macOS 10.13 or later. 170 znaków
+XXX
+
+Description - A description of your app, detailing features and functionality. 4000 znaków
+
+Keywords - 100 znaków - Include one or more keywords that describe your app. Keywords make App Store search results more accurate. Separate keywords with an English comma, Chinese comma, or a mix of both.
+XXX
+
+
+ANGIELSKI - EN
+
+Name
+App Name
+...

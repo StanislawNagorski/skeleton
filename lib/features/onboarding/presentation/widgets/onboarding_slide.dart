@@ -23,12 +23,12 @@ class OnboardingSlide extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(height: AppDimensions.spacingXXL),
-            Image.asset(
-              imagePath,
-              width: 200,
-              height: 200,
-              fit: BoxFit.contain,
+            Expanded(
+              child: Image.asset(
+                imagePath,
+                width: double.infinity,
+                fit: BoxFit.contain,
+              ),
             ),
             const SizedBox(height: AppDimensions.spacingLarge),
             Text(

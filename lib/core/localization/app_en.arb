@@ -21,5 +21,29 @@
   "coachMark_fabBody": "Tap this button to increase the counter.",
   "riveDemo_title": "RIVE Demo",
   "riveDemo_toggleLabel": "Toggle animation state",
-  "riveDemo_description": "This toggle sends a boolean input to the RIVE state machine."
+  "riveDemo_description": "This toggle sends a boolean input to the RIVE state machine.",
+  "riveDemo_animationLoadError": "Failed to load animation: {error}",
+  "@riveDemo_animationLoadError": {
+    "placeholders": {
+      "error": { "type": "Object" }
+    }
+  },
+  "onboarding_skipSemanticLabel": "Skip onboarding",
+  "login_placeholderText": "Login screen — built per app",
+  "app_title": "Skeleton App",
+  "auth_userNotFound": "No account found with this email.",
+  "auth_wrongPassword": "Incorrect password.",
+  "auth_invalidEmail": "Invalid email address.",
+  "auth_userDisabled": "This account has been disabled.",
+  "auth_emailAlreadyInUse": "An account already exists with this email.",
+  "auth_weakPassword": "Password is too weak.",
+  "auth_tooManyRequests": "Too many attempts. Try again later.",
+  "auth_operationNotAllowed": "This sign-in method is not enabled.",
+  "auth_invalidCredential": "Invalid credentials.",
+  "auth_genericError": "Authentication error: {code}",
+  "@auth_genericError": {
+    "placeholders": {
+      "code": { "type": "String" }
+    }
+  }
 }

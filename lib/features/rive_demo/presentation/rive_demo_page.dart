@@ -30,7 +30,6 @@ class _Page extends StatefulWidget {
 
 class _PageState extends State<_Page> {
   late final FileLoader _fileLoader;
-  BooleanInput? _toggleInput;
 
   @override
   void initState() {
@@ -43,10 +42,6 @@ class _PageState extends State<_Page> {
 
   @override
   void dispose() {
-    // Dispose in reverse order of creation per RESEARCH.md Pitfall 5.
-    // Note: RiveWidgetBuilder disposes its own controller internally,
-    // so we only dispose the input handle and the file loader here.
-    _toggleInput?.dispose();
     _fileLoader.dispose();
     super.dispose();
   }
@@ -76,7 +71,7 @@ class _PageState extends State<_Page> {
                     fileLoader: _fileLoader,
                     onLoaded: (_) =>
                         context.read<RiveDemoCubit>().onLoaded(),
-                    onFailed: (_, _) =>
+                    onFailed: (_, __) =>
                         context.read<RiveDemoCubit>().onLoadFailed(),
                     builder: (context, state) => switch (state) {
                       RiveLoading() => const Center(
@@ -84,32 +79,19 @@ class _PageState extends State<_Page> {
                         ),
                       RiveFailed() => Center(
                           child: Text(
-                            'Failed to load animation: ${state.error}',
+                            context.localizations.riveDemo_animationLoadError(
+                              state.error,
+                            ),
                             style: Theme.of(context).textTheme.bodyMedium,
                           ),
                         ),
                       RiveLoaded() =>
-                        _buildLoadedAnimation(context, state.controller),
+                        RiveWidget(controller: state.controller),
                     },
                   ),
                 ),
               ),
               const SizedBox(height: AppDimensions.spacingMedium),
-              // State-machine toggle (per D-17).
-              BlocBuilder<RiveDemoCubit, RiveDemoState>(
-                builder: (context, state) => SwitchListTile(
-                  title: Text(
-                    context.localizations.riveDemo_toggleLabel,
-                    style: context.theme.textTheme.bodyMedium,
-                  ),
-                  value: state.isToggled,
-                  onChanged: (value) {
-                    context.read<RiveDemoCubit>().toggleAnimation();
-                    _toggleInput?.value = value;
-                  },
-                ),
-              ),
-              const SizedBox(height: AppDimensions.spacingBase),
               // Description text.
               Padding(
                 padding: const EdgeInsets.symmetric(
@@ -126,17 +108,4 @@ class _PageState extends State<_Page> {
           ),
         ),
       );
-
-  Widget _buildLoadedAnimation(
-    BuildContext context,
-    RiveWidgetController controller,
-  ) {
-    // Acquire the boolean input handle on first load.
-    // ignore: deprecated_member_use
-    _toggleInput ??= controller.stateMachine.boolean('Toggle');
-    // Sync the toggle input with cubit state.
-    final isToggled = context.read<RiveDemoCubit>().state.isToggled;
-    _toggleInput?.value = isToggled;
-    return RiveWidget(controller: controller);
-  }
 }
