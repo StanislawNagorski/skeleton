@@ -89,7 +89,14 @@ Items acknowledged and carried forward from previous milestone close:
 
 | Category | Item | Status | Deferred At |
 |----------|------|--------|-------------|
-| *(none — initial milestone)* | | | |
+| uat | Phase 01 — 3 pending scenarios | partial | 2026-04-18 |
+| uat | Phase 02 — 1 pending scenario | partial | 2026-04-18 |
+| uat | Phase 04 — 5 pending scenarios | partial | 2026-04-18 |
+| uat | Phase 05 — 5 pending scenarios | partial | 2026-04-18 |
+| verification | Phase 01 — human_needed | human_needed | 2026-04-18 |
+| verification | Phase 02 — human_needed | human_needed | 2026-04-18 |
+| verification | Phase 04 — human_needed | human_needed | 2026-04-18 |
+| verification | Phase 05 — human_needed | human_needed | 2026-04-18 |
 
 ## Session Continuity
 
