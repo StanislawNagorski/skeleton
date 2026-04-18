@@ -133,7 +133,7 @@ class _PageState extends State<_Page> {
               const SizedBox(height: AppDimensions.spacingLarge),
               // RIVE Demo navigation button (per D-16).
               OutlinedButton.icon(
-                onPressed: () =>
+                onPressed: () async =>
                     context.router.push(const RiveDemoRoute()),
                 icon: const Icon(Icons.animation),
                 label: Text(
