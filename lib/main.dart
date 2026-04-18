@@ -26,6 +26,7 @@ Future<void> main() async {
   final onboardingGuard = OnboardingGuard(
     hasSeenOnboarding: hasSeenOnboarding,
   );
+  getIt.registerSingleton<OnboardingGuard>(onboardingGuard);
   final appRouter = AppRouter(
     authService,
     onboardingGuard: onboardingGuard,
