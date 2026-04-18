@@ -135,7 +135,7 @@ Plans:
   4. An upgrade playbook covers bumping the FlutterFire BoM, verifying App Check still activates in release, migrating `auto_route` guards if the API shifts again, and verifying Drift migrations still run
 **Plans:** 2 plans
 Plans:
-- [ ] 07-01-PLAN.md — README full rewrite (bootstrap flow, architecture, Firebase integration, AuthService contract, UX patterns)
+- [x] 07-01-PLAN.md — README full rewrite (bootstrap flow, architecture, Firebase integration, AuthService contract, UX patterns)
 - [ ] 07-02-PLAN.md — Rebase runbook (docs/rebase-runbook.md) + upgrade playbook (docs/upgrade-playbook.md)
 
 ## Progress
