@@ -53,12 +53,12 @@ Requirements for the 2026 refresh milestone. Each maps to a phase in ROADMAP.md.
 ### UX Patterns (onboarding, coach marks, RIVE)
 
 - [ ] **UX-01**: Onboarding feature at `lib/features/onboarding/` — 3-slide `PageView` with dots indicator, skip button, and next / "get started" CTA; follows existing Clean-Architecture layering (data / domain / presentation)
-- [ ] **UX-02**: `hasSeenOnboarding` flag persisted in `shared_preferences` via the `SharedPreferencesAsync` API; reading / writing abstracted through a `core/preferences/` service
-- [ ] **UX-03**: `auto_route` guard redirects first-run users to onboarding; after completion, the flag flips and subsequent launches land directly on `HomeRoute`
+- [x] **UX-02**: `hasSeenOnboarding` flag persisted in `shared_preferences` via the `SharedPreferencesAsync` API; reading / writing abstracted through a `core/preferences/` service
+- [x] **UX-03**: `auto_route` guard redirects first-run users to onboarding; after completion, the flag flips and subsequent launches land directly on `HomeRoute`
 - [ ] **UX-04**: `CoachMarkService` wrapper over `tutorial_coach_mark` — API: `register(GlobalKey key, String description, {String? title})` + `showTour(String tourId)`; internally it resolves registered keys to `TargetFocus` and handles "target not yet laid out" via `addPostFrameCallback`
 - [ ] **UX-05**: Counter screen demo — on first visit (flag persisted per tourId in `shared_preferences`), the FAB is highlighted by a coach-mark tour with a short description
-- [ ] **UX-06**: RIVE 0.14 initialized with `await RiveNative.init()` in the startup service, before `runApp`
-- [ ] **UX-07**: RIVE-based animated splash that renders after the native splash; handoff to `HomeRoute` / guarded routes happens via `addPostFrameCallback` + `FlutterNativeSplash.remove()` with no visible flicker on mid-range devices
+- [x] **UX-06**: RIVE 0.14 initialized with `await RiveNative.init()` in the startup service, before `runApp`
+- [x] **UX-07**: RIVE-based animated splash that renders after the native splash; handoff to `HomeRoute` / guarded routes happens via `addPostFrameCallback` + `FlutterNativeSplash.remove()` with no visible flicker on mid-range devices
 - [ ] **UX-08**: Example widget on a dedicated demo screen loads a `.riv` asset with `RiveWidgetBuilder`, exposes a state-machine input toggle, and demonstrates the cleanup pattern (`dispose` of the controller)
 
 ### Tooling (bootstrap, lints, tests, i18n)
@@ -157,12 +157,12 @@ Which phase covers which requirement. Populated during roadmap creation.
 | AUTH-05 | Phase 4 | Pending |
 | AUTH-06 | Phase 4 | Pending |
 | UX-01 | Phase 5 | Pending |
-| UX-02 | Phase 5 | Pending |
-| UX-03 | Phase 5 | Pending |
+| UX-02 | Phase 5 | Complete |
+| UX-03 | Phase 5 | Complete |
 | UX-04 | Phase 5 | Pending |
 | UX-05 | Phase 5 | Pending |
-| UX-06 | Phase 5 | Pending |
-| UX-07 | Phase 5 | Pending |
+| UX-06 | Phase 5 | Complete |
+| UX-07 | Phase 5 | Complete |
 | UX-08 | Phase 5 | Pending |
 | TOOL-01 | Phase 6 | Pending |
 | TOOL-02 | Phase 6 | Pending |

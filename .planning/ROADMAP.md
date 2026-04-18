@@ -137,7 +137,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 2. Lints, Error Handling, Local Data Layer | 0/2 | Planning complete | - |
 | 3. Package Upgrades + Auth Contract | 0/2 | Planning complete | - |
 | 4. Firebase Wiring + Auth Providers | 0/4 | Planning complete | - |
-| 5. UX Patterns (Onboarding + RIVE Splash + Coach Marks) | 0/TBD | Not started | - |
+| 5. UX Patterns (Onboarding + RIVE Splash + Coach Marks) | 1/4 | In Progress|  |
 | 6. Bootstrap + i18n Cleanup + Tests | 0/TBD | Not started | - |
 | 7. Documentation | 0/TBD | Not started | - |
 

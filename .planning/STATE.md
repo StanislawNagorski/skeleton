@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Phase 5 planned (4 plans, 2 waves)
-last_updated: "2026-04-17T19:00:00.000Z"
+stopped_at: Completed 05-01-PLAN.md
+last_updated: "2026-04-18T00:47:39.861Z"
 last_activity: 2026-04-17
 progress:
   total_phases: 7
   completed_phases: 4
   total_plans: 14
-  completed_plans: 10
-  percent: 71
+  completed_plans: 11
+  percent: 79
 ---
 
 # Project State
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-04-16)
 ## Current Position
 
 Phase: 5
-Plan: Ready to execute (4 plans, 2 waves)
-Status: Phase 5 planned
-Last activity: 2026-04-17
+Plan: 2 of 4 (wave 1)
+Status: executing
+Last activity: 2026-04-18
 
-Progress: [███████░░░] 71%
+Progress: [████████░░] 79%
 
 ## Performance Metrics
 
@@ -56,6 +56,7 @@ Progress: [███████░░░] 71%
 - Trend: — (no plans executed yet)
 
 *Updated after each plan completion*
+| Phase 05 P01 | 272s | 2 tasks | 22 files |
 
 ## Accumulated Context
 
@@ -66,6 +67,7 @@ Recent decisions affecting current work:
 
 - Project init: Rebase on fresh `flutter create` (not surgical bump); Drift over ObjectBox; Dart 3 sealed classes over `dartz`; Firebase config gitignored per-app (not shared demo); App Check release-only; flavors dropped from skeleton (added per-app when needed).
 - Roadmap: Phase 1 (Native Rebase) must ship alone — changes every `build.gradle` / `Podfile` / `Info.plist` and unblocks everything else. Lints + sealed `Result` + Drift collapsed into Phase 2 because they touch disjoint files and can proceed in parallel once the rebase lands. `AuthService` contract lock sits in Phase 3 (with package upgrades) so every downstream feature in Phases 5–6 builds against a frozen boundary.
+- [Phase 05]: OnboardingGuard uses pre-cached bool flag (no async I/O); AuthGuard moved from global to per-route on LoginRoute
 
 ### Pending Todos
 
@@ -85,6 +87,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-04-17
-Stopped at: Phase 5 planned (4 plans, 2 waves, verification passed)
-Resume file: .planning/phases/05-ux-patterns-onboarding-rive-splash-coach-marks/05-01-PLAN.md
+Last session: 2026-04-18T00:47:39.859Z
+Stopped at: Completed 05-01-PLAN.md
+Resume file: .planning/phases/05-ux-patterns-onboarding-rive-splash-coach-marks/05-02-PLAN.md
