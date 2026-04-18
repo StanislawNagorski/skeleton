@@ -100,7 +100,12 @@ Plans:
   3. `hasSeenOnboarding` is persisted via `SharedPreferencesAsync` through a `core/preferences/` service, and the `OnboardingGuard` redirects first-run users via `auto_route` before `HomeRoute`
   4. On first visit to the counter page, the FAB is highlighted by a `CoachMarkService.showTour('home')` with a short description; on subsequent visits the tour does not re-show (flag persisted per `tourId`)
   5. A dedicated demo screen loads a `.riv` asset with `RiveWidgetBuilder`, exposes a state-machine input toggle, and cleans up the controller in `dispose`
-**Plans**: TBD
+**Plans**: 4 plans
+Plans:
+- [x] 05-01-PLAN.md — Foundation: RIVE init, OnboardingGuard, router refactor, ARBs, assets, preference keys
+- [x] 05-02-PLAN.md — 3-slide onboarding PageView with cubit, dot indicator, skip/next/get-started
+- [x] 05-03-PLAN.md — RIVE demo page with RiveWidgetBuilder, state-machine toggle, proper disposal
+- [x] 05-04-PLAN.md — CoachMarkService wrapper + two-target home page tour (counter + FAB)
 **UI hint**: yes
 
 ### Phase 6: Bootstrap + i18n Cleanup + Tests
@@ -137,7 +142,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 2. Lints, Error Handling, Local Data Layer | 0/2 | Planning complete | - |
 | 3. Package Upgrades + Auth Contract | 0/2 | Planning complete | - |
 | 4. Firebase Wiring + Auth Providers | 0/4 | Planning complete | - |
-| 5. UX Patterns (Onboarding + RIVE Splash + Coach Marks) | 1/4 | In Progress|  |
+| 5. UX Patterns (Onboarding + RIVE Splash + Coach Marks) | 4/4 | Executing | - |
 | 6. Bootstrap + i18n Cleanup + Tests | 0/TBD | Not started | - |
 | 7. Documentation | 0/TBD | Not started | - |
 
