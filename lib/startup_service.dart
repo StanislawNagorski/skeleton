@@ -105,7 +105,6 @@ abstract class StartUpService {
     await FirebaseAppCheck.instance.activate(
       // D-09: appAttest (not deviceCheck) on Apple.
       providerApple: const AppleAppAttestProvider(),
-      providerAndroid: const AndroidPlayIntegrityProvider(),
     );
   }
 }

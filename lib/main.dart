@@ -31,9 +31,11 @@ Future<void> main() async {
     onboardingGuard: onboardingGuard,
   );
 
-  runApp(MyApp(
-    appRouter: appRouter,
-    authService: authService,
-    onboardingGuard: onboardingGuard,
-  ));
+  runApp(
+    MyApp(
+      appRouter: appRouter,
+      authService: authService,
+      onboardingGuard: onboardingGuard,
+    ),
+  );
 }
