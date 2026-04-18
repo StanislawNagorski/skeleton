@@ -21,6 +21,8 @@ import '../../features/home_page/data/repository/counter_repository.dart'
     as _i825;
 import '../../features/home_page/domain/counter_service.dart' as _i508;
 import '../../features/home_page/presentation/cubit/home_cubit.dart' as _i203;
+import '../../features/onboarding/presentation/cubit/onboarding_cubit.dart'
+    as _i807;
 import '../auth/auth_service.dart' as _i88;
 import '../auth/fake_auth_service.dart' as _i387;
 import '../auth/firebase_auth_service.dart' as _i491;
@@ -29,6 +31,7 @@ import '../database/database_module.dart' as _i215;
 import '../firebase/firebase_module.dart' as _i1055;
 import '../preferences/preferences_service.dart' as _i929;
 import '../preferences/preferences_service_impl.dart' as _i480;
+import '../router/guards/onboarding_guard.dart' as _i677;
 import '../secure_storage/secure_storage_service.dart' as _i611;
 import '../secure_storage/secure_storage_service_impl.dart' as _i220;
 
@@ -66,6 +69,12 @@ _i174.GetIt $initGetIt(
   gh.lazySingleton<_i974.FirebaseFirestore>(
     () => firebaseModule.firestore,
     registerFor: {_prod},
+  );
+  gh.factory<_i807.OnboardingCubit>(
+    () => _i807.OnboardingCubit(
+      gh<_i929.PreferencesService>(),
+      gh<_i677.OnboardingGuard>(),
+    ),
   );
   gh.lazySingleton<_i448.CounterLocalDataBase>(
     () => _i448.CounterLocalDataBaseImpl(gh<_i982.AppDatabase>()),
