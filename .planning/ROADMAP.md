@@ -23,7 +23,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 4: Firebase Wiring + Auth Providers** — Full FlutterFire BoM 4.12.0 stack, native Email/Google/Apple sign-in, App Check release-only, Crashlytics error hooks
 - [x] **Phase 5: UX Patterns (Onboarding + RIVE Splash + Coach Marks)** — `RiveNative.init()`, RIVE 0.14 animated splash, 3-slide onboarding + guard, `CoachMarkService` + FAB demo
 - [x] **Phase 6: Bootstrap + i18n Cleanup + Tests** — `tool/bootstrap.dart` rename script, PL→EN ARB template switch, counter cubit + repository reference tests (completed 2026-04-18)
-- [ ] **Phase 7: Documentation** — README rewrite, rebase runbook, upgrade playbook
+- [x] **Phase 7: Documentation** — README rewrite, rebase runbook, upgrade playbook (completed 2026-04-18)
 
 ## Phase Details
 
@@ -151,7 +151,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 4. Firebase Wiring + Auth Providers | 0/4 | Planning complete | - |
 | 5. UX Patterns (Onboarding + RIVE Splash + Coach Marks) | 4/4 | Complete | 2026-04-18 |
 | 6. Bootstrap + i18n Cleanup + Tests | 3/3 | Complete   | 2026-04-18 |
-| 7. Documentation | 0/2 | Planning complete | - |
+| 7. Documentation | 2/2 | Complete | 2026-04-18 |
 
 ---
 
