@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
-
 import 'package:skeleton/core/preferences/preferences_service.dart';
 import 'package:skeleton/core/presentation/app_dimensions.dart';
+import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
 /// Wrapper over `tutorial_coach_mark` for first-visit feature tours.
 ///
 /// Usage:
-/// 1. Register targets: `coachMarkService.register('home', fabKey, 'Tap to increment')`
+/// 1. Register targets:
+///    `coachMarkService.register('home', fabKey, 'Tap to increment')`
 /// 2. Show tour: `coachMarkService.showTour('home', context)`
 ///
-/// Tours auto-persist a `tour_{tourId}_seen` flag in `PreferencesService`
-/// and never re-show once completed. Per-screen scoping only (D-15).
+/// Tours auto-persist a `tour_{tourId}_seen` flag in
+/// `PreferencesService` and never re-show once completed.
+/// Per-screen scoping only (D-15).
 @lazySingleton
 class CoachMarkService {
   CoachMarkService(this._preferencesService);
@@ -42,12 +43,12 @@ class CoachMarkService {
 
   /// Shows the tour for [tourId] if it has not been seen before.
   ///
-  /// Wraps the display in [addPostFrameCallback] to ensure all
+  /// Wraps the display in `addPostFrameCallback` to ensure all
   /// target widgets have been laid out (Pitfall 3).
   Future<void> showTour(String tourId, BuildContext context) async {
     final prefKey = 'tour_${tourId}_seen';
     final seen = await _preferencesService.getBool(prefKey);
-    if (seen == true) return;
+    if (seen ?? false) return;
 
     final targets = _tours[tourId];
     if (targets == null || targets.isEmpty) return;
@@ -65,7 +66,6 @@ class CoachMarkService {
                 paddingFocus: AppDimensions.radiusMedium,
                 contents: [
                   TargetContent(
-                    align: ContentAlign.bottom,
                     builder: (context, controller) => Container(
                       padding: const EdgeInsets.all(
                         AppDimensions.spacingBase,
@@ -117,7 +117,6 @@ class CoachMarkService {
               ),
             )
             .toList(),
-        colorShadow: Colors.black,
         opacityShadow: 0.7,
         onFinish: () {
           // ignore: discarded_futures
