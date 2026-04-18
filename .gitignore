@@ -50,3 +50,6 @@ app.*.map.json
 # Release signing (per D-09)
 android/key.properties
 android/app/*.jks
+
+# Localization
+untranslated_messages.txt
