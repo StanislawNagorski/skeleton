@@ -4,5 +4,22 @@
   "homePage_centeredText": "Nacisnąłeś przycisk tyle razy:",
   "homePage_incrementButton": "Zwiększ",
   "homePage_decrementButton": "Zmniejsz",
-  "homePage_error": "Wystąpił błąd"
+  "homePage_error": "Wystąpił błąd",
+  "homePage_riveDemoButton": "Demo RIVE",
+  "onboarding_slide1Title": "Witaj",
+  "onboarding_slide1Subtitle": "Twoja nowa aplikacja jest gotowa. Zobaczmy co potrafi.",
+  "onboarding_slide2Title": "Odkryj funkcje",
+  "onboarding_slide2Subtitle": "Wszystko czego potrzebujesz, zbudowane z czystą architekturą.",
+  "onboarding_slide3Title": "Zaczynamy",
+  "onboarding_slide3Subtitle": "Wszystko gotowe. Zanurz się i dostosuj do siebie.",
+  "onboarding_skipButton": "Pomiń",
+  "onboarding_nextButton": "Dalej",
+  "onboarding_getStartedButton": "Zaczynamy",
+  "coachMark_counterTitle": "To jest Twój licznik",
+  "coachMark_counterBody": "Naciśnij przycisk poniżej, aby go zwiększyć.",
+  "coachMark_fabTitle": "Zwiększ",
+  "coachMark_fabBody": "Naciśnij ten przycisk, aby zwiększyć licznik.",
+  "riveDemo_title": "Demo RIVE",
+  "riveDemo_toggleLabel": "Przełącz stan animacji",
+  "riveDemo_description": "Ten przełącznik wysyła wartość logiczną do maszyny stanów RIVE."
 }

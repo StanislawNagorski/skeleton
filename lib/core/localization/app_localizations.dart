@@ -127,6 +127,108 @@ abstract class AppLocalizations {
   /// In pl, this message translates to:
   /// **'Wystąpił błąd'**
   String get homePage_error;
+
+  /// No description provided for @homePage_riveDemoButton.
+  ///
+  /// In pl, this message translates to:
+  /// **'Demo RIVE'**
+  String get homePage_riveDemoButton;
+
+  /// No description provided for @onboarding_slide1Title.
+  ///
+  /// In pl, this message translates to:
+  /// **'Witaj'**
+  String get onboarding_slide1Title;
+
+  /// No description provided for @onboarding_slide1Subtitle.
+  ///
+  /// In pl, this message translates to:
+  /// **'Twoja nowa aplikacja jest gotowa. Zobaczmy co potrafi.'**
+  String get onboarding_slide1Subtitle;
+
+  /// No description provided for @onboarding_slide2Title.
+  ///
+  /// In pl, this message translates to:
+  /// **'Odkryj funkcje'**
+  String get onboarding_slide2Title;
+
+  /// No description provided for @onboarding_slide2Subtitle.
+  ///
+  /// In pl, this message translates to:
+  /// **'Wszystko czego potrzebujesz, zbudowane z czystą architekturą.'**
+  String get onboarding_slide2Subtitle;
+
+  /// No description provided for @onboarding_slide3Title.
+  ///
+  /// In pl, this message translates to:
+  /// **'Zaczynamy'**
+  String get onboarding_slide3Title;
+
+  /// No description provided for @onboarding_slide3Subtitle.
+  ///
+  /// In pl, this message translates to:
+  /// **'Wszystko gotowe. Zanurz się i dostosuj do siebie.'**
+  String get onboarding_slide3Subtitle;
+
+  /// No description provided for @onboarding_skipButton.
+  ///
+  /// In pl, this message translates to:
+  /// **'Pomiń'**
+  String get onboarding_skipButton;
+
+  /// No description provided for @onboarding_nextButton.
+  ///
+  /// In pl, this message translates to:
+  /// **'Dalej'**
+  String get onboarding_nextButton;
+
+  /// No description provided for @onboarding_getStartedButton.
+  ///
+  /// In pl, this message translates to:
+  /// **'Zaczynamy'**
+  String get onboarding_getStartedButton;
+
+  /// No description provided for @coachMark_counterTitle.
+  ///
+  /// In pl, this message translates to:
+  /// **'To jest Twój licznik'**
+  String get coachMark_counterTitle;
+
+  /// No description provided for @coachMark_counterBody.
+  ///
+  /// In pl, this message translates to:
+  /// **'Naciśnij przycisk poniżej, aby go zwiększyć.'**
+  String get coachMark_counterBody;
+
+  /// No description provided for @coachMark_fabTitle.
+  ///
+  /// In pl, this message translates to:
+  /// **'Zwiększ'**
+  String get coachMark_fabTitle;
+
+  /// No description provided for @coachMark_fabBody.
+  ///
+  /// In pl, this message translates to:
+  /// **'Naciśnij ten przycisk, aby zwiększyć licznik.'**
+  String get coachMark_fabBody;
+
+  /// No description provided for @riveDemo_title.
+  ///
+  /// In pl, this message translates to:
+  /// **'Demo RIVE'**
+  String get riveDemo_title;
+
+  /// No description provided for @riveDemo_toggleLabel.
+  ///
+  /// In pl, this message translates to:
+  /// **'Przełącz stan animacji'**
+  String get riveDemo_toggleLabel;
+
+  /// No description provided for @riveDemo_description.
+  ///
+  /// In pl, this message translates to:
+  /// **'Ten przełącznik wysyła wartość logiczną do maszyny stanów RIVE.'**
+  String get riveDemo_description;
 }
 
 class _AppLocalizationsDelegate

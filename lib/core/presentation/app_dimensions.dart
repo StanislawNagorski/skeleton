@@ -7,5 +7,7 @@ abstract class AppDimensions {
   static const double spacingMedium = 16;
   static const double spacingLarge = 24;
   static const double spacingExtraLarge = 32;
+  static const double spacingXXL = 48;
+  static const double spacingXXXL = 64;
   static const double snackBarHeight = 58;
 }
