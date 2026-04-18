@@ -118,7 +118,11 @@ Plans:
   3. `l10n.yaml` uses `template-arb-file: app_en.arb`, the PL/EN drift is reconciled (no missing keys in either file), and `untranslated-messages-file` is configured and gitignored
   4. `test/features/home_page/` contains a `HomeCubit` test using `bloc_test` + `mocktail` and a Drift repository test using `NativeDatabase.memory()`; `fvm flutter test` exits 0
   5. `test/tool/bootstrap_test.dart` runs the rename script against a fixture copy and asserts `flutter analyze` passes and an APK builds on the renamed output
-**Plans**: TBD
+**Plans:** 3 plans
+Plans:
+- [ ] 06-01-PLAN.md — ARB template switch (PL->EN), mocktail dep, counter cubit + repository reference tests
+- [ ] 06-02-PLAN.md — Bootstrap rename script (tool/bootstrap.dart) with input validation and Firebase checklist
+- [ ] 06-03-PLAN.md — Bootstrap script end-to-end tests (fixture copy + rename + analyze verification)
 
 ### Phase 7: Documentation
 **Goal**: README rewritten around the bootstrap + FlutterFire flow, rebase procedure captured as a repeatable runbook, and an upgrade playbook for the next FlutterFire BoM / Flutter major
@@ -143,7 +147,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 3. Package Upgrades + Auth Contract | 0/2 | Planning complete | - |
 | 4. Firebase Wiring + Auth Providers | 0/4 | Planning complete | - |
 | 5. UX Patterns (Onboarding + RIVE Splash + Coach Marks) | 4/4 | Complete | 2026-04-18 |
-| 6. Bootstrap + i18n Cleanup + Tests | 0/TBD | Not started | - |
+| 6. Bootstrap + i18n Cleanup + Tests | 0/3 | Planning complete | - |
 | 7. Documentation | 0/TBD | Not started | - |
 
 ---
