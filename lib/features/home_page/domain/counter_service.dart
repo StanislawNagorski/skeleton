@@ -1,30 +1,40 @@
-import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:skeleton/core/errors/result.dart';
+import 'package:skeleton/features/home_page/data/model/counter_model.dart';
+import 'package:skeleton/features/home_page/data/repository/counter_repository.dart';
 
-import '../../../core/errors/failures.dart';
-import '../data/model/counter_model.dart';
-import '../data/repository/counter_repository.dart';
-
-//Purpose of service is to connect with multiple repositories, it can also handle some business logic which is not related to UI
+/// Connects with counter repositories and handles non-UI business
+/// logic.
 abstract class CounterService {
-  Future<Either<Failure, CounterModel>> getCounter();
-  Future<Either<Failure, void>> setCounter({required CounterModel counter});
-  Stream<Either<Failure, CounterModel>> watchCounter();
+  /// Reads the current counter value.
+  Future<Result<CounterModel>> getCounter();
+
+  /// Persists the counter value.
+  Future<Result<void>> setCounter({required CounterModel counter});
+
+  /// Watches counter changes reactively.
+  Stream<Result<CounterModel>> watchCounter();
 }
 
-@Injectable(as: CounterService)
+/// Implementation that delegates to [CounterRepository].
+@LazySingleton(as: CounterService)
 class CounterServiceImpl implements CounterService {
+  /// Creates a [CounterServiceImpl] backed by the given repository.
   CounterServiceImpl(this._repository);
 
   final CounterRepository _repository;
 
   @override
-  Future<Either<Failure, CounterModel>> getCounter() async => _repository.getCounter();
-
-
-  @override
-  Future<Either<Failure, void>> setCounter({required CounterModel counter}) => _repository.setCounter(counter: counter);
+  Future<Result<CounterModel>> getCounter() async =>
+      _repository.getCounter();
 
   @override
-  Stream<Either<Failure, CounterModel>> watchCounter() => _repository.watchCounter();
+  Future<Result<void>> setCounter({
+    required CounterModel counter,
+  }) =>
+      _repository.setCounter(counter: counter);
+
+  @override
+  Stream<Result<CounterModel>> watchCounter() =>
+      _repository.watchCounter();
 }

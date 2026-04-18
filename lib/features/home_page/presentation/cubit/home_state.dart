@@ -7,7 +7,7 @@ class HomeState {
     required this.counter,
   });
 
-  factory HomeState.initial() => HomeState(
+  factory HomeState.initial() => const HomeState(
         status: HomePageStatus.empty,
         navigation: HomePageNavigation.empty,
         counter: CounterModel(value: 0),

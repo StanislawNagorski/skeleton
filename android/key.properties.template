@@ -1,0 +1,11 @@
+# Release signing configuration for Android
+# Copy this file to key.properties and fill in your values.
+# key.properties is gitignored and must NOT be committed.
+#
+# Generate a keystore:
+#   keytool -genkey -v -keystore keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload
+#
+storeFile=keystore.jks
+storePassword=
+keyAlias=
+keyPassword=
