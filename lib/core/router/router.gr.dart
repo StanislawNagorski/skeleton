@@ -41,3 +41,35 @@ class MyHomeRoute extends PageRouteInfo<void> {
     },
   );
 }
+
+/// generated route for
+/// [OnboardingPage]
+class OnboardingRoute extends PageRouteInfo<void> {
+  const OnboardingRoute({List<PageRouteInfo>? children})
+    : super(OnboardingRoute.name, initialChildren: children);
+
+  static const String name = 'OnboardingRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const OnboardingPage();
+    },
+  );
+}
+
+/// generated route for
+/// [RiveDemoPage]
+class RiveDemoRoute extends PageRouteInfo<void> {
+  const RiveDemoRoute({List<PageRouteInfo>? children})
+    : super(RiveDemoRoute.name, initialChildren: children);
+
+  static const String name = 'RiveDemoRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const RiveDemoPage();
+    },
+  );
+}

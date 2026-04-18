@@ -7,6 +7,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
+import 'package:rive/rive.dart';
 
 import 'package:skeleton/core/injectable/injection.dart';
 import 'package:skeleton/firebase_options.dart';
@@ -25,6 +26,9 @@ abstract class StartUpService {
   /// 5. configureDependenciesApp(environment: env)
   static Future<void> initServices() async {
     var environment = 'dev';
+
+    // UX-06: Initialize RIVE native C++ runtime before any RIVE widget loads.
+    await RiveNative.init();
 
     try {
       await Firebase.initializeApp(
