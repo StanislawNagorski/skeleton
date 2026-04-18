@@ -133,7 +133,10 @@ Plans:
   2. README documents the bootstrap flow, FlutterFire setup, SHA-1 registration, Apple capability + Services ID steps, the `AuthService` contract, and the Firebase-sterile stance
   3. A rebase runbook (in `docs/` or `.planning/`) captures every step of the native rebase procedure in enough detail for the next Flutter major to be replayed without rewriting
   4. An upgrade playbook covers bumping the FlutterFire BoM, verifying App Check still activates in release, migrating `auto_route` guards if the API shifts again, and verifying Drift migrations still run
-**Plans**: TBD
+**Plans:** 2 plans
+Plans:
+- [ ] 07-01-PLAN.md — README full rewrite (bootstrap flow, architecture, Firebase integration, AuthService contract, UX patterns)
+- [ ] 07-02-PLAN.md — Rebase runbook (docs/rebase-runbook.md) + upgrade playbook (docs/upgrade-playbook.md)
 
 ## Progress
 
@@ -148,7 +151,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 4. Firebase Wiring + Auth Providers | 0/4 | Planning complete | - |
 | 5. UX Patterns (Onboarding + RIVE Splash + Coach Marks) | 4/4 | Complete | 2026-04-18 |
 | 6. Bootstrap + i18n Cleanup + Tests | 3/3 | Complete   | 2026-04-18 |
-| 7. Documentation | 0/TBD | Not started | - |
+| 7. Documentation | 0/2 | Planning complete | - |
 
 ---
 
