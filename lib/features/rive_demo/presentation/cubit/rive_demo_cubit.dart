@@ -24,7 +24,7 @@ class RiveDemoCubit extends Cubit<RiveDemoState> {
   }
 
   /// Called when the RIVE file fails to load.
-  void onError() {
+  void onLoadFailed() {
     emit(state.copyWith(status: RiveDemoPageStatus.error));
   }
 }

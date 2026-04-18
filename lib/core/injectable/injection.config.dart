@@ -21,6 +21,8 @@ import '../../features/home_page/data/repository/counter_repository.dart'
     as _i825;
 import '../../features/home_page/domain/counter_service.dart' as _i508;
 import '../../features/home_page/presentation/cubit/home_cubit.dart' as _i203;
+import '../../features/rive_demo/presentation/cubit/rive_demo_cubit.dart'
+    as _i992;
 import '../auth/auth_service.dart' as _i88;
 import '../auth/fake_auth_service.dart' as _i387;
 import '../auth/firebase_auth_service.dart' as _i491;
@@ -45,6 +47,7 @@ _i174.GetIt $initGetIt(
   final gh = _i526.GetItHelper(getIt, environment, environmentFilter);
   final databaseModule = _$DatabaseModule();
   final firebaseModule = _$FirebaseModule();
+  gh.factory<_i992.RiveDemoCubit>(() => _i992.RiveDemoCubit());
   gh.lazySingleton<_i982.AppDatabase>(() => databaseModule.appDatabase);
   gh.lazySingleton<_i611.SecureStorageService>(
     () => _i220.SecureStorageServiceImpl(),
