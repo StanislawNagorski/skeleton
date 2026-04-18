@@ -21,7 +21,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 2: Lints, Error Handling, Local Data Layer** — Adopt `very_good_analysis`, replace `dartz` with sealed `Result`/`Failure`, swap ObjectBox → Drift, port the counter example
 - [ ] **Phase 3: Package Upgrades + Auth Contract** — Bump `flutter_bloc` 8→9 and `auto_route` 9→11, lock the `AuthService` abstract contract
 - [ ] **Phase 4: Firebase Wiring + Auth Providers** — Full FlutterFire BoM 4.12.0 stack, native Email/Google/Apple sign-in, App Check release-only, Crashlytics error hooks
-- [ ] **Phase 5: UX Patterns (Onboarding + RIVE Splash + Coach Marks)** — `RiveNative.init()`, RIVE 0.14 animated splash, 3-slide onboarding + guard, `CoachMarkService` + FAB demo
+- [x] **Phase 5: UX Patterns (Onboarding + RIVE Splash + Coach Marks)** — `RiveNative.init()`, RIVE 0.14 animated splash, 3-slide onboarding + guard, `CoachMarkService` + FAB demo
 - [ ] **Phase 6: Bootstrap + i18n Cleanup + Tests** — `tool/bootstrap.dart` rename script, PL→EN ARB template switch, counter cubit + repository reference tests
 - [ ] **Phase 7: Documentation** — README rewrite, rebase runbook, upgrade playbook
 
@@ -142,7 +142,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 2. Lints, Error Handling, Local Data Layer | 0/2 | Planning complete | - |
 | 3. Package Upgrades + Auth Contract | 0/2 | Planning complete | - |
 | 4. Firebase Wiring + Auth Providers | 0/4 | Planning complete | - |
-| 5. UX Patterns (Onboarding + RIVE Splash + Coach Marks) | 4/4 | Executing | - |
+| 5. UX Patterns (Onboarding + RIVE Splash + Coach Marks) | 4/4 | Complete | 2026-04-18 |
 | 6. Bootstrap + i18n Cleanup + Tests | 0/TBD | Not started | - |
 | 7. Documentation | 0/TBD | Not started | - |
 
