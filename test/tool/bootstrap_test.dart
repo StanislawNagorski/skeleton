@@ -232,7 +232,7 @@ void main() {
             'stdout: ${analyzeResult.stdout}\n'
             'stderr: ${analyzeResult.stderr}',
       );
-    }, timeout: const Timeout(Duration(seconds: 120)));
+    }, timeout: const Timeout(Duration(seconds: 120)),);
   });
 
   group('Bootstrap input validation', () {
